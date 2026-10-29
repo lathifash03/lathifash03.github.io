@@ -1,7 +1,7 @@
 {
   "name": "Lathifah Sahda",
   "shortName": "Thifa",
-  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": true },
+  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": false },
   "status": "Open to internships · Jakarta",
   "statement": "Computer science graduate from ITS. I build language-model systems, measure where they break, and explain the results to people who aren't engineers.",
   "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },

@@ -65,7 +65,7 @@
         { "value": "3.5×", "label": "embedding choice moved coherence more than hyperparameter tuning", "caveat": "0.075 spread across embeddings vs +0.021 from Optuna" }
       ],
       "tags": ["NMF", "LDA", "BERTopic", "Optuna", "UMAP", "HDBSCAN", "Streamlit"],
-      "image": { "src": "/images/projects/ruang-topik-dashboard.png", "alt": "Ruang Topik Streamlit dashboard", "draft": true },
+      "image": { "src": "/images/projects/ruang-topik-dashboard.png", "alt": "Ruang Topik dashboard showing the corpus and article counts per portal and category", "draft": false },
       "links": {
         "caseStudy": "/projects/ruang-topik/",
         "demo": "https://textmin-deploy.streamlit.app",
@@ -85,7 +85,7 @@
       "teamSize": 2,
       "summary": "A cross-platform Flutter proof of concept that lets managers approve or reject internal requests (HR leave, finance verification, QMS) remotely, behind three authentication layers: registered device, app password and face recognition, with traffic tunnelled through a WireGuard VPN.",
       "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
-      "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Approval queue screen with company data blurred", "draft": true },
+      "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Splash and login screens of the Secure Verification App", "draft": false },
       "links": {
         "code": "https://github.com/Aliyah-Pattoza/ubs_secure_verification.git"
       }
@@ -102,7 +102,7 @@
       "team": true,
       "summary": "A web-based financial management system for a kindergarten. We gathered requirements through surveys and interviews with teachers, treasurers and parents, then built five roles (administrator, secretary, treasurer, teacher, parent) covering enrolment, tuition, extracurricular payments, payroll and household expenses. Co-led.",
       "tags": ["Web app", "Requirements gathering", "Role-based access"],
-      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin login page", "draft": true },
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin home screen listing its five modules", "draft": false },
       "links": { "demo": "https://kinderfin.labmci.site/" }
     },
     {
@@ -117,7 +117,7 @@
       "team": true,
       "summary": "A web app that recommends a study major: forward-chaining rules plus an XGBoost model behind a Flask REST API, with a Next.js front end.",
       "tags": ["Next.js", "Flask", "XGBoost", "Expert system"],
-      "image": { "src": "/images/projects/major-in.png", "alt": "Major.in recommendation screen", "draft": true },
+      "image": { "src": "/images/projects/major-in.png", "alt": "Major.in recommendation screen", "draft": false },
       "links": { "demo": "https://major-in.vercel.app" }
     },
     {
@@ -131,8 +131,8 @@
       "context": "PKM-K · national funding recipient",
       "team": true,
       "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights).",
-      "tags": ["Game", "Education", "Unity"],
-      "image": { "src": "/images/projects/weapmath.png", "alt": "WeapMath gameplay", "draft": true },
+      "tags": ["Mobile game", "Education", "Unity"],
+      "image": { "src": "/images/projects/weapmath.png", "alt": "WeapMath gameplay", "draft": false },
       "links": {
         "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
       }
@@ -149,7 +149,7 @@
       "team": true,
       "summary": "The app translates American Sign Lang Sign Language (ASL) hand gestures into text in real-time by combining image processing and a YOLO- based object detection model",
       "tags": ["YOLO", "Computer vision"],
-      "image": { "src": "/images/projects/aslora.png", "alt": "use a screenshot without anyone's face", "draft": true },
+      "image": { "src": "/images/projects/aslora.png", "alt": "ASLora translating two hand signs into letters with confidence scores", "draft": false },
       "links": {
         "demo": "https://github.com/thoriqagfi/fp-ppb.git"
       }

@@ -1,7 +1,7 @@
 {
   "name": "Lathifah Sahda",
   "shortName": "Thifa",
-  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Foto Lathifah Sahda", "draft": true },
+  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": false },
   "status": "Terbuka untuk magang · Jakarta",
   "statement": "Lulusan Teknik Informatika ITS. Saya membangun sistem berbasis language model, mengukur di mana sistem itu gagal, dan menjelaskan hasilnya kepada orang yang bukan engineer.",
   "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
