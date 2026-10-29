@@ -13,14 +13,30 @@ const asset = z
   .object({
     src: z.string().startsWith("/"),
     alt: z.string(),
+    // Measured from the file at build time (DESIGN.md §9), never authored.
+    width: z.number().int().positive().optional(),
+    height: z.number().int().positive().optional(),
     ...draftable,
   })
   .strict();
+
+export type Asset = z.infer<typeof asset>;
 
 const galleryAsset = asset.extend({ caption: z.string() }).strict();
 
 /** A case-study route: `/projects/<slug>/`. */
 const caseStudyRoute = z.string().regex(/^\/projects\/[a-z0-9-]+\/$/);
+
+/** A strict object of plain strings, with the key names kept in the type. */
+const strings = <K extends string>(...keys: K[]) =>
+  z
+    .object(
+      Object.fromEntries(keys.map((key) => [key, z.string()])) as Record<
+        K,
+        z.ZodString
+      >,
+    )
+    .strict();
 
 export const profileSchema = z
   .object({
@@ -101,6 +117,8 @@ export const uiSchema = z
         data: z.string(),
         experience: z.string(),
         leadership: z.string(),
+        speaking: z.string(),
+        training: z.string(),
         writing: z.string(),
         contact: z.string(),
       })
@@ -115,6 +133,8 @@ export const uiSchema = z
         viewCode: z.string(),
         liveDemo: z.string(),
         readArticle: z.string(),
+        viewArchive: z.string(),
+        readReport: z.string(),
         backToWork: z.string(),
         skipIntro: z.string(),
       })
@@ -122,9 +142,49 @@ export const uiSchema = z
     labels: z
       .object({
         teamProject: z.string(),
+        teamSize: z.string(),
         illustration: z.string(),
         clock: z.string(),
         caveat: z.string(),
+        languages: z.string(),
+      })
+      .strict(),
+    // Figure labels: the diagrams are drawn in code, so their words live here
+    // rather than in the components (CLAUDE.md hard rule 6).
+    diagrams: z
+      .object({
+        kgAgent: strings(
+          "query",
+          "retrieval",
+          "retrievalDetail",
+          "graph",
+          "graphEngine",
+          "draft",
+          "draftEngine",
+          "gates",
+          "faithfulness",
+          "faithfulnessDetail",
+          "trust",
+          "trustDetail",
+          "temporal",
+          "temporalDetail",
+          "retry",
+          "verified",
+          "description",
+        ),
+        thesis: strings(
+          "input",
+          "phase1",
+          "phase1Detail",
+          "phase2",
+          "phase2Detail",
+          "phase3",
+          "phase3Detail",
+          "phase4",
+          "phase4Detail",
+          "output",
+          "description",
+        ),
       })
       .strict(),
   })

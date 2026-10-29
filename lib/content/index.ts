@@ -44,29 +44,102 @@ function stripNotes(value: unknown): unknown {
   return value;
 }
 
-function isDraft(value: unknown): boolean {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    !Array.isArray(value) &&
-    (value as { draft?: unknown }).draft === true
+const PUBLIC_ROOT = join(process.cwd(), "public");
+const missingAssets = new Set<string>();
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/**
+ * An item is withheld when it is a draft, or when the file it points at is not
+ * in public/ — a half-published portfolio shows no broken images.
+ */
+function isWithheld(value: unknown): boolean {
+  if (!isPlainObject(value)) return false;
+  if (value.draft === true) return true;
+
+  const src = value.src;
+  if (typeof src === "string" && !existsSync(join(PUBLIC_ROOT, src))) {
+    missingAssets.add(src);
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Intrinsic size of a local PNG or JPEG, so every image can carry width and
+ * height and reserve its space before it loads (DESIGN.md §9). Reading the few
+ * header bytes here is cheaper than carrying an image library.
+ */
+function measureImage(file: string): { width: number; height: number } | null {
+  let bytes: Buffer;
+  try {
+    bytes = readFileSync(file);
+  } catch {
+    return null;
+  }
+
+  // PNG: IHDR holds the dimensions at a fixed offset.
+  if (bytes.length > 24 && bytes.toString("ascii", 1, 4) === "PNG") {
+    return { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) };
+  }
+
+  // JPEG: walk the segments to the start-of-frame marker.
+  if (bytes.length > 4 && bytes.readUInt16BE(0) === 0xffd8) {
+    let offset = 2;
+    while (offset + 9 < bytes.length) {
+      if (bytes[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+      const marker = bytes[offset + 1];
+      const isStartOfFrame =
+        marker >= 0xc0 &&
+        marker <= 0xcf &&
+        marker !== 0xc4 &&
+        marker !== 0xc8 &&
+        marker !== 0xcc;
+      if (isStartOfFrame) {
+        return {
+          height: bytes.readUInt16BE(offset + 5),
+          width: bytes.readUInt16BE(offset + 7),
+        };
+      }
+      offset += 2 + bytes.readUInt16BE(offset + 2);
+    }
+  }
+
+  return null;
+}
+
+/** Printed once per build so a missing file is noticed rather than silently dropped. */
+export function reportMissingAssets(): void {
+  if (!missingAssets.size) return;
+  console.warn(
+    `\n⚠ ${missingAssets.size} referenced file(s) are missing from public/ and are not rendered:`,
   );
+  for (const src of [...missingAssets].sort()) console.warn(`  public${src}`);
 }
 
 /**
  * Drafts never reach the build (CLAUDE.md hard rule 5):
- * a draft item is dropped from its array, and a draft nested object
+ * a withheld item is dropped from its array, and a withheld nested object
  * omits only that field, so the component falls back to a layout without it.
  */
 function pruneDrafts<T>(value: T): T {
   if (Array.isArray(value)) {
-    return value.filter((item) => !isDraft(item)).map(pruneDrafts) as T;
+    return value.filter((item) => !isWithheld(item)).map(pruneDrafts) as T;
   }
   if (typeof value === "object" && value !== null) {
     const out: Record<string, unknown> = {};
     for (const [key, v] of Object.entries(value)) {
-      if (isDraft(v)) continue;
+      if (isWithheld(v)) continue;
       out[key] = pruneDrafts(v);
+    }
+    if (typeof out.src === "string" && typeof out.alt === "string") {
+      const size = measureImage(join(PUBLIC_ROOT, out.src));
+      if (size) Object.assign(out, size);
     }
     return out as T;
   }

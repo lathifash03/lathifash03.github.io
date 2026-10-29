@@ -15,6 +15,8 @@
     "data": "Data dan analisis",
     "experience": "Pengalaman",
     "leadership": "Kepemimpinan dan komunitas",
+    "speaking": "Pembicara",
+    "training": "Pelatihan",
     "writing": "Tulisan",
     "contact": "Sapa saya"
   },
@@ -27,13 +29,51 @@
     "viewCode": "Lihat kode",
     "liveDemo": "Demo langsung",
     "readArticle": "Baca artikel",
+    "viewArchive": "Semua tulisan",
+    "readReport": "Baca laporan",
     "backToWork": "Kembali ke karya",
     "skipIntro": "Lewati"
   },
   "labels": {
     "teamProject": "Proyek tim",
+    "teamSize": "{n} orang",
     "illustration": "Ilustrasi alur verify-then-retry, bukan hasil evaluasi",
     "clock": "Waktu setempat",
-    "caveat": "Catatan"
+    "caveat": "Catatan",
+    "languages": "Bahasa"
+  },
+  "diagrams": {
+    "kgAgent": {
+      "query": "Query",
+      "retrieval": "Retrieval",
+      "retrievalDetail": "vector + keyword",
+      "graph": "Knowledge graph",
+      "graphEngine": "Neo4j",
+      "draft": "Draft answer",
+      "draftEngine": "Hermes3:3b",
+      "gates": "Verification gates",
+      "faithfulness": "Faithfulness",
+      "faithfulnessDetail": "grounded in what was retrieved",
+      "trust": "Trust",
+      "trustDetail": "confidence × weight × recency",
+      "temporal": "Temporal validity",
+      "temporalDetail": "checks staleness",
+      "retry": "A failed gate retries with a different retrieval",
+      "verified": "Verified answer",
+      "description": "Flow diagram. A query goes to retrieval, vector and keyword, over a Neo4j knowledge graph. A language model drafts an answer. Three gates check faithfulness, trust and temporal validity; a failed gate sends the agent back to retrieval. A verified answer is returned only once the gates pass."
+    },
+    "thesis": {
+      "input": "News narrative",
+      "phase1": "Rule-based pre-processing",
+      "phase1Detail": "entity and temporal extraction",
+      "phase2": "Constraint generation",
+      "phase2Detail": "per-article mandatory entities and order",
+      "phase3": "Constrained LLM conversion",
+      "phase3Detail": "three models, same constraints",
+      "phase4": "Rule-based post-processing",
+      "phase4Detail": "validation and entity injection",
+      "output": "Procedural text",
+      "description": "Flow diagram of four phases. A news narrative passes through rule-based pre-processing, constraint generation, constrained conversion by three language models, and rule-based post-processing that validates the result and injects entities the models dropped, producing procedural text."
+    }
   }
 }

@@ -41,3 +41,7 @@ yarn-error.log*
 
 # local agent/tool state
 .omc/
+
+# design review working files
+.taste-skill/
+.playwright-cli/

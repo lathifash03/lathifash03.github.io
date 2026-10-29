@@ -132,7 +132,7 @@
       "team": true,
       "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights).",
       "tags": ["Mobile game", "Education", "Unity"],
-      "image": { "src": "/images/projects/weapmath.png", "alt": "WeapMath gameplay", "draft": false },
+      "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "WeapMath gameplay", "draft": false },
       "links": {
         "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
       }
