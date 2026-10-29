@@ -95,15 +95,15 @@
       "group": "built",
       "lane": "sw",
       "order": 2,
-      "draft": true,
+      "draft": false,
       "year": "2024",
       "title": "Kinderfin",
-      "context": "Community service project · MCI Lab, ITS",
+      "context": "Community service project (KKN Abmas) · MCI Lab, ITS",
       "team": true,
-      "summary": "A web-based financial management system for a kindergarten. We gathered requirements with the school staff and delivered the application. Co-led.",
-      "tags": ["stack"],
-      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin dashboard", "draft": true },
-      "links": { "demo": "https://kinderfin.labmci.site" }
+      "summary": "A web-based financial management system for a kindergarten. We gathered requirements through surveys and interviews with teachers, treasurers and parents, then built five roles (administrator, secretary, treasurer, teacher, parent) covering enrolment, tuition, extracurricular payments, payroll and household expenses. Co-led.",
+      "tags": ["Web app", "Requirements gathering", "Role-based access"],
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin login page", "draft": true },
+      "links": { "demo": "https://kinderfin.labmci.site/" }
     },
     {
       "slug": "major-in",
@@ -131,7 +131,7 @@
       "context": "PKM-K · national funding recipient",
       "team": true,
       "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights).",
-      "tags": ["Game", "Education", "engine"],
+      "tags": ["Game", "Education", "Unity"],
       "image": { "src": "/images/projects/weapmath.png", "alt": "WeapMath gameplay", "draft": true },
       "links": {
         "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
@@ -235,7 +235,7 @@
         { "src": "/images/projects/tableau-orders-state.png", "alt": "Map of order value per US state" }
       ],
       "links": {
-        
+
       }
     },
     {
