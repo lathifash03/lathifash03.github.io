@@ -1,0 +1,284 @@
+{
+  "_note": "group: research | built | data. Items with draft:true are excluded from the build. Replace [TBD: ...] then set draft:false.",
+  "projects": [
+    {
+      "slug": "kg-agent",
+      "group": "research",
+      "lane": "ai",
+      "order": 1,
+      "draft": false,
+      "year": "2026",
+      "title": "kg-agent: a verification layer for knowledge-graph RAG",
+      "context": "TEEP research internship · CITI Lab, NTUST, Taipei",
+      "team": false,
+      "summary": "Before an answer generated from a Neo4j knowledge graph is returned, three independent gates check it: is it faithful to what was retrieved, are the source nodes trustworthy, and are they still current? If a gate fails, the agent retries with a different retrieval strategy.",
+      "metrics": [
+        { "value": "0%", "label": "false-pass rate (unsafe answers let through)", "caveat": "20-item ground-truth set, 3 runs" },
+        { "value": "75%", "label": "end-to-end gate accuracy (15/20)", "caveat": "median of 3 runs; low-trust category only 1/5 correct" },
+        { "value": "57%", "label": "false-pass rate with the trust gate removed", "caveat": "ablation; 100% with all gates removed" }
+      ],
+      "tags": ["Python", "Neo4j", "LLM-as-judge", "MCP", "LangGraph", "Docker"],
+      "image": { "src": "/images/projects/kg-agent-pipeline.png", "alt": "kg-agent verify-then-retry pipeline diagram", "draft": true },
+      "links": {
+        "caseStudy": "/projects/kg-agent/",
+        "code": "https://github.com/lathifash03/kg-agentic.git",
+        "report": "https://drive.google.com/file/d/1RPIH6PZuEYMwsxRAB3Favm0q4AeFBOIy/view?usp=sharing"
+      }
+    },
+    {
+      "slug": "narrative-to-procedural",
+      "group": "research",
+      "lane": "ai",
+      "order": 2,
+      "draft": false,
+      "year": "2026",
+      "title": "Turning news narratives into step-by-step text",
+      "context": "Undergraduate thesis · ITS",
+      "team": false,
+      "summary": "A hybrid pipeline: rule-based NER and temporal analysis build per-article constraints, three LLMs convert the article under those constraints, and rule-based validators plus entity injection repair what the models drop.",
+      "metrics": [
+        { "value": "≤33% → 57–67%", "label": "articles keeping every mandatory entity, prompt-only vs full pipeline", "caveat": "480 articles per model; still below the 85% target" },
+        { "value": "0.645–0.700", "label": "BERTScore F1 across the three models", "caveat": "target ≥ 0.60 met by all three" },
+        { "value": "1,440", "label": "evaluation data points (480 articles × 3 models, 16 news domains)", "caveat": "sampled from 26,526 valid articles" }
+      ],
+      "tags": ["spaCy", "Llama 3.3 70B", "GPT-4o-mini", "Claude Haiku", "ROUGE", "BERTScore"],
+      "image": { "src": "/images/projects/thesis-pipeline.png", "alt": "Four-phase hybrid pipeline diagram", "draft": true },
+      "links": {
+        "caseStudy": "/projects/narrative-to-procedural/",
+        "code": "https://github.com/lathifash03/ta_demo.git"
+      }
+    },
+    {
+      "slug": "ruang-topik",
+      "group": "research",
+      "lane": "ai",
+      "order": 3,
+      "draft": false,
+      "year": "2026",
+      "title": "Ruang Topik: what 20,334 Indonesian news articles talk about",
+      "context": "Text Mining final project · ITS",
+      "team": true,
+      "teamSize": 3,
+      "summary": "We scraped six national news portals, compared LDA, NMF and BERTopic, tuned BERTopic with Optuna, tested five embedding models, and shipped the result as a Streamlit dashboard for non-technical readers.",
+      "metrics": [
+        { "value": "0.825", "label": "best topic coherence (NMF, C_v, k = 25)", "caveat": "vs BERTopic 0.778 and LDA 0.616" },
+        { "value": "3.5×", "label": "embedding choice moved coherence more than hyperparameter tuning", "caveat": "0.075 spread across embeddings vs +0.021 from Optuna" }
+      ],
+      "tags": ["NMF", "LDA", "BERTopic", "Optuna", "UMAP", "HDBSCAN", "Streamlit"],
+      "image": { "src": "/images/projects/ruang-topik-dashboard.png", "alt": "Ruang Topik Streamlit dashboard", "draft": true },
+      "links": {
+        "caseStudy": "/projects/ruang-topik/",
+        "demo": "https://textmin-deploy.streamlit.app",
+        "code": "https://github.com/lathifash03/textmin-deploy.git"
+      }
+    },
+    {
+      "slug": "secure-verification-app",
+      "group": "built",
+      "lane": "sw",
+      "order": 1,
+      "draft": false,
+      "year": "2025–2026",
+      "title": "Secure Verification App",
+      "context": "IT internship · UBS Gold, Surabaya",
+      "team": true,
+      "teamSize": 2,
+      "summary": "A cross-platform Flutter proof of concept that lets managers approve or reject internal requests (HR leave, finance verification, QMS) remotely, behind three authentication layers: registered device, app password and face recognition, with traffic tunnelled through a WireGuard VPN.",
+      "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
+      "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Approval queue screen with company data blurred", "draft": true },
+      "links": {
+        "code": "https://github.com/Aliyah-Pattoza/ubs_secure_verification.git"
+      }
+    },
+    {
+      "slug": "kinderfin",
+      "group": "built",
+      "lane": "sw",
+      "order": 2,
+      "draft": true,
+      "year": "2024",
+      "title": "Kinderfin",
+      "context": "Community service project · MCI Lab, ITS",
+      "team": true,
+      "summary": "A web-based financial management system for a kindergarten. We gathered requirements with the school staff and delivered the application. Co-led.",
+      "tags": ["stack"],
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin dashboard", "draft": true },
+      "links": { "demo": "https://kinderfin.labmci.site" }
+    },
+    {
+      "slug": "major-in",
+      "group": "built",
+      "lane": "sw",
+      "order": 3,
+      "draft": false,
+      "year": "2024",
+      "title": "Major.in",
+      "context": "Course project · ITS",
+      "team": true,
+      "summary": "A web app that recommends a study major: forward-chaining rules plus an XGBoost model behind a Flask REST API, with a Next.js front end.",
+      "tags": ["Next.js", "Flask", "XGBoost", "Expert system"],
+      "image": { "src": "/images/projects/major-in.png", "alt": "Major.in recommendation screen", "draft": true },
+      "links": { "demo": "https://major-in.vercel.app" }
+    },
+    {
+      "slug": "weapmath",
+      "group": "built",
+      "lane": "sw",
+      "order": 4,
+      "draft": false,
+      "year": "2024",
+      "title": "WeapMath",
+      "context": "PKM-K · national funding recipient",
+      "team": true,
+      "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights).",
+      "tags": ["Game", "Education", "engine"],
+      "image": { "src": "/images/projects/weapmath.png", "alt": "WeapMath gameplay", "draft": true },
+      "links": {
+        "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
+      }
+    },
+    {
+      "slug": "aslora",
+      "group": "built",
+      "lane": "ai",
+      "order": 5,
+      "draft": true,
+      "year": "2025",
+      "title": "ASLora",
+      "context": "Course final project, written in journal-article format",
+      "team": true,
+      "summary": "The app translates American Sign Lang Sign Language (ASL) hand gestures into text in real-time by combining image processing and a YOLO- based object detection model",
+      "tags": ["YOLO", "Computer vision"],
+      "image": { "src": "/images/projects/aslora.png", "alt": "use a screenshot without anyone's face", "draft": true },
+      "links": {
+        "demo": "https://github.com/thoriqagfi/fp-ppb.git"
+      }
+    },
+    {
+      "slug": "library-system",
+      "group": "built",
+      "lane": "sw",
+      "order": 6,
+      "draft": false,
+      "year": "2024",
+      "title": "Library Management System",
+      "context": "Course project · ITS",
+      "team": true,
+      "summary": "Back-end services in Golang and Laravel over a MySQL database.",
+      "tags": ["Golang", "Laravel", "MySQL"],
+      "image": { "src": "/images/projects/library.png", "alt": "Library system screen", "draft": true },
+      "links": {}
+    },
+    {
+      "slug": "coursework-web",
+      "group": "built",
+      "lane": "sw",
+      "order": 7,
+      "draft": true,
+      "year": "2025",
+      "title": "coursework web builds",
+      "context": "Coursework · ITS",
+      "team": true,
+      "summary": "[TBD]",
+      "tags": [],
+      "image": { "src": "/images/projects/coursework-1.png", "alt": "[TBD]", "draft": true },
+      "links": {}
+    },
+    {
+      "slug": "indobert-news",
+      "group": "data",
+      "lane": "ai",
+      "order": 1,
+      "draft": true,
+      "year": "2025",
+      "title": "IndoBERT news classification",
+      "context": "Coursework · ITS",
+      "team": true,
+      "summary": "Fine-tuned IndoBERT to classify Indonesian news across four experimental scenarios.",
+      "tags": ["IndoBERT", "Transformers", "PyTorch"],
+      "links": {
+        "code": "https://github.com/Siriuslys/textmining-ner.git"
+      }
+    },
+    {
+      "slug": "fraud-detection",
+      "group": "data",
+      "lane": "ai",
+      "order": 2,
+      "draft": false,
+      "year": "2025",
+      "title": "Detecting online-loan fraud with ensemble learning",
+      "context": "Course final project, written in journal-article format (not published)",
+      "team": true,
+      "teamSize": 3,
+      "summary": "Compared single learners (logistic regression, SVM) with ensembles (random forest, XGBoost, LightGBM), using SMOTE for class imbalance, on a synthetic financial-transaction dataset.",
+      "metrics": [
+        { "value": "0.93 / 0.97", "label": "F1 / AUC-ROC, LightGBM + SMOTE", "caveat": "synthetic dataset" }
+      ],
+      "tags": ["LightGBM", "XGBoost", "SMOTE", "scikit-learn"],
+      "links": {}
+    },
+    {
+      "slug": "tableau-sales",
+      "group": "data",
+      "lane": "ai",
+      "order": 3,
+      "draft": false,
+      "year": "2024",
+      "title": "Sales dashboards in Tableau",
+      "context": "MCI Lab recruitment task",
+      "team": false,
+      "summary": "Two views on a sales dataset: monthly sales, which climb from roughly 550K in February to about 1.55M in December with a sharp dip in July, and order value by US state, led by California.",
+      "tags": ["Tableau", "Data visualisation"],
+      "gallery": [
+        { "src": "/images/projects/tableau-sales-month.png", "alt": "Line chart of sales per month" },
+        { "src": "/images/projects/tableau-orders-state.png", "alt": "Map of order value per US state" }
+      ],
+      "links": {
+        
+      }
+    },
+    {
+      "slug": "sentiment-mlbb",
+      "group": "data",
+      "lane": "ai",
+      "order": 4,
+      "draft": false,
+      "year": "2024",
+      "title": "Sentiment of Mobile Legends reviews on Google Play",
+      "context": "Personal analysis · written up on Medium",
+      "team": false,
+      "summary": "Lexicon- and rule-based sentiment analysis of Play Store reviews with NLTK's VADER.",
+      "tags": ["NLTK", "VADER", "Python"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
+    },
+    {
+      "slug": "urban-happiness",
+      "group": "data",
+      "lane": "ai",
+      "order": 5,
+      "draft": false,
+      "year": "2024",
+      "title": "How urban development relates to happiness (KNN and K-Means)",
+      "context": "Personal analysis · written up on Medium",
+      "team": true,
+      "summary": "Classification and clustering of how urban-development factors relate to a person's happiness.",
+      "tags": ["KNN", "K-Means", "scikit-learn"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
+    },
+    {
+      "slug": "stock-ann",
+      "group": "data",
+      "lane": "ai",
+      "order": 6,
+      "draft": false,
+      "year": "2024",
+      "title": "Forecasting stock prices with an artificial neural network",
+      "context": "Deep Learning coursework · written up on Medium",
+      "team": true,
+      "summary": "An ANN forecasting model for company stock values. Accuracy drops sharply beyond short horizons, which the write-up should state plainly.",
+      "tags": ["ANN", "Time series", "Python"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "name": "Lathifah Sahda",
+  "shortName": "Thifa",
+  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Foto Lathifah Sahda", "draft": true },
+  "status": "Terbuka untuk magang · Jakarta",
+  "statement": "Lulusan Teknik Informatika ITS. Saya membangun sistem berbasis language model, mengukur di mana sistem itu gagal, dan menjelaskan hasilnya kepada orang yang bukan engineer.",
+  "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
+  "greetings": [
+    { "text": "Halo", "lang": "id" },
+    { "text": "Hello", "lang": "en" },
+    { "text": "你好", "lang": "zh-Hant" },
+    { "text": "مرحبا", "lang": "ar", "dir": "rtl" }
+  ],
+  "heroTrace": [
+    { "text": "faithfulness 0.82", "status": "pass" },
+    { "text": "trust 0.31", "status": "fail" },
+    { "text": "retry → alternate retrieval", "status": "retry" },
+    { "text": "trust 0.58", "status": "pass" },
+    { "text": "temporal VALID", "status": "pass" },
+    { "text": "verified", "status": "done" }
+  ],
+  "lanes": [
+    {
+      "id": "ai",
+      "title": "AI & Data",
+      "summary": "Pipeline LLM, verifikasi agentik di atas knowledge graph, topic modeling, dan evaluasi yang melaporkan keterbatasannya sendiri."
+    },
+    {
+      "id": "sw",
+      "title": "Software",
+      "summary": "Aplikasi web dan mobile untuk pengguna nyata: aplikasi persetujuan aman untuk perusahaan, sistem keuangan untuk TK, dan website kampus."
+    },
+    {
+      "id": "wr",
+      "title": "Menulis & Kepemimpinan",
+      "summary": "150+ artikel sebagai reporter dan editor kampus, himpunan 120 pengurus, humas acara IT nasional, dan mengajar 300+ mahasiswa."
+    }
+  ],
+  "education": {
+    "school": "Institut Teknologi Sepuluh Nopember (ITS), Surabaya",
+    "degree": "Sarjana Teknik Informatika",
+    "period": "2022 – Agu 2026",
+    "gpa": "3,70 / 4,00",
+    "scholarship": "Beasiswa Pendidikan Indonesia skema AMN (dibiayai LPDP)",
+    "thesis": "Pengembangan hybrid pipeline untuk konversi teks naratif berita menjadi format prosedural dengan pendekatan constraint-based LLM"
+  },
+  "languages": ["Indonesia", "Inggris", "Arab"],
+  "skills": {
+    "AI & data": ["Python", "PyTorch", "Transformers", "spaCy", "scikit-learn", "XGBoost", "LightGBM", "BERTopic", "Optuna", "RAG / GraphRAG", "LangGraph", "MCP", "Neo4j / Cypher", "Streamlit", "Tableau"],
+    "Software": ["Next.js", "Flutter / Dart", "Laravel", "Flask", "Golang", "REST API", "MySQL", "WordPress", "Docker", "Git"],
+    "Praktik": ["Evaluasi LLM", "Root-cause analysis", "Analisis kebutuhan", "Penulisan teknis", "Figma (UI/UX)"]
+  },
+  "contact": {
+    "email": "lathifahsahda03@gmail.com",
+    "github": "https://github.com/lathifash03",
+    "linkedin": "https://www.linkedin.com/in/lathifah-sahda",
+    "cv": "/cv.pdf",
+    "closing": "Cara tercepat menghubungi saya adalah lewat email."
+  }
+}

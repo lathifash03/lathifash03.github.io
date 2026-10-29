@@ -1,0 +1,60 @@
+{
+  "name": "Lathifah Sahda",
+  "shortName": "Thifa",
+  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": true },
+  "status": "Open to internships · Jakarta",
+  "statement": "Computer science graduate from ITS. I build language-model systems, measure where they break, and explain the results to people who aren't engineers.",
+  "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
+  "greetings": [
+    { "text": "Halo", "lang": "id" },
+    { "text": "Hello", "lang": "en" },
+    { "text": "你好", "lang": "zh-Hant" },
+    { "text": "مرحبا", "lang": "ar", "dir": "rtl" }
+  ],
+  "heroTrace": [
+    { "text": "faithfulness 0.82", "status": "pass" },
+    { "text": "trust 0.31", "status": "fail" },
+    { "text": "retry → alternate retrieval", "status": "retry" },
+    { "text": "trust 0.58", "status": "pass" },
+    { "text": "temporal VALID", "status": "pass" },
+    { "text": "verified", "status": "done" }
+  ],
+  "lanes": [
+    {
+      "id": "ai",
+      "title": "AI & Data",
+      "summary": "LLM pipelines, agentic verification over knowledge graphs, topic modeling, evaluation that reports its own limits."
+    },
+    {
+      "id": "sw",
+      "title": "Software",
+      "summary": "Web and mobile apps shipped for real users: a secure approval app for a company, a finance system for a kindergarten, university websites."
+    },
+    {
+      "id": "wr",
+      "title": "Writing & Leadership",
+      "summary": "150+ articles as a campus reporter and editor, a 120-member student association, PR for a national IT event, teaching 300+ students."
+    }
+  ],
+  "education": {
+    "school": "Institut Teknologi Sepuluh Nopember (ITS), Surabaya",
+    "degree": "Bachelor of Computer Science (Informatics Engineering)",
+    "period": "2022 – Aug 2026",
+    "gpa": "3.70 / 4.00",
+    "scholarship": "Beasiswa Pendidikan Indonesia (BPI), AMN scheme, funded by LPDP",
+    "thesis": "A hybrid pipeline for converting narrative news into procedural text using a constraint-based LLM approach"
+  },
+  "languages": ["Indonesian", "English", "Arabic"],
+  "skills": {
+    "AI & data": ["Python", "PyTorch", "Transformers", "spaCy", "scikit-learn", "XGBoost", "LightGBM", "BERTopic", "Optuna", "RAG / GraphRAG", "LangGraph", "MCP", "Neo4j / Cypher", "Streamlit", "Tableau"],
+    "Software": ["Next.js", "Flutter / Dart", "Laravel", "Flask", "Golang", "REST APIs", "MySQL", "WordPress", "Docker", "Git"],
+    "Practice": ["LLM evaluation", "Root-cause analysis", "Requirements gathering", "Technical writing", "Figma (UI/UX)"]
+  },
+  "contact": {
+    "email": "lathifahsahda03@gmail.com",
+    "github": "https://github.com/lathifash03",
+    "linkedin": "https://www.linkedin.com/in/lathifah-sahda",
+    "cv": "/cv.pdf",
+    "closing": "The fastest way to reach me is email."
+  }
+}

@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — DESIGN.md §2 (colour), §3 (typography), §6 (depth), §7 (motion).
+ * Declared in the --color-*, --font-*, --text-*, --radius-* namespaces so Tailwind
+ * generates matching utilities; the DESIGN.md token names are aliased in :root below
+ * for hand-written CSS. Light mode only in v1.
+ */
+/* `static` so every DESIGN.md token is emitted as a CSS variable, including the
+   ones only hand-written CSS uses; Tailwind otherwise drops unreferenced tokens. */
+@theme static {
+  --color-paper: #efede8;
+  --color-surface: #f8f7f4;
+  --color-surface-2: #e5e2db;
+  --color-ink: #1f1e1b;
+  --color-ink-2: #6b6860;
+  --color-line: #dad6cc;
+
+  --color-lane-ai: #5b7083;
+  --color-lane-sw: #6f8467;
+  --color-lane-wr: #a8644a;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --text-hero-name: clamp(3.25rem, 9vw, 7.5rem);
+  --text-hero-name--line-height: 0.95;
+  --text-hero-name--letter-spacing: -0.03em;
+  --text-hero-name--font-weight: 600;
+
+  --text-hero-statement: clamp(1.375rem, 2.6vw, 2.25rem);
+  --text-hero-statement--line-height: 1.25;
+  --text-hero-statement--letter-spacing: -0.01em;
+  --text-hero-statement--font-weight: 400;
+
+  --text-section: clamp(2rem, 5vw, 3.75rem);
+  --text-section--line-height: 1.05;
+  --text-section--letter-spacing: -0.02em;
+  --text-section--font-weight: 500;
+
+  --text-card: clamp(1.5rem, 3vw, 2.5rem);
+  --text-card--line-height: 1.1;
+  --text-card--letter-spacing: -0.015em;
+  --text-card--font-weight: 500;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.4;
+  --text-meta--letter-spacing: 0.02em;
+
+  --radius-card: 24px;
+  --radius-image: 16px;
+
+  /* DESIGN.md §6: the only shadow in the system. */
+  --shadow-stack: 0 24px 48px -24px rgb(31 30 27 / 0.18);
+
+  /* DESIGN.md §7 global. */
+  --ease-site: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --paper: var(--color-paper);
+  --surface: var(--color-surface);
+  --surface-2: var(--color-surface-2);
+  --ink: var(--color-ink);
+  --ink-2: var(--color-ink-2);
+  --line: var(--color-line);
+  --focus: var(--color-ink);
+  --lane-ai: var(--color-lane-ai);
+  --lane-sw: var(--color-lane-sw);
+  --lane-wr: var(--color-lane-wr);
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+}
+
+/* DESIGN.md §2, §9. */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* DESIGN.md §7: nothing moves when the reader asked for stillness. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

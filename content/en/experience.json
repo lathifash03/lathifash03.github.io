@@ -1,0 +1,78 @@
+{
+  "experience": [
+    {
+      "id": "teep",
+      "lane": "ai",
+      "period": "Jun – Aug 2026",
+      "role": "Research Intern, TEEP Program",
+      "org": "Center for IoT Innovation (CITI Lab), NTUST",
+      "place": "Taipei, Taiwan",
+      "bullets": [
+        "Built kg-agent, a Python service that checks AI answers against a Neo4j knowledge graph (355 nodes, 805 relations) and retries on failure, integrated with the team's retrieval module via MCP and LangGraph.",
+        "Designed a 20-item ground-truth benchmark, an ablation study and a judge-reliability test, and traced each failure to its root cause.",
+        "Packaged the service in Docker and deployed it to the lab's server. Worked in a five-module international research team."
+      ],
+      "caseStudy": "/projects/kg-agent/"
+    },
+    {
+      "id": "ubs",
+      "lane": "sw",
+      "period": "Oct 2025 – Jan 2026",
+      "role": "IT Intern, Mobile Application Developer",
+      "org": "UBS Gold",
+      "place": "Surabaya",
+      "bullets": [
+        "Built, as a two-person team, the Secure Verification App: a Flutter proof of concept for approving HR, finance and QMS requests remotely.",
+        "Implemented registered-device binding, app password and face recognition via the company's internal API, with traffic tunnelled through WireGuard.",
+        "Gathered requirements from management and integrated REST APIs for the approval queue, face verification and document status."
+      ]
+    },
+    {
+      "id": "dkpu",
+      "lane": "sw",
+      "period": "Mar – Jun 2025",
+      "role": "Web Developer Intern",
+      "org": "Directorate of Business Cooperation and Management (DKPU), ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Restructured the DKPU ITS website (WordPress, HTML/CSS): reorganised navigation and content and added Indonesian/English support."
+      ]
+    },
+    {
+      "id": "mci",
+      "lane": "ai",
+      "period": "Jun 2024 – 2026",
+      "role": "Research Assistant and Laboratory Administrator",
+      "org": "Information Intelligent Management (MCI) Laboratory, ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Research assistant on LLM prompting and topic modeling.",
+        "Co-led Kinderfin, a financial management system for a kindergarten, from requirements with school staff to delivery.",
+        "Ran lab administration and supported the lab's community-service and training programmes."
+      ]
+    },
+    {
+      "id": "jawapos",
+      "lane": "wr",
+      "period": "Aug – Nov 2024",
+      "role": "Assistant Producer Intern",
+      "org": "Jawa Pos TV (Jawa Pos Update Surabaya)",
+      "place": "Surabaya",
+      "bullets": [
+        "Structured daily rundowns and produced news content under broadcast deadlines."
+      ]
+    },
+    {
+      "id": "ta",
+      "lane": "wr",
+      "period": "2023 – 2026",
+      "role": "Teaching Assistant, six courses",
+      "org": "Informatics Engineering Department, ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Guided 300+ students through lab sessions and assignments, including database design and SQL; reviewed and debugged student work.",
+        "Courses: Deep Learning, Database Systems, Automata Theory."
+      ]
+    }
+  ]
+}

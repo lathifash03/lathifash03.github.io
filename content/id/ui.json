@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "work": "Karya",
+    "experience": "Pengalaman",
+    "leadership": "Kepemimpinan",
+    "writing": "Tulisan",
+    "contact": "Kontak",
+    "menu": "Menu",
+    "close": "Tutup"
+  },
+  "sections": {
+    "lanes": "Tiga jenis pekerjaan",
+    "research": "Riset",
+    "built": "Yang pernah saya bangun",
+    "data": "Data dan analisis",
+    "experience": "Pengalaman",
+    "leadership": "Kepemimpinan dan komunitas",
+    "writing": "Tulisan",
+    "contact": "Sapa saya"
+  },
+  "actions": {
+    "downloadCv": "Unduh CV",
+    "email": "Kirim email",
+    "copyEmail": "Salin email",
+    "copied": "Tersalin",
+    "readCaseStudy": "Baca studi kasus",
+    "viewCode": "Lihat kode",
+    "liveDemo": "Demo langsung",
+    "readArticle": "Baca artikel",
+    "backToWork": "Kembali ke karya",
+    "skipIntro": "Lewati"
+  },
+  "labels": {
+    "teamProject": "Proyek tim",
+    "illustration": "Ilustrasi alur verify-then-retry, bukan hasil evaluasi",
+    "clock": "Waktu setempat",
+    "caveat": "Catatan"
+  }
+}

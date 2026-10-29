@@ -1,0 +1,32 @@
+{
+  "journalism": {
+    "role": "Reporter, then Editor",
+    "org": "ITS News and Magazine (ITS Online), Public Communication Unit, ITS",
+    "period": "Nov 2022 – Jun 2026",
+    "summary": "Wrote and edited 150+ articles and magazine pieces, many of them explaining technical research to a general audience.",
+    "archive": "https://linktr.ee/lathifash",
+    "selected": [
+      { "title": "Ancaman Resesi 2023, UMKM Bisa jadi Solusi Jitu", "url": "https://www.its.ac.id/news/ancaman-resesi-2023-umkm-bisa-jadi-solusi-jitu/", "year": "2022", "draft": true },
+      { "title": "Supporting the Transmigration Program, ITS Officially Sends Off the Patriot Expedition Team", "url": "https://www.its.ac.id/news/en/supporting-the-transmigration-program-its-officially-sends-off-the-patriot-expedition-team/", "year": "2025", "draft": true },
+      { "title": "Encouraging the Women’s Role in Science, ITS Lecturer Wins International Award", "url": "https://www.its.ac.id/news/en/encouraging-the-womens-role-in-science-its-lecturer-wins-international-award/", "year": "2025", "draft": true }
+    ]
+  },
+  "technical": {
+    "platform": "Medium",
+    "profile": "https://medium.com/@lathifahsahda03",
+    "articles": [
+      {
+        "title": "Analysis using KNN and K-Means: how urban development affects a person's happiness",
+        "url": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44"
+      },
+      {
+        "title": "Sentiment analysis for Google Play Store reviews: a case study of Mobile Legends using VADER",
+        "url": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736"
+      },
+      {
+        "title": "Stock market value forecasting for company investment using artificial neural networks",
+        "url": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0"
+      }
+    ]
+  }
+}

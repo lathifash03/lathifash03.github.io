@@ -1,0 +1,49 @@
+{
+  "intro": "Most of what I know about getting things done with other people, I learned outside the classroom.",
+  "roles": [
+    {
+      "period": "Feb 2025 – Feb 2026",
+      "role": "General Secretary of External Affairs",
+      "org": "HMTC ITS (Informatics Student Association)",
+      "detail": "Helped coordinate a 120-member executive board through 20+ programmes in one term, and managed partnerships with companies, universities and government agencies. Previously General Secretary of Administration II (2024)."
+    },
+    {
+      "period": "2024",
+      "role": "Head of Public Relations",
+      "org": "Schematics ITS (national IT event)",
+      "detail": "Led a multi-channel promotion strategy with 20+ media partners, tailoring the message for high-school students, university students and the public; the event reached 2,000+ participants."
+    },
+    {
+      "period": "May 2024 – May 2025",
+      "role": "Secretary and Executive Board Member",
+      "org": "Ikatan Mahasiswa Muhammadiyah (IMM) ITS",
+      "detail": "Prepared 15+ funding proposals under a tight budget and co-planned 10+ member-development and community-service programmes."
+    },
+    {
+      "period": "March 2023 - March 2025",
+      "role": "Chair",
+      "org": "Forum Daerah Bengkulu ITS",
+      "detail": "Led 30 students from Bengkulu across ITS departments and ran routine programmes to build cooperation among members."
+    },
+    {
+      "period": "2024 – 2025",
+      "role": "Other roles",
+      "org": "ITS",
+      "detail": "Treasurer, Keluarga Muslim Informatika (2024). Tim Kawal Gemastik ITS (2025), supporting ITS teams at the national ICT competition."
+    }
+  ],
+  "speaking": [
+    "Master of Ceremony, IDSECCONF 2024 (Indonesia's annual IT security conference): workshop, keynote and panel sessions.",
+    "Speaker, Basic Media Schooling: journalism training for students across departments.",
+    "Speaker on project and team management, Bluecamp, Informatics ITS."
+  ],
+  "training": [
+    "LKMM Tingkat Menengah (intermediate student leadership and management training), ITS, 2024",
+    "LKMM Tingkat Dasar (basic student leadership training), Informatics ITS",
+    "Student Entrepreneurship Training, ITS and ITS Career Center, 2022",
+    "Version Control System Training, Software Engineering Laboratory, Informatics ITS, 2023"
+  ],
+  "gallery": [
+    { "src": "/images/gallery/01.jpg", "alt": "[TBD]", "caption": "[TBD]", "draft": true }
+  ]
+}

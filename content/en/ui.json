@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "work": "Work",
+    "experience": "Experience",
+    "leadership": "Leadership",
+    "writing": "Writing",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "sections": {
+    "lanes": "Three kinds of work",
+    "research": "Research",
+    "built": "Things I've built",
+    "data": "Data and analysis",
+    "experience": "Experience",
+    "leadership": "Leadership and community",
+    "writing": "Writing",
+    "contact": "Say hello"
+  },
+  "actions": {
+    "downloadCv": "Download CV",
+    "email": "Email me",
+    "copyEmail": "Copy email",
+    "copied": "Copied",
+    "readCaseStudy": "Read case study",
+    "viewCode": "View code",
+    "liveDemo": "Live demo",
+    "readArticle": "Read article",
+    "backToWork": "Back to work",
+    "skipIntro": "Skip"
+  },
+  "labels": {
+    "teamProject": "Team project",
+    "illustration": "Illustration of the verify-then-retry loop, not evaluation results",
+    "clock": "Local time",
+    "caveat": "Note"
+  }
+}
