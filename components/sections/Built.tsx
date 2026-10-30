@@ -1,3 +1,4 @@
+import { Gallery } from "@/components/ui/Gallery";
 import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
@@ -25,6 +26,12 @@ function BuiltCard({ project, ui }: { project: Project; ui: Ui }) {
       </div>
 
       <p className="mt-5 max-w-[68ch] grow text-ink">{project.summary}</p>
+
+      {project.gallery?.length ? (
+        <div className="mt-6">
+          <Gallery images={project.gallery} />
+        </div>
+      ) : null}
 
       <div className="mt-8">
         <TagList tags={project.tags} lane={project.lane} />

@@ -45,3 +45,8 @@ yarn-error.log*
 # design review working files
 .taste-skill/
 .playwright-cli/
+
+# design reference images (structure only, never published)
+design-refs/
+.taste-skill/
+.taste-skill/

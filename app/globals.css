@@ -98,3 +98,120 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Case-study body. The markdown in content/<locale>/case-studies/ is rendered
+ * to HTML at build time, so its elements are styled here rather than by a
+ * component per tag. Everything scoped to .case-prose belongs to that rendered
+ * markdown alone; the figures beside it are components with their own classes.
+ * Measures and sizes follow DESIGN.md §3 and §5.
+ */
+.case-body {
+  max-width: 68ch;
+}
+
+/* Figures are direct children of the body; the rendered markdown sits inside
+   a wrapper per chunk, so both levels need the rhythm. */
+.case-body > * + *,
+.case-prose > * + * {
+  margin-top: 1.25rem;
+}
+
+.case-prose h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-top: 4.5rem;
+}
+
+.case-prose h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 2.5rem;
+}
+
+.case-prose strong {
+  font-weight: 600;
+}
+
+.case-prose ul,
+.case-prose ol {
+  padding-left: 1.5rem;
+}
+
+.case-prose ul {
+  list-style: disc;
+}
+
+.case-prose ol {
+  list-style: decimal;
+}
+
+.case-prose li::marker {
+  color: var(--ink-2);
+}
+
+.case-prose li + li {
+  margin-top: 0.75rem;
+}
+
+.case-prose li > ul,
+.case-prose li > ol {
+  margin-top: 0.75rem;
+}
+
+.case-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--surface-2);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+.case-prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 200ms var(--ease-site);
+}
+
+.case-prose a:hover {
+  text-decoration-color: var(--ink);
+}
+
+/* Tables are wider than the measure on a phone, so they scroll on their own. */
+.case-prose .table-scroll {
+  overflow-x: auto;
+  margin-top: 1.75rem;
+}
+
+.case-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.case-prose th {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  text-align: left;
+  white-space: nowrap;
+  padding: 0 1.25rem 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-prose td {
+  padding: 0.75rem 1.25rem 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.case-prose th:last-child,
+.case-prose td:last-child {
+  padding-right: 0;
+}

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { KgAgentDiagram } from "@/components/diagrams/KgAgentDiagram";
-import { ThesisDiagram } from "@/components/diagrams/ThesisDiagram";
+import { Diagram, type DiagramName } from "@/components/diagrams/Diagram";
 import { Section } from "@/components/ui/Section";
+import { Gallery } from "@/components/ui/Gallery";
 import { MetricBlock } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { Picture } from "@/components/ui/Picture";
@@ -9,9 +9,9 @@ import { TagList } from "@/components/ui/Tag";
 import type { Project, Ui } from "@/lib/content";
 
 /** Diagrams are drawn per project; a project without one is single column (decision B). */
-const diagrams: Record<string, (ui: Ui) => ReactNode> = {
-  "kg-agent": (ui) => <KgAgentDiagram ui={ui} />,
-  "narrative-to-procedural": (ui) => <ThesisDiagram ui={ui} />,
+const diagrams: Record<string, DiagramName> = {
+  "kg-agent": "kgAgent",
+  "narrative-to-procedural": "thesis",
 };
 
 function ResearchCard({
@@ -25,15 +25,12 @@ function ResearchCard({
   total: number;
   ui: Ui;
 }) {
-  const diagram = diagrams[project.slug]?.(ui);
-  const visual =
-    diagram ??
-    (project.image ? (
-      <Picture
-        asset={project.image}
-        className="w-full rounded-[8px] object-cover"
-      />
-    ) : null);
+  const name = diagrams[project.slug];
+  const visual: ReactNode = name ? (
+    <Diagram name={name} ui={ui} />
+  ) : project.image ? (
+    <Picture asset={project.image} className="w-full rounded-[8px] object-cover" />
+  ) : null;
 
   return (
     <article className="rounded-card bg-surface p-6 md:p-10">
@@ -55,6 +52,12 @@ function ResearchCard({
           </div>
 
           <p className="mt-6 max-w-[68ch] text-ink">{project.summary}</p>
+
+          {project.gallery?.length ? (
+            <div className="mt-8">
+              <Gallery images={project.gallery} />
+            </div>
+          ) : null}
 
           {project.metrics?.length ? (
             <ul className="mt-10 space-y-8">

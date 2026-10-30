@@ -1,4 +1,4 @@
-import { Picture } from "@/components/ui/Picture";
+import { Gallery } from "@/components/ui/Gallery";
 import { Section } from "@/components/ui/Section";
 import { MetricInline } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
@@ -32,16 +32,9 @@ function DataRow({ project, ui }: { project: Project; ui: Ui }) {
         ) : null}
 
         {project.gallery?.length ? (
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2">
-            {project.gallery.map((shot) => (
-              <li key={shot.src}>
-                <Picture
-                  asset={shot}
-                  className="aspect-[16/10] w-full rounded-image bg-surface object-contain"
-                />
-              </li>
-            ))}
-          </ul>
+          <div className="mt-6">
+            <Gallery images={project.gallery} />
+          </div>
         ) : null}
 
         <div className="mt-6">

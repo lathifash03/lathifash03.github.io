@@ -40,7 +40,9 @@
     "illustration": "Illustration of the verify-then-retry loop, not evaluation results",
     "clock": "Local time",
     "caveat": "Note",
-    "languages": "Languages"
+    "languages": "Languages",
+    "context": "Context",
+    "role": "Role"
   },
   "diagrams": {
     "kgAgent": {

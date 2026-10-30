@@ -1,10 +1,17 @@
 ---
 slug: ruang-topik
-title: "Ruang Topik: what 20,334 Indonesian news articles talk about"
+title: "Ruang Topik: mapping Indonesian news topics"
 context: "Text Mining final project · Informatics Engineering, ITS · 2026"
 role: "Team project (3 people); all stages done together"
 stack: [Python, Gensim, scikit-learn, BERTopic, UMAP, HDBSCAN, Optuna, Sentence-Transformers, Streamlit]
 demo: "https://textmin-deploy.streamlit.app"
+figures:
+  - kind: images
+    id: dashboard
+    caption: "The public dashboard: the corpus broken down by portal and by category, so a reader can see what the collection is made of before reading any topic."
+    images:
+      - src: /images/projects/ruang-topik-dashboard.png
+        alt: "Ruang Topik dashboard showing the corpus and article counts per portal and category"
 ---
 
 ## The question
@@ -48,4 +55,4 @@ mattered far more than clustering hyperparameters. The mixed vocabulary of Indon
 
 ## The dashboard
 
-[2–3 screenshots of the Streamlit dashboard and one sentence on what a non-technical reader can do with it]
+[figure: dashboard]

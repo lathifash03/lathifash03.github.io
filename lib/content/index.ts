@@ -167,8 +167,22 @@ function readJson<T>(locale: Locale, file: string, schema: z.ZodType<T>): T {
   return value;
 }
 
+const warnedCv = new Set<string>();
+
 export function getProfile(locale: Locale): Profile {
-  return readJson(locale, "profile.json", profileSchema);
+  const profile = readJson(locale, "profile.json", profileSchema);
+
+  // The CV is a static file, not an asset in the content tree, so the draft
+  // gate cannot see it. Warn loudly rather than fail: the build must still run
+  // while the file is being prepared.
+  if (!existsSync(join(PUBLIC_ROOT, profile.contact.cv)) && !warnedCv.has(locale)) {
+    warnedCv.add(locale);
+    console.warn(
+      `\n⚠ public${profile.contact.cv} is missing — the "download CV" buttons will 404 on the published site.\n`,
+    );
+  }
+
+  return profile;
 }
 
 export function getUi(locale: Locale): Ui {
@@ -205,6 +219,26 @@ export function getWriting(locale: Locale): Writing {
   return readJson(locale, "writing.json", writingSchema);
 }
 
+/** `[figure: <id>]` alone on a line marks where a drawn figure belongs. */
+export const FIGURE_MARKER = /^\[figure:\s*([a-z0-9-]+)\]\s*$/m;
+
+/** Every marker resolves to a declared figure, and every figure is placed. */
+function figureProblems(study: CaseStudy): string[] {
+  const declared = new Set((study.figures ?? []).map((figure) => figure.id));
+  const used = new Set(
+    [...study.body.matchAll(new RegExp(FIGURE_MARKER, "gm"))].map((m) => m[1]),
+  );
+
+  const problems: string[] = [];
+  for (const id of used) {
+    if (!declared.has(id)) problems.push(`[figure: ${id}] has no entry in "figures"`);
+  }
+  for (const id of declared) {
+    if (!used.has(id)) problems.push(`figure "${id}" is declared but never placed in the body`);
+  }
+  return problems;
+}
+
 function caseStudyDir(locale: Locale): string {
   return join(localeDir(locale), "case-studies");
 }
@@ -233,7 +267,15 @@ function loadCaseStudies(locale: Locale): CaseStudy[] {
         `content/${locale}/case-studies/${file}: frontmatter slug "${parsed.data.slug}" does not match the file name`,
       );
     }
-    studies.push({ ...parsed.data, body: content.trim() });
+
+    const study = { ...pruneDrafts(parsed.data), body: content.trim() };
+    const problems = figureProblems(study);
+    if (problems.length) {
+      throw new Error(
+        `content/${locale}/case-studies/${file} figures do not match its body:\n- ${problems.join("\n- ")}`,
+      );
+    }
+    studies.push(study);
   }
 
   studies.sort((a, b) => a.slug.localeCompare(b.slug));
@@ -244,6 +286,16 @@ function loadCaseStudies(locale: Locale): CaseStudy[] {
 export function getCaseStudies(locale: Locale): CaseStudy[] {
   verifyCaseStudyLinks(locale);
   return loadCaseStudies(locale);
+}
+
+/** The project a case study belongs to, for its summary and tags. */
+export function getProjectForCaseStudy(
+  locale: Locale,
+  slug: string,
+): Project | undefined {
+  return loadProjects(locale).find(
+    (project) => project.links.caseStudy === `/projects/${slug}/`,
+  );
 }
 
 export function getCaseStudy(locale: Locale, slug: string): CaseStudy {

@@ -17,11 +17,29 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+// GitHub Pages serves the site from the repo root, so Open Graph URLs resolve
+// against this origin (CLAUDE.md, Stack).
+const siteUrl = "https://lathifash03.github.io";
+
 export function generateMetadata(): Metadata {
   const profile = getProfile("en");
   return {
+    metadataBase: new URL(siteUrl),
     title: profile.name,
     description: profile.statement,
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      ],
+    },
+    openGraph: {
+      type: "website",
+      title: profile.name,
+      description: profile.statement,
+      url: "/",
+      siteName: profile.name,
+    },
   };
 }
 

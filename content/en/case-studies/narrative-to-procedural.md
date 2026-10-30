@@ -4,6 +4,11 @@ title: "Turning news narratives into step-by-step text"
 context: "Undergraduate thesis · Informatics Engineering, ITS · 2026"
 role: "Individual"
 stack: [Python, spaCy en_core_web_md, Llama 3.3 70B (Groq), GPT-4o-mini, Claude Haiku, rouge-score, BERTScore]
+figures:
+  - kind: diagram
+    id: pipeline
+    diagram: thesis
+    caption: "The four phases. Rules build the constraints and repair the output; the language model only does the rewriting in between."
 ---
 
 ## The problem
@@ -24,7 +29,7 @@ paraphrases numbers and drifts in format.
 4. **Rule-based post-processing** — four validators run again, then missing entities are injected into
    the most relevant step (partial match → context match → fallback).
 
-[four-phase pipeline diagram]
+[figure: pipeline]
 
 ## Data
 

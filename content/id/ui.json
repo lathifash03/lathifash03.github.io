@@ -40,7 +40,9 @@
     "illustration": "Ilustrasi alur verify-then-retry, bukan hasil evaluasi",
     "clock": "Waktu setempat",
     "caveat": "Catatan",
-    "languages": "Bahasa"
+    "languages": "Bahasa",
+    "context": "Konteks",
+    "role": "Peran"
   },
   "diagrams": {
     "kgAgent": {

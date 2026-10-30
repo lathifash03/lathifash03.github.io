@@ -147,6 +147,8 @@ export const uiSchema = z
         clock: z.string(),
         caveat: z.string(),
         languages: z.string(),
+        context: z.string(),
+        role: z.string(),
       })
       .strict(),
     // Figure labels: the diagrams are drawn in code, so their words live here
@@ -309,6 +311,59 @@ export const writingSchema = z
   })
   .strict();
 
+/**
+ * One bar of a chart figure. The proportion is `value / of`, so the content
+ * carries the figures as they were measured (6 of 6, 57 of 100) and the
+ * component does the arithmetic — nothing is rounded into the content.
+ */
+const chartBar = z
+  .object({
+    label: z.string(),
+    value: z.number().min(0),
+    of: z.number().positive(),
+    display: z.string(),
+    highlight: z.boolean().optional(),
+  })
+  .strict();
+
+/**
+ * A figure placed in the body with `[figure: <id>]`. Charts and diagrams are
+ * drawn in code, so every word and number they show is declared here, in
+ * content (CLAUDE.md hard rule 6).
+ */
+const figure = z.discriminatedUnion("kind", [
+  z
+    .object({
+      kind: z.literal("diagram"),
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      diagram: z.enum(["kgAgent", "thesis"]),
+      caption: z.string(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal("chart"),
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      title: z.string(),
+      axis: z.string(),
+      bars: z.array(chartBar).min(2),
+      rule: z
+        .object({ value: z.number().min(0), of: z.number().positive(), label: z.string() })
+        .strict()
+        .optional(),
+      caption: z.string(),
+    })
+    .strict(),
+  z
+    .object({
+      kind: z.literal("images"),
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      images: z.array(asset).min(1),
+      caption: z.string(),
+    })
+    .strict(),
+]);
+
 /** Frontmatter of content/<locale>/case-studies/<slug>.md */
 export const caseStudySchema = z
   .object({
@@ -320,6 +375,7 @@ export const caseStudySchema = z
     demo: z.url().optional(),
     code: z.url().optional(),
     report: z.url().optional(),
+    figures: z.array(figure).optional(),
     ...draftable,
   })
   .strict();
@@ -332,5 +388,7 @@ export type LaneId = z.infer<typeof laneId>;
 export type ExperienceItem = z.infer<typeof experienceSchema>["experience"][number];
 export type Leadership = z.infer<typeof leadershipSchema>;
 export type Writing = z.infer<typeof writingSchema>;
+export type Figure = z.infer<typeof figure>;
+export type ChartFigure = Extract<Figure, { kind: "chart" }>;
 export type CaseStudyMeta = z.infer<typeof caseStudySchema>;
 export type CaseStudy = CaseStudyMeta & { body: string };

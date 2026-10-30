@@ -4,6 +4,32 @@ title: "kg-agent: a verification layer for knowledge-graph RAG"
 context: "TEEP research internship · CITI Lab, NTUST · Jun – Aug 2026"
 role: "Individual module (Module 3) inside a five-module international team"
 stack: [Python, Neo4j, Cypher, Hermes3:3b, qwen3-embedding:0.6b, MCP, LangGraph, Docker]
+figures:
+  - kind: diagram
+    id: pipeline
+    diagram: kgAgent
+    caption: "The verify-then-retry loop. Three gates sit between the draft answer and the returned one; a failed gate sends the agent back to retrieval."
+  - kind: chart
+    id: e1-accuracy
+    title: "E1 · accuracy by category"
+    axis: "Correct answers, 20 ground-truth items in 4 categories"
+    caption: "Median of 3 runs. Low trust is the weak category: 1 of 5 correct."
+    bars:
+      - { label: "Answerable", value: 6, of: 6, display: "6 / 6" }
+      - { label: "Out of scope", value: 5, of: 6, display: "5 / 6" }
+      - { label: "Low trust", value: 1, of: 5, display: "1 / 5", highlight: true }
+      - { label: "Temporal", value: 3, of: 3, display: "3 / 3" }
+    rule: { value: 15, of: 20, label: "75% overall (15 / 20)" }
+  - kind: chart
+    id: e3-false-pass
+    title: "E3 · false-pass rate by configuration"
+    axis: "Share of answers that passed the gates but should not have"
+    caption: "Same 20-item set. With the trust gate removed, 57% of answers came back as false passes; with no gates at all, every one of them."
+    bars:
+      - { label: "Full system", value: 0, of: 100, display: "0%" }
+      - { label: "Trust gate off", value: 57, of: 100, display: "57%", highlight: true }
+      - { label: "Temporal gate off", value: 7, of: 100, display: "7%" }
+      - { label: "No gates", value: 100, of: 100, display: "100%" }
 ---
 
 ## The problem
@@ -30,7 +56,7 @@ A verify-then-retry controller that sits between retrieval and the final answer.
      or CONFLICTED (duplicate name with a different value, or flagged by a contradiction detector).
 4. **Retry** with an alternate retrieval strategy when a failure is recoverable, up to a fixed limit.
 
-[pipeline diagram image — export Figure 3.1 from the report]
+[figure: pipeline]
 
 ## How I evaluated it
 
@@ -40,6 +66,10 @@ A verify-then-retry controller that sits between retrieval and the final answer.
 | E1 by category | answerable 6/6 · temporal 3/3 · out-of-scope 5/6 · low-trust 1/5 | low-trust is the main weakness |
 | E2 judge reliability | Cohen's κ = 0.833 vs 0.167 for a random mock judge | one model, one evaluation set |
 | E3 ablation (false-pass rate) | trust gate off → 57% · temporal gate off → 7% · all gates off → 100% | |
+
+[figure: e1-accuracy]
+
+[figure: e3-false-pass]
 
 Evaluation ran on a frozen 355-node graph snapshot plus 20 synthetic nodes, not the live graph,
 because the live graph does not yet carry the provenance metadata the trust gate needs.
