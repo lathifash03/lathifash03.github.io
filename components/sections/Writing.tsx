@@ -30,7 +30,7 @@ export function Writing({
   return (
     <Section id="writing" index="06" title={ui.sections.writing}>
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-5">
+        <div data-reveal className="lg:col-span-5">
           <p className="font-mono text-meta text-ink-2">{journalism.period}</p>
           <h3 className="mt-3 text-card text-ink">{journalism.role}</h3>
           <p className="mt-2 text-ink-2">{journalism.org}</p>
@@ -61,7 +61,7 @@ export function Writing({
           ) : null}
         </div>
 
-        <div className="lg:col-span-7">
+        <div data-reveal className="lg:col-span-7">
           <p className="font-mono text-meta text-ink-2">
             {technical.platform}
           </p>

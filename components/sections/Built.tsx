@@ -1,3 +1,4 @@
+import { ScreenshotBelt } from "@/components/motion/ScreenshotBelt";
 import { Gallery } from "@/components/ui/Gallery";
 import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
@@ -8,7 +9,10 @@ import type { Project, Ui } from "@/lib/content";
 /** Decision E: compact card, optional 16:10 image on top, 2 columns from 768px. */
 function BuiltCard({ project, ui }: { project: Project; ui: Ui }) {
   return (
-    <article className="flex flex-col rounded-card bg-surface p-6 md:p-8">
+    <article
+      data-reveal
+      className="flex flex-col rounded-card bg-surface p-6 md:p-8"
+    >
       {project.image ? (
         <Picture
           asset={project.image}
@@ -47,7 +51,9 @@ function BuiltCard({ project, ui }: { project: Project; ui: Ui }) {
 export function Built({ projects, ui }: { projects: Project[]; ui: Ui }) {
   return (
     <Section id="built" index="02" title={ui.sections.built}>
-      <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+      <ScreenshotBelt projects={projects} ui={ui} />
+
+      <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
         {projects.map((project) => (
           <BuiltCard key={project.slug} project={project} ui={ui} />
         ))}

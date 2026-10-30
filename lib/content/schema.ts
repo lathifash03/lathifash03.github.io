@@ -149,6 +149,7 @@ export const uiSchema = z
         languages: z.string(),
         context: z.string(),
         role: z.string(),
+        screenshots: z.string(),
       })
       .strict(),
     // Figure labels: the diagrams are drawn in code, so their words live here

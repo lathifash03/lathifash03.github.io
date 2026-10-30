@@ -13,7 +13,7 @@ export function Lanes({ profile, ui }: { profile: Profile; ui: Ui }) {
     <Section id="lanes" title={ui.sections.lanes}>
       <ul className="grid gap-12 md:grid-cols-3 md:gap-8">
         {profile.lanes.map((lane) => (
-          <li key={lane.id}>
+          <li key={lane.id} data-reveal>
             <span
               aria-hidden="true"
               className={`block h-0.5 w-10 ${laneRule[lane.id]}`}

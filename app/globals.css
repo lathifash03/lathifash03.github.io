@@ -87,15 +87,269 @@ body {
   outline-offset: 3px;
 }
 
-/* DESIGN.md §7: nothing moves when the reader asked for stillness. */
+/*
+ * ============================================================
+ * Motion — DESIGN.md §7, items 1-10.
+ *
+ * One rule governs everything below: an element's hidden, offset,
+ * dimmed or blurred state lives in a keyframe's `from`, never in a
+ * base declaration. `animation: none` under prefers-reduced-motion
+ * therefore leaves every element in its final, readable state
+ * without a single override per effect. The three scroll-scrubbed
+ * effects (6, 8, 9) cannot work that way, so their components bail
+ * out in JS instead.
+ *
+ * The one deliberate exception is [data-reveal], whose start state
+ * must survive until an observer fires. It is gated on html[data-js]
+ * — set before first paint and dropped again by the failsafe in
+ * boot.ts — so content is visible whenever the script does not run.
+ * ============================================================
+ */
+
+:root {
+  /* The hero waits for the intro to clear. A repeat visit has no intro,
+     so boot.ts sets data-intro and the wait collapses to nothing. */
+  --intro-delay: 900ms;
+}
+
+html[data-intro="done"] {
+  --intro-delay: 0ms;
+}
+
+/* The shared gesture of the whole page: 16px rise + fade (§7.2, §7.10). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- 1. Intro overlay ---------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: clamp(2rem, 6vh, 3.5rem);
+  background-color: var(--paper);
+  /* Skipping is handled on document listeners, so the overlay never
+     swallows the very click that dismisses it. */
+  pointer-events: none;
+  animation: intro-lift 500ms var(--ease-site) 900ms forwards;
+}
+
+/* Greetings 4 x 220ms = 880ms, lift starts at 900ms and runs 500ms:
+   1.4s in total, inside the 1.5s budget. */
+@keyframes intro-lift {
+  to {
+    transform: translateY(-101%);
+  }
+}
+
+html[data-intro="done"] .intro {
+  display: none;
+}
+
+.intro-greetings {
+  display: grid;
+  place-items: center;
+}
+
+.intro-greeting {
+  grid-area: 1 / 1;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  opacity: 0;
+  animation: intro-greeting 220ms linear calc(var(--i) * 220ms) forwards;
+}
+
+@keyframes intro-greeting {
+  0%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The last greeting holds until the overlay lifts instead of blinking out. */
+.intro-greeting[data-last] {
+  animation-name: intro-greeting-hold;
+}
+
+@keyframes intro-greeting-hold {
+  from,
+  to {
+    opacity: 1;
+  }
+}
+
+/* A 32 x 6 dot grid, painted once and revealed left to right. One element
+   rather than 192, so the intro costs no measurable page weight. */
+.intro-grid {
+  /* Sized so 32 columns still clear the gutter at 390px. */
+  --dot: clamp(8.5px, 2.4vw, 15px);
+  width: calc(32 * var(--dot));
+  height: calc(6 * var(--dot));
+  background-image: radial-gradient(
+    circle at center,
+    var(--ink-2) calc(var(--dot) * 0.16),
+    transparent calc(var(--dot) * 0.17)
+  );
+  background-size: var(--dot) var(--dot);
+  animation: intro-fill 880ms linear forwards;
+}
+
+@keyframes intro-fill {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ---------- 2, 3. Hero entrance and verify-trace card ---------- */
+
+.hero-rise {
+  animation: rise-in 500ms var(--ease-site)
+    calc(var(--intro-delay) + var(--i, 0) * 80ms) both;
+}
+
+/* The trace lines appear one by one, after the hero itself has settled. */
+.trace-line {
+  animation: rise-in 300ms var(--ease-site)
+    calc(var(--intro-delay) + 400ms + var(--i) * 110ms) both;
+}
+
+/* ---------- 7. Screenshot belt ---------- */
+
+.belt-viewport {
+  overflow: hidden;
+}
+
+.belt {
+  display: flex;
+  width: max-content;
+  animation: belt-drift 40s linear infinite;
+}
+
+/* Every item carries its own trailing margin instead of the row using `gap`,
+   so the two halves are exactly equal and -50% loops seamlessly. `flex: none`
+   is what makes the row overflow and scroll rather than squashing the shots
+   to fit once the track is no longer `max-content`. */
+.belt > li {
+  flex: none;
+  margin-right: 1.5rem;
+}
+
+@keyframes belt-drift {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.belt-viewport:hover .belt,
+.belt-viewport:focus-within .belt {
+  animation-play-state: paused;
+}
+
+/* Phones swipe natively, with no auto-drift and no duplicate half. */
+@media (max-width: 767px) {
+  .belt-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .belt-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .belt {
+    width: auto;
+    animation: none;
+  }
+
+  .belt > li {
+    scroll-snap-align: start;
+  }
+
+  .belt-dup {
+    display: none;
+  }
+}
+
+/* ---------- 10. Section reveals ---------- */
+
+/* Held at the start of the rise until the observer marks the element seen. */
+html[data-js] [data-reveal] {
+  animation: rise-in 500ms var(--ease-site) both;
+  animation-play-state: paused;
+}
+
+html[data-js] [data-reveal][data-shown] {
+  animation-play-state: running;
+}
+
+/* ---------- 5. Lenis ---------- */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* DESIGN.md §7: nothing moves when the reader asked for stillness. Dropping
+   the animation outright (rather than shortening it) is what makes every
+   `from`-state above collapse to the element's final, readable state. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
     scroll-behavior: auto !important;
+  }
+
+  /* The intro is pure motion with no still equivalent, so it never runs. */
+  .intro {
+    display: none !important;
+  }
+
+  /* The belt cannot drift, so it becomes a plain scrollable row at every
+     width — otherwise `overflow: hidden` would strand the later shots. */
+  .belt-viewport {
+    overflow-x: auto;
+  }
+
+  .belt {
+    width: auto;
+  }
+
+  .belt-dup {
+    display: none;
   }
 }
 

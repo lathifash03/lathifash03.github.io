@@ -8,7 +8,10 @@ import type { Project, Ui } from "@/lib/content";
 /** Decision E: bordered rows, no cards; metric inline with its caveat. */
 function DataRow({ project, ui }: { project: Project; ui: Ui }) {
   return (
-    <article className="grid gap-x-8 gap-y-5 border-t border-line py-10 md:grid-cols-12">
+    <article
+      data-reveal
+      className="grid gap-x-8 gap-y-5 border-t border-line py-10 md:grid-cols-12"
+    >
       <div className="md:col-span-3">
         <p className="font-mono text-meta text-ink-2">{project.year}</p>
         <div className="mt-1">

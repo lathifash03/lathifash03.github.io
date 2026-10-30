@@ -1,4 +1,6 @@
 import { SiteNav } from "@/components/SiteNav";
+import { Intro } from "@/components/motion/Intro";
+import { IntroSkip } from "@/components/motion/IntroSkip";
 import { Built } from "@/components/sections/Built";
 import { Contact } from "@/components/sections/Contact";
 import { Data } from "@/components/sections/Data";
@@ -31,6 +33,9 @@ export default function HomePage() {
 
   return (
     <>
+      {/* DESIGN.md §7.1. Above the page, never in place of it. */}
+      <Intro profile={profile} />
+      <IntroSkip />
       <SiteNav name={profile.name} ui={ui} />
       <main>
         <Hero profile={profile} ui={ui} />

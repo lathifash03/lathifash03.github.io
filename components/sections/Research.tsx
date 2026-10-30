@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Diagram, type DiagramName } from "@/components/diagrams/Diagram";
+import { StackedCards } from "@/components/motion/StackedCards";
 import { Section } from "@/components/ui/Section";
 import { Gallery } from "@/components/ui/Gallery";
 import { MetricBlock } from "@/components/ui/Metric";
@@ -97,7 +98,7 @@ export function Research({
 }) {
   return (
     <Section id="research" index="01" title={ui.sections.research}>
-      <div className="space-y-6 md:space-y-8">
+      <StackedCards>
         {projects.map((project, i) => (
           <ResearchCard
             key={project.slug}
@@ -107,7 +108,7 @@ export function Research({
             ui={ui}
           />
         ))}
-      </div>
+      </StackedCards>
     </Section>
   );
 }

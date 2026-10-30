@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { MotionBoot } from "@/components/motion/boot";
+import { ScrollReveals } from "@/components/motion/ScrollReveals";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { getProfile } from "@/lib/content";
 import "./globals.css";
 
@@ -46,7 +49,13 @@ export function generateMetadata(): Metadata {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${jakarta.variable} ${plexMono.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {/* Must run before first paint — see components/motion/boot.tsx. */}
+        <MotionBoot />
+        {children}
+        <SmoothScroll />
+        <ScrollReveals />
+      </body>
     </html>
   );
 }

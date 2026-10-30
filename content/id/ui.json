@@ -42,7 +42,8 @@
     "caveat": "Catatan",
     "languages": "Bahasa",
     "context": "Konteks",
-    "role": "Peran"
+    "role": "Peran",
+    "screenshots": "Tangkapan layar dari proyek di bawah"
   },
   "diagrams": {
     "kgAgent": {

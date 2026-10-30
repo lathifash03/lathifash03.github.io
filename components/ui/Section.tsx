@@ -36,7 +36,7 @@ export function Section({
       className="scroll-mt-20 py-20 md:py-32"
     >
       <Container>
-        <div className="grid gap-x-8 gap-y-3 md:grid-cols-12">
+        <div data-reveal className="grid gap-x-8 gap-y-3 md:grid-cols-12">
           {index ? (
             <p
               aria-hidden="true"

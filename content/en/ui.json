@@ -42,7 +42,8 @@
     "caveat": "Note",
     "languages": "Languages",
     "context": "Context",
-    "role": "Role"
+    "role": "Role",
+    "screenshots": "Screenshots from the projects below"
   },
   "diagrams": {
     "kgAgent": {

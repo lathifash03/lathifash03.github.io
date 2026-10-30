@@ -9,7 +9,7 @@ export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
   return (
     <Section id="contact" index="07" title={ui.sections.contact}>
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-7">
+        <div data-reveal className="lg:col-span-7">
           <p className="max-w-[40ch] text-hero-statement text-ink">
             {contact.closing}
           </p>
@@ -46,7 +46,7 @@ export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
           </ul>
         </div>
 
-        <div className="lg:col-span-5">
+        <div data-reveal className="lg:col-span-5">
           <h3 className="text-[1.375rem] leading-snug text-ink">
             {education.degree}
           </h3>
