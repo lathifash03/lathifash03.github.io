@@ -51,18 +51,20 @@ export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
             {education.degree}
           </h3>
           <p className="mt-2 text-ink-2">{education.school}</p>
-          <dl className="mt-6 space-y-3">
+          {/* Plain facts with no terms to pair them to, so a list, not a
+              description list: a <dl> of bare <dd>s fails WCAG 1.3.1. */}
+          <ul className="mt-6 space-y-3">
             {[
               education.period,
               education.gpa,
               education.scholarship,
               education.thesis,
             ].map((line) => (
-              <dd key={line} className="max-w-[48ch] text-ink">
+              <li key={line} className="max-w-[48ch] text-ink">
                 {line}
-              </dd>
+              </li>
             ))}
-          </dl>
+          </ul>
 
           <div className="mt-10 space-y-6">
             {Object.entries(skills).map(([group, items]) => (
