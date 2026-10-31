@@ -3,6 +3,52 @@ import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
 import type { Leadership as LeadershipContent, Ui } from "@/lib/content";
 
+/**
+ * DESIGN.md §4, "Speaking / Training row card". These were a small meta-sized
+ * list; they are the same words at body size on the wr tint, with the year in
+ * its own mono column and the detail set below the title.
+ */
+function RowList({
+  title,
+  items,
+}: {
+  title: string;
+  items: LeadershipContent["speaking"];
+}) {
+  if (!items.length) return null;
+  // One list, one left edge: once any row carries a year, every row reserves
+  // the same column for it, so the titles line up down the list.
+  const dated = items.some((item) => item.year);
+  return (
+    <div>
+      <h3 className="font-mono text-meta text-ink-2">{title}</h3>
+      <ul className="mt-5 space-y-3">
+        {items.map((item) => (
+          <li
+            key={item.title}
+            className="flex gap-4 rounded-image bg-lane-wr-tint p-5"
+          >
+            {dated ? (
+              <p
+                aria-hidden={item.year ? undefined : "true"}
+                className="w-10 shrink-0 font-mono text-meta text-lane-wr-strong"
+              >
+                {item.year ?? ""}
+              </p>
+            ) : null}
+            <div>
+              <p className="text-body text-ink">{item.title}</p>
+              {item.detail ? (
+                <p className="mt-1 text-ink-2">{item.detail}</p>
+              ) : null}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function Leadership({
   content,
   ui,
@@ -31,31 +77,9 @@ export function Leadership({
         ))}
       </ul>
 
-      <div className="mt-20 grid gap-12 md:grid-cols-2 md:gap-8">
-        <div>
-          <h3 className="font-mono text-meta text-ink-2">
-            {ui.sections.speaking}
-          </h3>
-          <ul className="mt-5 space-y-4">
-            {content.speaking.map((item) => (
-              <li key={item} className="max-w-[60ch] text-ink">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3 className="font-mono text-meta text-ink-2">
-            {ui.sections.training}
-          </h3>
-          <ul className="mt-5 space-y-4">
-            {content.training.map((item) => (
-              <li key={item} className="max-w-[60ch] text-ink">
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="mt-20 grid gap-12 lg:grid-cols-2 lg:gap-8">
+        <RowList title={ui.sections.speaking} items={content.speaking} />
+        <RowList title={ui.sections.training} items={content.training} />
       </div>
 
       {content.gallery.length ? (

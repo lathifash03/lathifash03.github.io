@@ -8,10 +8,11 @@ import {
   type Ui,
 } from "@/lib/content";
 
+/** DESIGN.md §4: a lane dot inside a tint ring, so the lane reads as colour. */
 const laneNode: Record<LaneId, string> = {
-  ai: "bg-lane-ai",
-  sw: "bg-lane-sw",
-  wr: "bg-lane-wr",
+  ai: "bg-lane-ai-tint text-lane-ai",
+  sw: "bg-lane-sw-tint text-lane-sw",
+  wr: "bg-lane-wr-tint text-lane-wr",
 };
 
 /** DESIGN.md §4: year range in mono left, role and bullets right, lane node on a 1px rule. */
@@ -32,8 +33,10 @@ export function Experience({
             <li key={item.id} className="relative pb-14 last:pb-0">
               <span
                 aria-hidden="true"
-                className={`absolute -left-[33px] top-2 size-2.5 rounded-full md:-left-[49px] ${laneNode[item.lane]}`}
-              />
+                className={`absolute -left-[38px] top-0.5 flex size-5 items-center justify-center rounded-full md:-left-[54px] ${laneNode[item.lane]}`}
+              >
+                <span className="size-2.5 rounded-full bg-current" />
+              </span>
               <div className="grid gap-x-8 gap-y-2 md:grid-cols-12">
                 <p className="font-mono text-meta text-ink-2 md:col-span-3 md:pt-1.5">
                   {item.period}

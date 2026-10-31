@@ -1,6 +1,6 @@
 import { ScreenshotBelt } from "@/components/motion/ScreenshotBelt";
+import { DeviceFrame } from "@/components/ui/DeviceFrame";
 import { Gallery } from "@/components/ui/Gallery";
-import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { TagList } from "@/components/ui/Tag";
@@ -19,13 +19,12 @@ function BuiltCard({
   return (
     <article
       data-reveal
-      className="flex flex-col rounded-card bg-surface p-6 md:p-8"
+      className="flex flex-col rounded-card border border-line bg-surface p-6 md:p-8"
     >
       {project.image ? (
-        <Picture
-          asset={project.image}
-          className="mb-8 aspect-[16/10] w-full rounded-image bg-surface-2 object-cover"
-        />
+        <div className="mb-8">
+          <DeviceFrame asset={project.image} frame={project.frame} />
+        </div>
       ) : null}
 
       <p className="font-mono text-meta text-ink-2">{project.year}</p>

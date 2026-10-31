@@ -38,13 +38,18 @@
   "labels": {
     "teamProject": "Team project",
     "teamSize": "{n} people",
-    "illustration": "Illustration of the verify-then-retry loop, not evaluation results",
+    "illustration": "Example values, for illustration",
+    "traceHeader": "kg-agent · example run",
     "clock": "Local time",
     "caveat": "Note",
     "languages": "Languages",
     "context": "Context",
     "role": "Role",
-    "screenshots": "Screenshots from the projects below"
+    "screenshots": "Screenshots from the projects below",
+    "github": "GitHub profile",
+    "linkedin": "LinkedIn profile",
+    "medium": "Medium articles",
+    "emailMe": "Email Lathifah Sahda"
   },
   "locales": {
     "en": {

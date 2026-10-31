@@ -1,8 +1,8 @@
 {
   "name": "Lathifah Sahda",
   "shortName": "Thifa",
-  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": false },
-  "status": "Terbuka untuk magang · Jakarta",
+  "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Potret Lathifah Sahda", "draft": false },
+  "status": "Terbuka untuk bekerja",
   "statement": "Lulusan Teknik Informatika ITS. Saya membangun sistem berbasis language model, mengukur di mana sistem itu gagal, dan menjelaskan hasilnya kepada orang yang bukan engineer.",
   "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
@@ -12,12 +12,12 @@
     { "text": "مرحبا", "lang": "ar", "dir": "rtl" }
   ],
   "heroTrace": [
-    { "text": "faithfulness 0.82", "status": "pass" },
-    { "text": "trust 0.31", "status": "fail" },
-    { "text": "retry → alternate retrieval", "status": "retry" },
-    { "text": "trust 0.58", "status": "pass" },
+    { "text": "faithfulness 0.82", "threshold": "≥ 0.7", "status": "pass" },
+    { "text": "trust 0.31", "threshold": "< 0.4", "status": "fail" },
+    { "text": "retry → other retrieval", "status": "retry" },
+    { "text": "trust 0.58", "threshold": "≥ 0.4", "status": "pass" },
     { "text": "temporal VALID", "status": "pass" },
-    { "text": "verified", "status": "done" }
+    { "text": "answer verified", "status": "done" }
   ],
   "lanes": [
     {
@@ -54,6 +54,7 @@
     "email": "lathifahsahda03@gmail.com",
     "github": "https://github.com/lathifash03",
     "linkedin": "https://www.linkedin.com/in/lathifah-sahda",
+    "medium": "https://medium.com/@lathifahsahda03",
     "cv": "/cv.pdf",
     "closing": "Cara tercepat menghubungi saya adalah lewat email."
   }

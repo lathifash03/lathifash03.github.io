@@ -1,12 +1,16 @@
 import type { LaneId } from "@/lib/content";
 
-const laneBorder: Record<LaneId, string> = {
-  ai: "border-lane-ai",
-  sw: "border-lane-sw",
-  wr: "border-lane-wr",
+/**
+ * DESIGN.md §4: tint fill, strong text, no border. The pair is measured AA on
+ * the tint itself, on white and on paper (§2), so a pill is legible wherever a
+ * card puts it.
+ */
+const laneTag: Record<LaneId, string> = {
+  ai: "bg-lane-ai-tint text-lane-ai-strong",
+  sw: "bg-lane-sw-tint text-lane-sw-strong",
+  wr: "bg-lane-wr-tint text-lane-wr-strong",
 };
 
-/** DESIGN.md §4: pill, 1px border in the lane colour, ink text, mono 12px. */
 export function TagList({ tags, lane }: { tags: string[]; lane: LaneId }) {
   if (!tags.length) return null;
   return (
@@ -14,7 +18,7 @@ export function TagList({ tags, lane }: { tags: string[]; lane: LaneId }) {
       {tags.map((tag) => (
         <li
           key={tag}
-          className={`rounded-full border px-3 py-1 font-mono text-[0.75rem] leading-5 text-ink ${laneBorder[lane]}`}
+          className={`rounded-full px-3 py-1 font-mono text-[0.75rem] leading-5 ${laneTag[lane]}`}
         >
           {tag}
         </li>

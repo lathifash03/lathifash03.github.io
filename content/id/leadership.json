@@ -33,16 +33,16 @@
     }
   ],
   "speaking": [
-    "Master of Ceremony, IDSECCONF 2024 (konferensi keamanan IT tahunan di Indonesia): sesi workshop, keynote dan panel.",
-    "Pemateri, Basic Media Schooling: pelatihan jurnalistik untuk mahasiswa lintas departemen.",
-    "Pemateri manajemen proyek dan tim, Bluecamp, Teknik Informatika ITS."
-  ],
+      { "title": "Master of Ceremony, IDSECCONF 2024 (konferensi keamanan IT tahunan di Indonesia)", "detail": "Sesi workshop, keynote dan panel." },
+      { "title": "Pemateri, Basic Media Schooling", "detail": "Pelatihan jurnalistik untuk mahasiswa lintas departemen." },
+      { "title": "Pemateri manajemen proyek dan tim, Bluecamp, Teknik Informatika ITS" }
+    ],
   "training": [
-    "LKMM Tingkat Menengah, ITS, 2024",
-    "LKMM Tingkat Dasar, Teknik Informatika ITS",
-    "Pelatihan Kewirausahaan Mahasiswa, ITS dan ITS Career Center, 2022",
-    "Pelatihan Version Control System, Laboratorium Rekayasa Perangkat Lunak, Teknik Informatika ITS, 2023"
-  ],
+      { "year": "2024", "title": "LKMM Tingkat Menengah", "detail": "ITS" },
+      { "title": "LKMM Tingkat Dasar", "detail": "Teknik Informatika ITS" },
+      { "year": "2022", "title": "Pelatihan Kewirausahaan Mahasiswa", "detail": "ITS dan ITS Career Center" },
+      { "year": "2023", "title": "Pelatihan Version Control System", "detail": "Laboratorium Rekayasa Perangkat Lunak, Teknik Informatika ITS" }
+    ],
   "gallery": [
     { "src": "/images/gallery/01.jpg", "alt": "[TBD]", "caption": "[TBD]", "draft": true }
   ]

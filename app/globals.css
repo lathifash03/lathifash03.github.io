@@ -10,6 +10,8 @@
    ones only hand-written CSS uses; Tailwind otherwise drops unreferenced tokens. */
 @theme static {
   --color-paper: #efede8;
+  /* The ground every section's container sits on — DESIGN.md §1, §4. */
+  --color-white: #ffffff;
   --color-surface: #f8f7f4;
   --color-surface-2: #e5e2db;
   --color-ink: #1f1e1b;
@@ -18,9 +20,28 @@
   --color-ink-2: #5f5c56;
   --color-line: #dad6cc;
 
+  /* Each lane is a mark colour, a tint to fill with, and a strong for text on
+     that tint. Every tint/strong pair is AA on its tint, on white and on paper
+     — the measured table is DESIGN.md §2. */
   --color-lane-ai: #5b7083;
+  --color-lane-ai-tint: #e6ecf1;
+  --color-lane-ai-strong: #2e4a61;
+
   --color-lane-sw: #6f8467;
+  --color-lane-sw-tint: #e9efe6;
+  --color-lane-sw-strong: #3b5a34;
+
   --color-lane-wr: #a8644a;
+  --color-lane-wr-tint: #f6e8e1;
+  --color-lane-wr-strong: #8a3f22;
+
+  /* Status marks on the dark trace card only (DESIGN.md §2, §7.3). */
+  --color-trace-pass: #9fcb95;
+  --color-trace-fail: #e79a7a;
+  --color-trace-retry: #e8c27a;
+
+  /* The portrait tile's ground. Never behind text. */
+  --color-tile: #e8c4a0;
 
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
@@ -53,10 +74,13 @@
   --text-meta--letter-spacing: 0.02em;
 
   --radius-card: 24px;
+  /* The section containers the page is built from — DESIGN.md §4. */
+  --radius-panel: 28px;
   --radius-image: 16px;
 
-  /* DESIGN.md §6: the only shadow in the system. */
+  /* DESIGN.md §6: the only two shadows in the system. */
   --shadow-stack: 0 24px 48px -24px rgb(31 30 27 / 0.18);
+  --shadow-tile: 0 8px 20px -8px rgb(31 30 27 / 0.28);
 
   /* DESIGN.md §7 global. */
   --ease-site: cubic-bezier(0.22, 1, 0.36, 1);
@@ -64,6 +88,7 @@
 
 :root {
   --paper: var(--color-paper);
+  --white: var(--color-white);
   --surface: var(--color-surface);
   --surface-2: var(--color-surface-2);
   --ink: var(--color-ink);
@@ -73,6 +98,19 @@
   --lane-ai: var(--color-lane-ai);
   --lane-sw: var(--color-lane-sw);
   --lane-wr: var(--color-lane-wr);
+  /* The tint/strong pairs are aliased too, because hand-written CSS and the
+     inline SVGs address them by their DESIGN.md names. Without these an
+     SVG `fill: var(--lane-wr-strong)` resolves to nothing and paints black. */
+  --lane-ai-tint: var(--color-lane-ai-tint);
+  --lane-ai-strong: var(--color-lane-ai-strong);
+  --lane-sw-tint: var(--color-lane-sw-tint);
+  --lane-sw-strong: var(--color-lane-sw-strong);
+  --lane-wr-tint: var(--color-lane-wr-tint);
+  --lane-wr-strong: var(--color-lane-wr-strong);
+  --trace-pass: var(--color-trace-pass);
+  --trace-fail: var(--color-trace-fail);
+  --trace-retry: var(--color-trace-retry);
+  --tile: var(--color-tile);
 }
 
 body {
@@ -87,6 +125,12 @@ body {
 :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
+}
+
+/* On the two --ink grounds (the trace card and the Contact band) an ink ring
+   would be invisible, so it lightens there. DESIGN.md §4. */
+[data-dark] :focus-visible {
+  outline-color: var(--paper);
 }
 
 /*

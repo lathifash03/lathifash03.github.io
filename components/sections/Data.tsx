@@ -1,3 +1,4 @@
+import { SignedBars } from "@/components/diagrams/SignedBars";
 import { Gallery } from "@/components/ui/Gallery";
 import { Section } from "@/components/ui/Section";
 import { MetricInline } from "@/components/ui/Metric";
@@ -36,10 +37,16 @@ function DataRow({
           <ul className="mt-5 space-y-2">
             {project.metrics.map((metric) => (
               <li key={metric.label}>
-                <MetricInline metric={metric} />
+                <MetricInline metric={metric} lane={project.lane} />
               </li>
             ))}
           </ul>
+        ) : null}
+
+        {project.chart ? (
+          <div className="mt-6">
+            <SignedBars chart={project.chart} />
+          </div>
         ) : null}
 
         {project.gallery?.length ? (

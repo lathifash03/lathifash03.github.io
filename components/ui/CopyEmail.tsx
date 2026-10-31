@@ -7,10 +7,12 @@ export function CopyEmail({
   email,
   label,
   copiedLabel,
+  onDark = false,
 }: {
   email: string;
   label: string;
   copiedLabel: string;
+  onDark?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -23,7 +25,7 @@ export function CopyEmail({
   return (
     <button
       type="button"
-      className={buttonStyles.secondary}
+      className={onDark ? buttonStyles.secondaryOnDark : buttonStyles.secondary}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(email);

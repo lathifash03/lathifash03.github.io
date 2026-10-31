@@ -87,6 +87,7 @@
       "summary": "A cross-platform Flutter proof of concept that lets managers approve or reject internal requests (HR leave, finance verification, QMS) remotely, behind three authentication layers: registered device, app password and face recognition, with traffic tunnelled through a WireGuard VPN.",
       "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
       "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Splash and login screens of the Secure Verification App", "draft": false },
+      "frame": "phone",
       "links": {}
     },
     {
@@ -101,7 +102,9 @@
       "team": true,
       "summary": "A web-based financial management system for a kindergarten. We gathered requirements through surveys and interviews with teachers, treasurers and parents, then built five roles (administrator, secretary, treasurer, teacher, parent) covering enrolment, tuition, extracurricular payments, payroll and household expenses. Co-led.",
       "tags": ["Web app", "Requirements gathering", "Role-based access"],
-      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin home screen listing its five modules", "draft": false },
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin enrolment (PPDB) table", "draft": false },
+      "gallery": [{ "src": "/images/projects/kinderfin-login.png", "alt": "Kinderfin login page", "draft": false }],
+      "frame": "browser",
       "links": {}
     },
     {
@@ -117,6 +120,7 @@
       "summary": "A web app that recommends a study major: forward-chaining rules plus an XGBoost model behind a Flask REST API, with a Next.js front end.",
       "tags": ["Next.js", "Flask", "XGBoost", "Expert system"],
       "image": { "src": "/images/projects/major-in.png", "alt": "Major.in recommendation screen", "draft": false },
+      "frame": "browser",
       "links": { "demo": "https://major-in.vercel.app" }
     },
     {
@@ -132,6 +136,7 @@
       "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI EC00202495300, Ministry of Law and Human Rights).",
       "tags": ["Mobile game", "Education", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "WeapMath gameplay", "draft": false },
+      "frame": "phone",
       "links": {
         "demo": "https://youtu.be/5Ut-1OkzQds?si=hm18d0SefwMmlk1d"
       }
@@ -149,24 +154,10 @@
       "summary": "The app translates American Sign Language (ASL) hand gestures into text in real-time by combining image processing and a YOLO-based object detection model.",
       "tags": ["YOLO", "Computer vision"],
       "image": { "src": "/images/projects/aslora.png", "alt": "ASLora translating two hand signs into letters with confidence scores", "draft": false },
+      "frame": "phone",
       "links": {
         "code": "https://github.com/thoriqagfi/fp-ppb.git"
       }
-    },
-    {
-      "slug": "library-system",
-      "group": "built",
-      "lane": "sw",
-      "order": 6,
-      "draft": false,
-      "year": "2024",
-      "title": "Library Management System",
-      "context": "Course project · ITS",
-      "team": true,
-      "summary": "Back-end services in Golang and Laravel over a MySQL database.",
-      "tags": ["Golang", "Laravel", "MySQL"],
-      "image": { "src": "/images/projects/library.png", "alt": "Library system screen", "draft": true },
-      "links": {}
     },
     {
       "slug": "coursework-web",
@@ -271,12 +262,27 @@
       "lane": "ai",
       "order": 6,
       "draft": false,
-      "year": "2024",
-      "title": "Forecasting stock prices with an artificial neural network",
-      "context": "Deep Learning coursework · written up on Medium",
+      "year": "2025",
+      "title": "Stock price prediction with LSTM, GRU and Transformer",
+      "context": "Deep Learning final project · ITS",
       "team": true,
-      "summary": "An artificial neural network model for forecasting company stock values.",
-      "tags": ["ANN", "Time series", "Python"],
+      "summary": "Compared LSTM, GRU and Transformer models for forecasting Microsoft (MSFT) stock prices, with dollar-bar sampling, trend-scanning labels and piecewise aggregate approximation in preprocessing. Accuracy held only for short horizons.",
+      "metrics": [
+        { "value": "0.39", "label": "R\u00b2 at a 1-day horizon", "caveat": "turns negative from day 4 (\u22121.26 at day 7)" }
+      ],
+      "chart": {
+        "title": "R\u00b2 by forecast horizon",
+        "bars": [
+          { "label": "1 day", "value": 0.395, "display": "0.395" },
+          { "label": "2 days", "value": 0.272, "display": "0.272" },
+          { "label": "3 days", "value": 0.062, "display": "0.062" },
+          { "label": "4 days", "value": -0.205, "display": "\u22120.205" },
+          { "label": "5 days", "value": -0.519, "display": "\u22120.519" },
+          { "label": "6 days", "value": -0.867, "display": "\u22120.867" },
+          { "label": "7 days", "value": -1.256, "display": "\u22121.256" }
+        ]
+      },
+      "tags": ["LSTM", "GRU", "Transformer", "Time series", "Python"],
       "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
     }
   ]

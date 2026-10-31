@@ -1,8 +1,8 @@
 {
   "name": "Lathifah Sahda",
   "shortName": "Thifa",
-  "photo": { "src": "/images/profile/portrait.jpg", "alt": "Portrait of Lathifah Sahda", "draft": false },
-  "status": "Open to internships · Jakarta",
+  "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Portrait of Lathifah Sahda", "draft": false },
+  "status": "Open to work",
   "statement": "Computer science graduate from ITS. I build language-model systems, measure where they break, and explain the results to people who aren't engineers.",
   "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
@@ -12,12 +12,12 @@
     { "text": "مرحبا", "lang": "ar", "dir": "rtl" }
   ],
   "heroTrace": [
-    { "text": "faithfulness 0.82", "status": "pass" },
-    { "text": "trust 0.31", "status": "fail" },
-    { "text": "retry → alternate retrieval", "status": "retry" },
-    { "text": "trust 0.58", "status": "pass" },
+    { "text": "faithfulness 0.82", "threshold": "≥ 0.7", "status": "pass" },
+    { "text": "trust 0.31", "threshold": "< 0.4", "status": "fail" },
+    { "text": "retry → other retrieval", "status": "retry" },
+    { "text": "trust 0.58", "threshold": "≥ 0.4", "status": "pass" },
     { "text": "temporal VALID", "status": "pass" },
-    { "text": "verified", "status": "done" }
+    { "text": "answer verified", "status": "done" }
   ],
   "lanes": [
     {
@@ -54,6 +54,7 @@
     "email": "lathifahsahda03@gmail.com",
     "github": "https://github.com/lathifash03",
     "linkedin": "https://www.linkedin.com/in/lathifah-sahda",
+    "medium": "https://medium.com/@lathifahsahda03",
     "cv": "/cv.pdf",
     "closing": "The fastest way to reach me is email."
   }

@@ -38,13 +38,18 @@
   "labels": {
     "teamProject": "Proyek tim",
     "teamSize": "{n} orang",
-    "illustration": "Ilustrasi alur verify-then-retry, bukan hasil evaluasi",
+    "illustration": "Contoh nilai, sebagai ilustrasi",
+    "traceHeader": "kg-agent · contoh eksekusi",
     "clock": "Waktu setempat",
     "caveat": "Catatan",
     "languages": "Bahasa",
     "context": "Konteks",
     "role": "Peran",
-    "screenshots": "Tangkapan layar dari proyek di bawah"
+    "screenshots": "Tangkapan layar dari proyek di bawah",
+    "github": "Profil GitHub",
+    "linkedin": "Profil LinkedIn",
+    "medium": "Artikel Medium",
+    "emailMe": "Email Lathifah Sahda"
   },
   "locales": {
     "en": {

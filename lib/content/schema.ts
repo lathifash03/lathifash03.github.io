@@ -62,6 +62,9 @@ export const profileSchema = z
         z
           .object({
             text: z.string(),
+            // The gate's own threshold ("≥ 0.7"), kept as data so the card can
+            // set it apart from the measured value without parsing the text.
+            threshold: z.string().optional(),
             status: z.enum(["pass", "fail", "retry", "done"]),
           })
           .strict(),
@@ -89,6 +92,7 @@ export const profileSchema = z
         email: z.email(),
         github: z.url(),
         linkedin: z.url(),
+        medium: z.url(),
         cv: z.string().startsWith("/"),
         closing: z.string(),
       })
@@ -145,12 +149,18 @@ export const uiSchema = z
         teamProject: z.string(),
         teamSize: z.string(),
         illustration: z.string(),
+        traceHeader: z.string(),
         clock: z.string(),
         caveat: z.string(),
         languages: z.string(),
         context: z.string(),
         role: z.string(),
         screenshots: z.string(),
+        // Accessible names for the hero's icon-only social buttons.
+        github: z.string(),
+        linkedin: z.string(),
+        medium: z.string(),
+        emailMe: z.string(),
       })
       .strict(),
     // The EN/ID toggle names both languages in both files, so each locale is
@@ -226,8 +236,33 @@ export const projectSchema = z
     teamSize: z.number().int().min(2).optional(),
     summary: z.string(),
     metrics: z.array(metric).optional(),
+    /**
+     * A small signed bar chart drawn from the project's own numbers
+     * (DESIGN.md §4). `value` is the number the bar is drawn from and
+     * `display` is how content writes it, so nothing is rounded or
+     * re-punctuated by the component.
+     */
+    chart: z
+      .object({
+        title: z.string(),
+        bars: z
+          .array(
+            z
+              .object({
+                label: z.string(),
+                value: z.number(),
+                display: z.string(),
+              })
+              .strict(),
+          )
+          .min(1),
+      })
+      .strict()
+      .optional(),
     tags: z.array(z.string()),
     image: asset.optional(),
+    /** Which CSS device frame the screenshot sits in — never guessed. */
+    frame: z.enum(["phone", "browser"]).optional(),
     gallery: z.array(asset).optional(),
     links: z
       .object({
@@ -291,8 +326,28 @@ export const leadershipSchema = z
         })
         .strict(),
     ),
-    speaking: z.array(z.string()),
-    training: z.array(z.string()),
+    // Rows, not sentences: the year sits in its own column and the detail is
+    // set apart from the title (DESIGN.md §4, "Speaking / Training row card").
+    speaking: z.array(
+      z
+        .object({
+          year: z.string().optional(),
+          title: z.string(),
+          detail: z.string().optional(),
+          ...draftable,
+        })
+        .strict(),
+    ),
+    training: z.array(
+      z
+        .object({
+          year: z.string().optional(),
+          title: z.string(),
+          detail: z.string().optional(),
+          ...draftable,
+        })
+        .strict(),
+    ),
     gallery: z.array(galleryAsset),
   })
   .strict();

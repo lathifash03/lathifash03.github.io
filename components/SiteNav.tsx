@@ -88,8 +88,12 @@ export function SiteNav({
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 bg-paper/85 transition-colors duration-200 ${
-        scrolled ? "border-b border-line" : ""
+      // Translucent only at rest, where the hero behind it is paper anyway.
+      // Once the page scrolls, a dark section can pass underneath and 85%
+      // paper over ink drops the inactive tabs to 4.23:1, so the bar goes
+      // solid at the same moment it gains its border (DESIGN.md §4).
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-200 ${
+        scrolled ? "border-b border-line bg-paper" : "bg-paper/85"
       }`}
     >
       <Container>

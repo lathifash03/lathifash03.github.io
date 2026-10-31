@@ -87,6 +87,7 @@
       "summary": "Proof of concept Flutter lintas platform yang memungkinkan manajer menyetujui atau menolak permintaan internal (izin HR, verifikasi keuangan, QMS) dari jarak jauh, di belakang tiga lapis autentikasi: perangkat terdaftar, password aplikasi dan face recognition, dengan lalu lintas yang dilewatkan melalui VPN WireGuard.",
       "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
       "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Layar splash dan login Secure Verification App", "draft": false },
+      "frame": "phone",
       "links": {}
     },
     {
@@ -101,7 +102,9 @@
       "team": true,
       "summary": "Sistem manajemen keuangan berbasis web untuk sebuah taman kanak-kanak. Kami menggali kebutuhan melalui survei dan wawancara dengan guru, bendahara dan orang tua, lalu membangun lima peran (administrator, sekretaris, bendahara, guru, orang tua) yang mencakup pendaftaran siswa, SPP, pembayaran ekstrakurikuler, penggajian dan pengeluaran rumah tangga. Saya ikut memimpin proyek ini.",
       "tags": ["Aplikasi web", "Analisis kebutuhan", "Akses berbasis peran"],
-      "image": { "src": "/images/projects/kinderfin.png", "alt": "Halaman utama Kinderfin dengan daftar lima modulnya", "draft": false },
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Tabel penerimaan peserta didik baru (PPDB) Kinderfin", "draft": false },
+      "gallery": [{ "src": "/images/projects/kinderfin-login.png", "alt": "Halaman login Kinderfin", "draft": false }],
+      "frame": "browser",
       "links": {}
     },
     {
@@ -117,6 +120,7 @@
       "summary": "Aplikasi web yang merekomendasikan jurusan kuliah: aturan forward chaining ditambah model XGBoost di belakang REST API Flask, dengan front end Next.js.",
       "tags": ["Next.js", "Flask", "XGBoost", "Sistem pakar"],
       "image": { "src": "/images/projects/major-in.png", "alt": "Layar rekomendasi Major.in", "draft": false },
+      "frame": "browser",
       "links": { "demo": "https://major-in.vercel.app" }
     },
     {
@@ -132,6 +136,7 @@
       "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI EC00202495300, Kementerian Hukum dan Hak Asasi Manusia).",
       "tags": ["Game mobile", "Edukasi", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "Gameplay WeapMath", "draft": false },
+      "frame": "phone",
       "links": {
         "demo": "https://youtu.be/5Ut-1OkzQds?si=hm18d0SefwMmlk1d"
       }
@@ -149,24 +154,10 @@
       "summary": "Aplikasi ini menerjemahkan gestur tangan American Sign Language (ASL) menjadi teks secara real-time dengan menggabungkan pengolahan citra dan model object detection berbasis YOLO.",
       "tags": ["YOLO", "Computer vision"],
       "image": { "src": "/images/projects/aslora.png", "alt": "ASLora menerjemahkan dua isyarat tangan menjadi huruf beserta skor confidence", "draft": false },
+      "frame": "phone",
       "links": {
         "code": "https://github.com/thoriqagfi/fp-ppb.git"
       }
-    },
-    {
-      "slug": "library-system",
-      "group": "built",
-      "lane": "sw",
-      "order": 6,
-      "draft": false,
-      "year": "2024",
-      "title": "Sistem Manajemen Perpustakaan",
-      "context": "Proyek mata kuliah · ITS",
-      "team": true,
-      "summary": "Layanan back-end dengan Golang dan Laravel di atas basis data MySQL.",
-      "tags": ["Golang", "Laravel", "MySQL"],
-      "image": { "src": "/images/projects/library.png", "alt": "Layar sistem perpustakaan", "draft": true },
-      "links": {}
     },
     {
       "slug": "coursework-web",
@@ -271,12 +262,27 @@
       "lane": "ai",
       "order": 6,
       "draft": false,
-      "year": "2024",
-      "title": "Memprediksi harga saham dengan artificial neural network",
-      "context": "Tugas mata kuliah Deep Learning · ditulis di Medium",
+      "year": "2025",
+      "title": "Prediksi harga saham dengan LSTM, GRU, dan Transformer",
+      "context": "Tugas akhir Deep Learning · ITS",
       "team": true,
-      "summary": "Model artificial neural network untuk memprediksi nilai saham perusahaan.",
-      "tags": ["ANN", "Time series", "Python"],
+      "summary": "Membandingkan model LSTM, GRU dan Transformer untuk memprediksi harga saham Microsoft (MSFT), dengan dollar-bar sampling, label trend-scanning dan piecewise aggregate approximation pada tahap praproses. Akurasinya hanya bertahan pada horizon pendek.",
+      "metrics": [
+        { "value": "0,39", "label": "R\u00b2 pada horizon 1 hari", "caveat": "menjadi negatif sejak hari ke-4 (\u22121,26 pada hari ke-7)" }
+      ],
+      "chart": {
+        "title": "R\u00b2 menurut horizon prediksi",
+        "bars": [
+          { "label": "1 hari", "value": 0.395, "display": "0,395" },
+          { "label": "2 hari", "value": 0.272, "display": "0,272" },
+          { "label": "3 hari", "value": 0.062, "display": "0,062" },
+          { "label": "4 hari", "value": -0.205, "display": "\u22120,205" },
+          { "label": "5 hari", "value": -0.519, "display": "\u22120,519" },
+          { "label": "6 hari", "value": -0.867, "display": "\u22120,867" },
+          { "label": "7 hari", "value": -1.256, "display": "\u22121,256" }
+        ]
+      },
+      "tags": ["LSTM", "GRU", "Transformer", "Time series", "Python"],
       "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
     }
   ]
