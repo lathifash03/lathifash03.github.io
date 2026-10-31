@@ -18,7 +18,11 @@ export function SiteShell({
   children: ReactNode;
 }) {
   return (
-    <html lang={lang} className={fontVariables}>
+    // MotionBoot sets data-intro and data-js on <html> before hydration, so the
+    // server markup and the client's first read of this element differ by
+    // design. suppressHydrationWarning covers attributes on this element only,
+    // not its children, so a real mismatch anywhere else still reports.
+    <html lang={lang} className={fontVariables} suppressHydrationWarning>
       <body className="antialiased">
         {/* Must run before first paint — see components/motion/boot.tsx. */}
         <MotionBoot />
