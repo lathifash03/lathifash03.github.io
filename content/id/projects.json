@@ -1,0 +1,284 @@
+{
+  "_note": "group: research | built | data. Item dengan draft:true tidak masuk build. Ganti [TBD: ...] lalu set draft:false.",
+  "projects": [
+    {
+      "slug": "kg-agent",
+      "group": "research",
+      "lane": "ai",
+      "order": 1,
+      "draft": false,
+      "year": "2026",
+      "title": "kg-agent: lapisan verifikasi untuk RAG berbasis knowledge graph",
+      "context": "Magang riset TEEP · CITI Lab, NTUST, Taipei",
+      "team": false,
+      "summary": "Sebelum jawaban yang dihasilkan dari knowledge graph Neo4j dikembalikan, tiga gate independen memeriksanya: apakah jawaban itu setia pada data yang diambil, apakah node sumbernya layak dipercaya, dan apakah isinya masih berlaku. Kalau satu gate gagal, agent mencoba ulang dengan strategi retrieval yang berbeda.",
+      "metrics": [
+        { "value": "0%", "label": "false-pass rate (jawaban tidak aman yang lolos)", "caveat": "20 item ground truth, 3 kali run" },
+        { "value": "75%", "label": "akurasi gate end-to-end (15/20)", "caveat": "median dari 3 run; kategori low-trust hanya 1/5 benar" },
+        { "value": "57%", "label": "false-pass rate ketika trust gate dilepas", "caveat": "ablation; 100% jika semua gate dilepas" }
+      ],
+      "tags": ["Python", "Neo4j", "LLM-as-judge", "MCP", "LangGraph", "Docker"],
+      "image": { "src": "/images/projects/kg-agent-pipeline.png", "alt": "Diagram pipeline verify-then-retry kg-agent", "draft": true },
+      "links": {
+        "caseStudy": "/projects/kg-agent/",
+        "code": "https://github.com/lathifash03/kg-agentic.git",
+        "report": "https://drive.google.com/file/d/1RPIH6PZuEYMwsxRAB3Favm0q4AeFBOIy/view?usp=sharing"
+      }
+    },
+    {
+      "slug": "narrative-to-procedural",
+      "group": "research",
+      "lane": "ai",
+      "order": 2,
+      "draft": false,
+      "year": "2026",
+      "title": "Mengubah teks naratif berita menjadi teks langkah demi langkah",
+      "context": "Tugas akhir sarjana · ITS",
+      "team": false,
+      "summary": "Sebuah hybrid pipeline: NER berbasis aturan dan analisis temporal menyusun constraint untuk setiap artikel, tiga LLM mengonversi artikel di bawah constraint itu, lalu validator berbasis aturan dan penyisipan entitas memperbaiki apa yang dijatuhkan model.",
+      "metrics": [
+        { "value": "≤33% → 57–67%", "label": "artikel yang mempertahankan seluruh entitas wajib, prompt saja vs pipeline penuh", "caveat": "480 artikel per model; masih di bawah target 85%" },
+        { "value": "0,645–0,700", "label": "BERTScore F1 pada ketiga model", "caveat": "target ≥ 0,60 tercapai oleh ketiganya" },
+        { "value": "1.440", "label": "titik data evaluasi (480 artikel × 3 model, 16 domain berita)", "caveat": "diambil dari 26.526 artikel valid" }
+      ],
+      "tags": ["spaCy", "Llama 3.3 70B", "GPT-4o-mini", "Claude Haiku", "ROUGE", "BERTScore"],
+      "image": { "src": "/images/projects/thesis-pipeline.png", "alt": "Diagram hybrid pipeline empat fase", "draft": true },
+      "links": {
+        "caseStudy": "/projects/narrative-to-procedural/",
+        "code": "https://github.com/lathifash03/ta_demo.git"
+      }
+    },
+    {
+      "slug": "ruang-topik",
+      "group": "research",
+      "lane": "ai",
+      "order": 3,
+      "draft": false,
+      "year": "2026",
+      "title": "Ruang Topik: memetakan topik berita Indonesia",
+      "context": "Proyek akhir Text Mining · ITS",
+      "team": true,
+      "teamSize": 3,
+      "summary": "Kami mengambil data dari enam portal berita nasional, membandingkan LDA, NMF dan BERTopic, menyetel BERTopic dengan Optuna, menguji lima model embedding, lalu merilis hasilnya sebagai dashboard Streamlit untuk pembaca non-teknis.",
+      "metrics": [
+        { "value": "0,825", "label": "coherence topik terbaik (NMF, C_v, k = 25)", "caveat": "vs BERTopic 0,778 dan LDA 0,616" },
+        { "value": "3,5×", "label": "pilihan embedding menggeser coherence lebih besar daripada tuning hyperparameter", "caveat": "selisih 0,075 antar embedding vs +0,021 dari Optuna" }
+      ],
+      "tags": ["NMF", "LDA", "BERTopic", "Optuna", "UMAP", "HDBSCAN", "Streamlit"],
+      "image": { "src": "/images/projects/ruang-topik-dashboard.png", "alt": "Dashboard Ruang Topik menampilkan korpus dan jumlah artikel per portal dan per kategori", "draft": false },
+      "links": {
+        "caseStudy": "/projects/ruang-topik/",
+        "demo": "https://textmin-deploy.streamlit.app",
+        "code": "https://github.com/lathifash03/textmin-deploy.git"
+      }
+    },
+    {
+      "slug": "secure-verification-app",
+      "group": "built",
+      "lane": "sw",
+      "order": 1,
+      "draft": false,
+      "year": "2025–2026",
+      "title": "Secure Verification App",
+      "context": "Magang IT · UBS Gold, Surabaya",
+      "team": true,
+      "teamSize": 2,
+      "summary": "Proof of concept Flutter lintas platform yang memungkinkan manajer menyetujui atau menolak permintaan internal (izin HR, verifikasi keuangan, QMS) dari jarak jauh, di belakang tiga lapis autentikasi: perangkat terdaftar, password aplikasi dan face recognition, dengan lalu lintas yang dilewatkan melalui VPN WireGuard.",
+      "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
+      "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Layar splash dan login Secure Verification App", "draft": false },
+      "links": {
+        "code": "https://github.com/Aliyah-Pattoza/ubs_secure_verification.git"
+      }
+    },
+    {
+      "slug": "kinderfin",
+      "group": "built",
+      "lane": "sw",
+      "order": 2,
+      "draft": false,
+      "year": "2024",
+      "title": "Kinderfin",
+      "context": "Proyek pengabdian masyarakat (KKN Abmas) · MCI Lab, ITS",
+      "team": true,
+      "summary": "Sistem manajemen keuangan berbasis web untuk sebuah taman kanak-kanak. Kami menggali kebutuhan melalui survei dan wawancara dengan guru, bendahara dan orang tua, lalu membangun lima peran (administrator, sekretaris, bendahara, guru, orang tua) yang mencakup pendaftaran siswa, SPP, pembayaran ekstrakurikuler, penggajian dan pengeluaran rumah tangga. Saya ikut memimpin proyek ini.",
+      "tags": ["Aplikasi web", "Analisis kebutuhan", "Akses berbasis peran"],
+      "image": { "src": "/images/projects/kinderfin.png", "alt": "Halaman utama Kinderfin dengan daftar lima modulnya", "draft": false },
+      "links": { "demo": "https://kinderfin.labmci.site/" }
+    },
+    {
+      "slug": "major-in",
+      "group": "built",
+      "lane": "sw",
+      "order": 3,
+      "draft": false,
+      "year": "2024",
+      "title": "Major.in",
+      "context": "Proyek mata kuliah · ITS",
+      "team": true,
+      "summary": "Aplikasi web yang merekomendasikan jurusan kuliah: aturan forward chaining ditambah model XGBoost di belakang REST API Flask, dengan front end Next.js.",
+      "tags": ["Next.js", "Flask", "XGBoost", "Sistem pakar"],
+      "image": { "src": "/images/projects/major-in.png", "alt": "Layar rekomendasi Major.in", "draft": false },
+      "links": { "demo": "https://major-in.vercel.app" }
+    },
+    {
+      "slug": "weapmath",
+      "group": "built",
+      "lane": "sw",
+      "order": 4,
+      "draft": false,
+      "year": "2024",
+      "title": "WeapMath",
+      "context": "PKM-K · penerima pendanaan nasional",
+      "team": true,
+      "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI, Kementerian Hukum dan Hak Asasi Manusia).",
+      "tags": ["Game mobile", "Edukasi", "Unity"],
+      "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "Gameplay WeapMath", "draft": false },
+      "links": {
+        "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
+      }
+    },
+    {
+      "slug": "aslora",
+      "group": "built",
+      "lane": "ai",
+      "order": 5,
+      "draft": true,
+      "year": "2025",
+      "title": "ASLora",
+      "context": "Proyek akhir mata kuliah, ditulis dalam format artikel jurnal",
+      "team": true,
+      "summary": "Aplikasi ini menerjemahkan gestur tangan American Sign Language (ASL) menjadi teks secara real-time dengan menggabungkan pengolahan citra dan model object detection berbasis YOLO.",
+      "tags": ["YOLO", "Computer vision"],
+      "image": { "src": "/images/projects/aslora.png", "alt": "ASLora menerjemahkan dua isyarat tangan menjadi huruf beserta skor confidence", "draft": false },
+      "links": {
+        "demo": "https://github.com/thoriqagfi/fp-ppb.git"
+      }
+    },
+    {
+      "slug": "library-system",
+      "group": "built",
+      "lane": "sw",
+      "order": 6,
+      "draft": false,
+      "year": "2024",
+      "title": "Sistem Manajemen Perpustakaan",
+      "context": "Proyek mata kuliah · ITS",
+      "team": true,
+      "summary": "Layanan back-end dengan Golang dan Laravel di atas basis data MySQL.",
+      "tags": ["Golang", "Laravel", "MySQL"],
+      "image": { "src": "/images/projects/library.png", "alt": "Layar sistem perpustakaan", "draft": true },
+      "links": {}
+    },
+    {
+      "slug": "coursework-web",
+      "group": "built",
+      "lane": "sw",
+      "order": 7,
+      "draft": true,
+      "year": "2025",
+      "title": "proyek web mata kuliah",
+      "context": "Tugas mata kuliah · ITS",
+      "team": true,
+      "summary": "[TBD]",
+      "tags": [],
+      "image": { "src": "/images/projects/coursework-1.png", "alt": "[TBD]", "draft": true },
+      "links": {}
+    },
+    {
+      "slug": "indobert-news",
+      "group": "data",
+      "lane": "ai",
+      "order": 1,
+      "draft": true,
+      "year": "2025",
+      "title": "Klasifikasi berita dengan IndoBERT",
+      "context": "Tugas mata kuliah · ITS",
+      "team": true,
+      "summary": "Fine-tuning IndoBERT untuk mengklasifikasikan berita Indonesia pada empat skenario eksperimen.",
+      "tags": ["IndoBERT", "Transformers", "PyTorch"],
+      "links": {
+        "code": "https://github.com/Siriuslys/textmining-ner.git"
+      }
+    },
+    {
+      "slug": "fraud-detection",
+      "group": "data",
+      "lane": "ai",
+      "order": 2,
+      "draft": false,
+      "year": "2025",
+      "title": "Mendeteksi fraud pinjaman online dengan ensemble learning",
+      "context": "Proyek akhir mata kuliah, ditulis dalam format artikel jurnal (tidak dipublikasikan)",
+      "team": true,
+      "teamSize": 3,
+      "summary": "Membandingkan single learner (logistic regression, SVM) dengan ensemble (random forest, XGBoost, LightGBM), memakai SMOTE untuk menangani ketidakseimbangan kelas, pada dataset transaksi keuangan sintetis.",
+      "metrics": [
+        { "value": "0,93 / 0,97", "label": "F1 / AUC-ROC, LightGBM + SMOTE", "caveat": "dataset sintetis" }
+      ],
+      "tags": ["LightGBM", "XGBoost", "SMOTE", "scikit-learn"],
+      "links": {}
+    },
+    {
+      "slug": "tableau-sales",
+      "group": "data",
+      "lane": "ai",
+      "order": 3,
+      "draft": false,
+      "year": "2024",
+      "title": "Dashboard penjualan di Tableau",
+      "context": "Tugas rekrutmen MCI Lab",
+      "team": false,
+      "summary": "Dua sudut pandang atas satu dataset penjualan: penjualan bulanan, yang naik dari sekitar 550 ribu pada Februari ke sekitar 1,55 juta pada Desember dengan penurunan tajam di Juli, dan nilai pesanan per negara bagian AS, dipimpin California.",
+      "tags": ["Tableau", "Visualisasi data"],
+      "gallery": [
+        { "src": "/images/projects/tableau-sales-month.png", "alt": "Grafik garis penjualan per bulan" },
+        { "src": "/images/projects/tableau-orders-state.png", "alt": "Peta nilai pesanan per negara bagian AS" }
+      ],
+      "links": {
+
+      }
+    },
+    {
+      "slug": "sentiment-mlbb",
+      "group": "data",
+      "lane": "ai",
+      "order": 4,
+      "draft": false,
+      "year": "2024",
+      "title": "Sentimen ulasan Mobile Legends di Google Play",
+      "context": "Analisis pribadi · ditulis di Medium",
+      "team": false,
+      "summary": "Analisis sentimen berbasis leksikon dan aturan atas ulasan Play Store dengan VADER dari NLTK.",
+      "tags": ["NLTK", "VADER", "Python"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
+    },
+    {
+      "slug": "urban-happiness",
+      "group": "data",
+      "lane": "ai",
+      "order": 5,
+      "draft": false,
+      "year": "2024",
+      "title": "Kaitan pembangunan kota dengan kebahagiaan (KNN dan K-Means)",
+      "context": "Analisis pribadi · ditulis di Medium",
+      "team": true,
+      "summary": "Klasifikasi dan clustering atas kaitan antara faktor-faktor pembangunan kota dengan kebahagiaan seseorang.",
+      "tags": ["KNN", "K-Means", "scikit-learn"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
+    },
+    {
+      "slug": "stock-ann",
+      "group": "data",
+      "lane": "ai",
+      "order": 6,
+      "draft": false,
+      "year": "2024",
+      "title": "Memprediksi harga saham dengan artificial neural network",
+      "context": "Tugas mata kuliah Deep Learning · ditulis di Medium",
+      "team": true,
+      "summary": "Model artificial neural network untuk memprediksi nilai saham perusahaan.",
+      "tags": ["ANN", "Time series", "Python"],
+      "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
+    }
+  ]
+}

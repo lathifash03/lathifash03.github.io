@@ -1,0 +1,78 @@
+{
+  "experience": [
+    {
+      "id": "teep",
+      "lane": "ai",
+      "period": "Jun – Agu 2026",
+      "role": "Mahasiswa Magang Riset, Program TEEP",
+      "org": "Center for IoT Innovation (CITI Lab), NTUST",
+      "place": "Taipei, Taiwan",
+      "bullets": [
+        "Membangun kg-agent, layanan Python yang memeriksa jawaban AI terhadap knowledge graph Neo4j (355 node, 805 relasi) dan mencoba ulang ketika pemeriksaan gagal, terintegrasi dengan modul retrieval tim melalui MCP dan LangGraph.",
+        "Merancang benchmark ground truth 20 item, studi ablation dan uji reliabilitas judge, lalu melacak setiap kegagalan sampai ke akar penyebabnya.",
+        "Mengemas layanan ini dalam Docker dan menerapkannya di server lab. Bekerja dalam tim riset internasional dengan lima modul."
+      ],
+      "caseStudy": "/projects/kg-agent/"
+    },
+    {
+      "id": "ubs",
+      "lane": "sw",
+      "period": "Okt 2025 – Jan 2026",
+      "role": "Magang IT, Pengembang Aplikasi Mobile",
+      "org": "UBS Gold",
+      "place": "Surabaya",
+      "bullets": [
+        "Bersama tim dua orang, kami membangun Secure Verification App: proof of concept Flutter untuk menyetujui permintaan HR, keuangan dan QMS dari jarak jauh.",
+        "Mengimplementasikan pengikatan perangkat terdaftar, password aplikasi dan face recognition melalui API internal perusahaan, dengan lalu lintas yang dilewatkan melalui WireGuard.",
+        "Menggali kebutuhan dari manajemen dan mengintegrasikan REST API untuk antrean persetujuan, verifikasi wajah dan status dokumen."
+      ]
+    },
+    {
+      "id": "dkpu",
+      "lane": "sw",
+      "period": "Mar – Jun 2025",
+      "role": "Magang Pengembang Web",
+      "org": "Direktorat Kerjasama dan Pengelolaan Usaha (DKPU) ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Menata ulang situs DKPU ITS (WordPress, HTML/CSS): merapikan navigasi dan konten serta menambahkan dukungan bahasa Indonesia/Inggris."
+      ]
+    },
+    {
+      "id": "mci",
+      "lane": "ai",
+      "period": "Jun 2024 – 2026",
+      "role": "Asisten Riset dan Administrator Laboratorium",
+      "org": "Information Intelligent Management Laboratory (MCI), ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Asisten riset untuk prompting LLM dan topic modeling.",
+        "Ikut memimpin Kinderfin, sistem manajemen keuangan untuk sebuah taman kanak-kanak, dari penggalian kebutuhan bersama pihak sekolah sampai serah terima.",
+        "Menjalankan administrasi laboratorium dan mendukung program pengabdian masyarakat serta pelatihan yang diselenggarakan lab."
+      ]
+    },
+    {
+      "id": "jawapos",
+      "lane": "wr",
+      "period": "Agu – Nov 2024",
+      "role": "Magang Asisten Produser",
+      "org": "Jawa Pos TV (Jawa Pos Update Surabaya)",
+      "place": "Surabaya",
+      "bullets": [
+        "Menyusun rundown harian dan memproduksi konten berita di bawah tenggat siaran."
+      ]
+    },
+    {
+      "id": "ta",
+      "lane": "wr",
+      "period": "2023 – 2026",
+      "role": "Asisten Dosen, enam mata kuliah",
+      "org": "Departemen Teknik Informatika, ITS",
+      "place": "Surabaya",
+      "bullets": [
+        "Mendampingi 300+ mahasiswa dalam sesi praktikum dan pengerjaan tugas, termasuk perancangan basis data dan SQL; mengoreksi dan membantu men-debug pekerjaan mahasiswa.",
+        "Mata kuliah: Deep Learning, Database Systems, Automata Theory."
+      ]
+    }
+  ]
+}

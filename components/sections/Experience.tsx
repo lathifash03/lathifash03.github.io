@@ -1,6 +1,12 @@
 import { TimelineRule } from "@/components/motion/TimelineRule";
 import { Section } from "@/components/ui/Section";
-import type { ExperienceItem, LaneId, Ui } from "@/lib/content";
+import {
+  localePath,
+  type ExperienceItem,
+  type LaneId,
+  type Locale,
+  type Ui,
+} from "@/lib/content";
 
 const laneNode: Record<LaneId, string> = {
   ai: "bg-lane-ai",
@@ -12,9 +18,11 @@ const laneNode: Record<LaneId, string> = {
 export function Experience({
   items,
   ui,
+  locale,
 }: {
   items: ExperienceItem[];
   ui: Ui;
+  locale: Locale;
 }) {
   return (
     <Section id="experience" index="04" title={ui.sections.experience}>
@@ -49,7 +57,7 @@ export function Experience({
                   </ul>
                   {item.caseStudy ? (
                     <a
-                      href={item.caseStudy}
+                      href={localePath(locale, item.caseStudy)}
                       className="group mt-4 inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
                     >
                       {ui.actions.readCaseStudy}

@@ -360,6 +360,9 @@ function listContentFiles(root: string): string[] {
   const out: string[] = [];
   const walk = (dir: string) => {
     for (const name of readdirSync(dir)) {
+      // Dot entries are never content: .DS_Store, editor state and stray tool
+      // directories must not be able to make the locale gate unsatisfiable.
+      if (name.startsWith(".")) continue;
       const path = join(dir, name);
       if (statSync(path).isDirectory()) walk(path);
       else if (/\.(json|md)$/.test(name)) out.push(relative(root, path));
@@ -367,6 +370,20 @@ function listContentFiles(root: string): string[] {
   };
   walk(root);
   return out.sort();
+}
+
+/**
+ * Internal routes carry the locale: `/projects/x/` in English, `/id/projects/x/`
+ * in Indonesian. Content stores the English form, so every internal href is
+ * passed through here (CLAUDE.md, Routes).
+ */
+export function localePath(locale: Locale, path: string): string {
+  return locale === defaultLocale ? path : `/${locale}${path}`;
+}
+
+/** The same page in the other locale, for the EN/ID toggle. */
+export function otherLocale(locale: Locale): Locale {
+  return locale === "en" ? "id" : "en";
 }
 
 /**
@@ -384,6 +401,22 @@ export function hasCompleteLocale(locale: Locale): boolean {
 
 export function availableLocales(): Locale[] {
   return locales.filter(hasCompleteLocale);
+}
+
+/**
+ * The locales that get their own prefixed routes. The default locale is served
+ * from the root, and an incomplete locale is not built at all: its
+ * generateStaticParams returns nothing, so no half-translated page exists.
+ */
+export function prefixedLocales(): Locale[] {
+  return availableLocales().filter((locale) => locale !== defaultLocale);
+}
+
+/** Narrows a route param. Unreachable for a built route; loud if that changes. */
+export function toLocale(value: string): Locale {
+  const locale = locales.find((item) => item === value);
+  if (!locale) throw new Error(`Unknown locale "${value}"`);
+  return locale;
 }
 
 export * from "./schema";

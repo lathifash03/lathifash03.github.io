@@ -1,59 +1,35 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { CaseStudyBody } from "@/components/CaseStudyBody";
+import { LocaleToggle } from "@/components/LocaleToggle";
 import { Container } from "@/components/ui/Section";
 import { ProjectLinks } from "@/components/ui/ProjectLinks";
 import { TagList } from "@/components/ui/Tag";
 import {
-  getCaseStudies,
   getCaseStudy,
   getProfile,
   getProjectForCaseStudy,
   getUi,
+  hasCompleteLocale,
+  localePath,
+  otherLocale,
   reportMissingAssets,
+  type Locale,
 } from "@/lib/content";
 
-const locale = "en";
-
-export function generateStaticParams() {
-  return getCaseStudies(locale).map((study) => ({ slug: study.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps<"/projects/[slug]">): Promise<Metadata> {
-  const { slug } = await params;
-  const study = getCaseStudy(locale, slug);
-  const profile = getProfile(locale);
-  const project = getProjectForCaseStudy(locale, slug);
-  const description = project?.summary ?? study.context;
-  const path = `/projects/${slug}/`;
-
-  return {
-    title: `${study.title} — ${profile.name}`,
-    description,
-    alternates: { canonical: path },
-    openGraph: {
-      type: "article",
-      title: study.title,
-      description,
-      url: path,
-      siteName: profile.name,
-      images: project?.image
-        ? [{ url: project.image.src, alt: project.image.alt }]
-        : undefined,
-    },
-  };
-}
-
-export default async function CaseStudyPage({
-  params,
-}: PageProps<"/projects/[slug]">) {
-  const { slug } = await params;
+export function CaseStudyPage({
+  locale,
+  slug,
+}: {
+  locale: Locale;
+  slug: string;
+}) {
   const study = getCaseStudy(locale, slug);
   const profile = getProfile(locale);
   const ui = getUi(locale);
   const project = getProjectForCaseStudy(locale, slug);
+
+  const other = otherLocale(locale);
+  const offerOther = hasCompleteLocale(other);
 
   reportMissingAssets();
 
@@ -71,21 +47,33 @@ export default async function CaseStudyPage({
     <>
       <header className="border-b border-line">
         <Container className="flex h-16 items-center justify-between gap-6">
-          <Link href="/" className="text-[0.9375rem] text-ink">
+          <Link href={localePath(locale, "/")} className="text-[0.9375rem] text-ink">
             {profile.name}
           </Link>
-          <Link
-            href={project ? `/#${project.group}` : "/"}
-            className="group inline-flex items-center gap-2 font-mono text-meta text-ink-2 transition-colors duration-200 hover:text-ink"
-          >
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-200 group-hover:-translate-x-[3px]"
+
+          <div className="flex items-center gap-6 md:gap-8">
+            <Link
+              href={localePath(locale, project ? `/#${project.group}` : "/")}
+              className="group inline-flex items-center gap-2 font-mono text-meta text-ink-2 transition-colors duration-200 hover:text-ink"
             >
-              ←
-            </span>
-            {ui.actions.backToWork}
-          </Link>
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-x-[3px]"
+              >
+                ←
+              </span>
+              {ui.actions.backToWork}
+            </Link>
+
+            {offerOther ? (
+              <LocaleToggle
+                locale={locale}
+                target={other}
+                targetPath={localePath(other, `/projects/${slug}/`)}
+                ui={ui}
+              />
+            ) : null}
+          </div>
         </Container>
       </header>
 
@@ -126,7 +114,7 @@ export default async function CaseStudyPage({
 
               {hasLinks ? (
                 <div className="mt-20 border-t border-line pt-8">
-                  <ProjectLinks links={links} ui={ui} />
+                  <ProjectLinks links={links} ui={ui} locale={locale} />
                 </div>
               ) : null}
             </div>

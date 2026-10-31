@@ -35,9 +35,19 @@ This is a portfolio, not a sales page: no pricing, no FAQ, no "hire me" funnels,
 - `/` English (default), `/id/` Bahasa Indonesia
 - `/projects/<slug>/` and `/id/projects/<slug>/` for case studies (generated with `generateStaticParams`)
 - `/cv.pdf` static file in `public/`
-- The ID route and the EN/ID toggle are only built when every file in `content/en/` has a matching
-  file in `content/id/`. Until then the toggle slot renders nothing at all — no placeholder, no disabled
-  control. Never render a half-translated page.
+- **The language gate.** A locale is complete when every file in `content/en/` has a matching file in
+  `content/id/`. Only a complete locale is published: its pages carry content, the EN/ID toggle
+  appears, and the two locales point at each other with `hreflang`. While ID is incomplete:
+  - the toggle slot renders nothing at all — no placeholder, no disabled control;
+  - no `hreflang` alternates are emitted;
+  - `/id/` and `/id/projects/<slug>/` still exist as files, because `output: export` fails the build
+    on an empty `generateStaticParams()`. They call `notFound()`, so each serves Next's not-found
+    page with `robots: noindex` — never a half-translated page. The build succeeds; the English site
+    ships unaffected.
+
+  So the gate degrades rather than removing routes. Do not "fix" this by hard-coding the ID params
+  or by deleting the `notFound()` guards, and keep the matching guard in each `generateMetadata`:
+  it runs before the component and would otherwise read missing content files.
 
 ## Content files
 

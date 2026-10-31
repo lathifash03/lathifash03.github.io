@@ -48,5 +48,6 @@ yarn-error.log*
 
 # design reference images (structure only, never published)
 design-refs/
-.taste-skill/
-.taste-skill/
+
+# one-off translation review sheet, not part of the site
+TRANSLATION-REVIEW.md

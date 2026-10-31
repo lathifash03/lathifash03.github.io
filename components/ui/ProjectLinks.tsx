@@ -1,16 +1,21 @@
-import type { Project, Ui } from "@/lib/content";
+import { localePath, type Locale, type Project, type Ui } from "@/lib/content";
 
 /** Every label comes from ui.json (CLAUDE.md hard rule 6). */
 export function ProjectLinks({
   links,
   ui,
+  locale,
 }: {
   links: Project["links"];
   ui: Ui;
+  locale: Locale;
 }) {
   const items: { href: string; label: string }[] = [];
   if (links.caseStudy)
-    items.push({ href: links.caseStudy, label: ui.actions.readCaseStudy });
+    items.push({
+      href: localePath(locale, links.caseStudy),
+      label: ui.actions.readCaseStudy,
+    });
   if (links.demo) items.push({ href: links.demo, label: ui.actions.liveDemo });
   if (links.code) items.push({ href: links.code, label: ui.actions.viewCode });
   if (links.report)

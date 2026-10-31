@@ -8,6 +8,8 @@ const problems = [];
 
 function walk(dir) {
   for (const name of readdirSync(dir)) {
+    // Dot entries are never content (same rule as lib/content/index.ts).
+    if (name.startsWith(".")) continue;
     const p = join(dir, name);
     if (statSync(p).isDirectory()) walk(p);
     else if (extname(p) === ".json") checkJson(p);

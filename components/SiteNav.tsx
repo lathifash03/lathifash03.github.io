@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { LocaleToggle } from "@/components/LocaleToggle";
 import { Container } from "@/components/ui/Section";
-import type { Ui } from "@/lib/content";
+import type { Locale, Ui } from "@/lib/content";
 
 type Tab = { id: string; label: string; sections: string[] };
 
@@ -17,7 +18,20 @@ function tabsFrom(ui: Ui): Tab[] {
   ];
 }
 
-export function SiteNav({ name, ui }: { name: string; ui: Ui }) {
+export function SiteNav({
+  name,
+  ui,
+  locale,
+  otherLocale,
+  otherPath,
+}: {
+  name: string;
+  ui: Ui;
+  locale: Locale;
+  /** null when that locale is incomplete: the slot then renders nothing at all. */
+  otherLocale: Locale | null;
+  otherPath: string | null;
+}) {
   const tabs = tabsFrom(ui);
   const [active, setActive] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -81,41 +95,53 @@ export function SiteNav({ name, ui }: { name: string; ui: Ui }) {
             {name}
           </a>
 
-          <ul className="hidden items-center gap-8 md:flex">
-            {tabs.map((tab) => {
-              const isActive = activeTab?.id === tab.id;
-              return (
-                <li key={tab.id}>
-                  <a
-                    href={`#${tab.id}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`relative block py-2 text-[0.9375rem] transition-colors duration-200 ${
-                      isActive ? "text-ink" : "text-ink-2 hover:text-ink"
-                    }`}
-                  >
-                    {tab.label}
-                    {/* Decision G: every active-tab underline is --ink. */}
-                    <span
-                      aria-hidden="true"
-                      className={`absolute inset-x-0 -bottom-0.5 h-0.5 bg-ink ${
-                        isActive ? "opacity-100" : "opacity-0"
+          <div className="flex items-center gap-6 md:gap-8">
+            <ul className="hidden items-center gap-8 md:flex">
+              {tabs.map((tab) => {
+                const isActive = activeTab?.id === tab.id;
+                return (
+                  <li key={tab.id}>
+                    <a
+                      href={`#${tab.id}`}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`relative block py-2 text-[0.9375rem] transition-colors duration-200 ${
+                        isActive ? "text-ink" : "text-ink-2 hover:text-ink"
                       }`}
-                    />
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+                    >
+                      {tab.label}
+                      {/* Decision G: every active-tab underline is --ink. */}
+                      <span
+                        aria-hidden="true"
+                        className={`absolute inset-x-0 -bottom-0.5 h-0.5 bg-ink ${
+                          isActive ? "opacity-100" : "opacity-0"
+                        }`}
+                      />
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
 
-          <button
-            type="button"
-            className="text-[0.9375rem] text-ink md:hidden"
-            aria-expanded={menuOpen}
-            aria-controls="nav-sheet"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? ui.nav.close : ui.nav.menu}
-          </button>
+            {otherLocale && otherPath ? (
+              <LocaleToggle
+                locale={locale}
+                target={otherLocale}
+                targetPath={otherPath}
+                ui={ui}
+                keepSection
+              />
+            ) : null}
+
+            <button
+              type="button"
+              className="text-[0.9375rem] text-ink md:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="nav-sheet"
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? ui.nav.close : ui.nav.menu}
+            </button>
+          </div>
         </nav>
       </Container>
 

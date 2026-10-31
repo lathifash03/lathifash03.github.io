@@ -3,10 +3,18 @@ import { Section } from "@/components/ui/Section";
 import { MetricInline } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { TagList } from "@/components/ui/Tag";
-import type { Project, Ui } from "@/lib/content";
+import type { Locale, Project, Ui } from "@/lib/content";
 
 /** Decision E: bordered rows, no cards; metric inline with its caveat. */
-function DataRow({ project, ui }: { project: Project; ui: Ui }) {
+function DataRow({
+  project,
+  ui,
+  locale,
+}: {
+  project: Project;
+  ui: Ui;
+  locale: Locale;
+}) {
   return (
     <article
       data-reveal
@@ -45,19 +53,32 @@ function DataRow({ project, ui }: { project: Project; ui: Ui }) {
         </div>
 
         <div className="mt-5">
-          <ProjectLinks links={project.links} ui={ui} />
+          <ProjectLinks links={project.links} ui={ui} locale={locale} />
         </div>
       </div>
     </article>
   );
 }
 
-export function Data({ projects, ui }: { projects: Project[]; ui: Ui }) {
+export function Data({
+  projects,
+  ui,
+  locale,
+}: {
+  projects: Project[];
+  ui: Ui;
+  locale: Locale;
+}) {
   return (
     <Section id="data" index="03" title={ui.sections.data}>
       <div>
         {projects.map((project) => (
-          <DataRow key={project.slug} project={project} ui={ui} />
+          <DataRow
+            key={project.slug}
+            project={project}
+            ui={ui}
+            locale={locale}
+          />
         ))}
       </div>
     </Section>

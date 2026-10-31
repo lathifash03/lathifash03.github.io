@@ -107,6 +107,7 @@ export const uiSchema = z
         contact: z.string(),
         menu: z.string(),
         close: z.string(),
+        language: z.string(),
       })
       .strict(),
     sections: z
@@ -152,6 +153,15 @@ export const uiSchema = z
         screenshots: z.string(),
       })
       .strict(),
+    // The EN/ID toggle names both languages in both files, so each locale is
+    // offered in its own words rather than translated by the reader.
+    locales: z
+      .object({
+        en: strings("short", "name"),
+        id: strings("short", "name"),
+      })
+      .strict(),
+    notFound: strings("title", "home"),
     // Figure labels: the diagrams are drawn in code, so their words live here
     // rather than in the components (CLAUDE.md hard rule 6).
     diagrams: z

@@ -1,0 +1,49 @@
+{
+  "intro": "Sebagian besar hal yang saya tahu tentang menyelesaikan sesuatu bersama orang lain, saya pelajari di luar kelas.",
+  "roles": [
+    {
+      "period": "Feb 2025 – Feb 2026",
+      "role": "Sekretaris Jenderal Eksternal",
+      "org": "HMTC ITS (himpunan mahasiswa Teknik Informatika)",
+      "detail": "Ikut mengoordinasi kepengurusan 120 orang melewati 20+ program dalam satu periode, dan mengelola kemitraan dengan perusahaan, universitas dan lembaga pemerintah. Sebelumnya Sekretaris Jenderal Administrasi II (2024)."
+    },
+    {
+      "period": "2024",
+      "role": "Kepala Divisi Humas",
+      "org": "Schematics ITS (acara IT nasional)",
+      "detail": "Memimpin strategi promosi multikanal bersama 20+ media partner, menyesuaikan pesan untuk pelajar SMA, mahasiswa dan masyarakat umum; acaranya menjangkau 2.000+ peserta."
+    },
+    {
+      "period": "Mei 2024 – Mei 2025",
+      "role": "Sekretaris dan Anggota Pengurus",
+      "org": "Ikatan Mahasiswa Muhammadiyah (IMM) ITS",
+      "detail": "Menyusun 15+ proposal pendanaan dengan anggaran yang ketat dan ikut merencanakan 10+ program pengembangan anggota dan pengabdian masyarakat."
+    },
+    {
+      "period": "Maret 2023 – Maret 2025",
+      "role": "Ketua",
+      "org": "Forum Daerah Bengkulu ITS",
+      "detail": "Memimpin 30 mahasiswa asal Bengkulu dari berbagai departemen di ITS dan menjalankan program rutin untuk membangun kerja sama antar anggota."
+    },
+    {
+      "period": "2024 – 2025",
+      "role": "Peran lain",
+      "org": "ITS",
+      "detail": "Bendahara, Keluarga Muslim Informatika (2024). Tim Kawal Gemastik ITS (2025), mendampingi tim-tim ITS di kompetisi TIK nasional."
+    }
+  ],
+  "speaking": [
+    "Master of Ceremony, IDSECCONF 2024 (konferensi keamanan IT tahunan di Indonesia): sesi workshop, keynote dan panel.",
+    "Pemateri, Basic Media Schooling: pelatihan jurnalistik untuk mahasiswa lintas departemen.",
+    "Pemateri manajemen proyek dan tim, Bluecamp, Teknik Informatika ITS."
+  ],
+  "training": [
+    "LKMM Tingkat Menengah, ITS, 2024",
+    "LKMM Tingkat Dasar, Teknik Informatika ITS",
+    "Pelatihan Kewirausahaan Mahasiswa, ITS dan ITS Career Center, 2022",
+    "Pelatihan Version Control System, Laboratorium Rekayasa Perangkat Lunak, Teknik Informatika ITS, 2023"
+  ],
+  "gallery": [
+    { "src": "/images/gallery/01.jpg", "alt": "[TBD]", "caption": "[TBD]", "draft": true }
+  ]
+}

@@ -276,7 +276,7 @@
       "title": "Forecasting stock prices with an artificial neural network",
       "context": "Deep Learning coursework · written up on Medium",
       "team": true,
-      "summary": "An ANN forecasting model for company stock values. Accuracy drops sharply beyond short horizons, which the write-up should state plainly.",
+      "summary": "An artificial neural network model for forecasting company stock values.",
       "tags": ["ANN", "Time series", "Python"],
       "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
     }

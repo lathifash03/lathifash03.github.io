@@ -7,7 +7,7 @@ import { MetricBlock } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { Picture } from "@/components/ui/Picture";
 import { TagList } from "@/components/ui/Tag";
-import type { Project, Ui } from "@/lib/content";
+import type { Locale, Project, Ui } from "@/lib/content";
 
 /** Diagrams are drawn per project; a project without one is single column (decision B). */
 const diagrams: Record<string, DiagramName> = {
@@ -20,11 +20,13 @@ function ResearchCard({
   index,
   total,
   ui,
+  locale,
 }: {
   project: Project;
   index: number;
   total: number;
   ui: Ui;
+  locale: Locale;
 }) {
   const name = diagrams[project.slug];
   const visual: ReactNode = name ? (
@@ -75,7 +77,7 @@ function ResearchCard({
           </div>
 
           <div className="mt-8">
-            <ProjectLinks links={project.links} ui={ui} />
+            <ProjectLinks links={project.links} ui={ui} locale={locale} />
           </div>
         </div>
 
@@ -92,9 +94,11 @@ function ResearchCard({
 export function Research({
   projects,
   ui,
+  locale,
 }: {
   projects: Project[];
   ui: Ui;
+  locale: Locale;
 }) {
   return (
     <Section id="research" index="01" title={ui.sections.research}>
@@ -106,6 +110,7 @@ export function Research({
             index={i}
             total={projects.length}
             ui={ui}
+            locale={locale}
           />
         ))}
       </StackedCards>

@@ -6,7 +6,8 @@
     "writing": "Writing",
     "contact": "Contact",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "language": "Language"
   },
   "sections": {
     "lanes": "Three kinds of work",
@@ -44,6 +45,20 @@
     "context": "Context",
     "role": "Role",
     "screenshots": "Screenshots from the projects below"
+  },
+  "locales": {
+    "en": {
+      "short": "EN",
+      "name": "English"
+    },
+    "id": {
+      "short": "ID",
+      "name": "Bahasa Indonesia"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "home": "Go to the homepage"
   },
   "diagrams": {
     "kgAgent": {

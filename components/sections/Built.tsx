@@ -4,10 +4,18 @@ import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { TagList } from "@/components/ui/Tag";
-import type { Project, Ui } from "@/lib/content";
+import type { Locale, Project, Ui } from "@/lib/content";
 
 /** Decision E: compact card, optional 16:10 image on top, 2 columns from 768px. */
-function BuiltCard({ project, ui }: { project: Project; ui: Ui }) {
+function BuiltCard({
+  project,
+  ui,
+  locale,
+}: {
+  project: Project;
+  ui: Ui;
+  locale: Locale;
+}) {
   return (
     <article
       data-reveal
@@ -42,20 +50,33 @@ function BuiltCard({ project, ui }: { project: Project; ui: Ui }) {
       </div>
 
       <div className="mt-6">
-        <ProjectLinks links={project.links} ui={ui} />
+        <ProjectLinks links={project.links} ui={ui} locale={locale} />
       </div>
     </article>
   );
 }
 
-export function Built({ projects, ui }: { projects: Project[]; ui: Ui }) {
+export function Built({
+  projects,
+  ui,
+  locale,
+}: {
+  projects: Project[];
+  ui: Ui;
+  locale: Locale;
+}) {
   return (
     <Section id="built" index="02" title={ui.sections.built}>
       <ScreenshotBelt projects={projects} ui={ui} />
 
       <div className="mt-12 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
         {projects.map((project) => (
-          <BuiltCard key={project.slug} project={project} ui={ui} />
+          <BuiltCard
+            key={project.slug}
+            project={project}
+            ui={ui}
+            locale={locale}
+          />
         ))}
       </div>
     </Section>
