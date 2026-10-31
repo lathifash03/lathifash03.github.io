@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LocaleToggle } from "@/components/LocaleToggle";
 import { Container } from "@/components/ui/Section";
 import type { Locale, Ui } from "@/lib/content";
@@ -69,10 +69,16 @@ export function SiteNav({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const menuButton = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      // Escape must hand focus back to the control that opened the sheet;
+      // otherwise it falls to <body> and the reader tabs from the top again.
+      menuButton.current?.focus();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -133,6 +139,7 @@ export function SiteNav({
             ) : null}
 
             <button
+              ref={menuButton}
               type="button"
               className="text-[0.9375rem] text-ink md:hidden"
               aria-expanded={menuOpen}

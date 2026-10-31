@@ -19,7 +19,7 @@ Neutral base (light mode only for v1):
 | `--surface` | `#F8F7F4` | cards, raised areas |
 | `--surface-2` | `#E5E2DB` | pressed / hover fills, image placeholders |
 | `--ink` | `#1F1E1B` | headings, body text, primary button fill |
-| `--ink-2` | `#6B6860` | secondary text, metadata |
+| `--ink-2` | `#5F5C56` | secondary text, metadata (AA on paper, surface and surface-2) |
 | `--line` | `#DAD6CC` | hairlines, borders |
 | `--focus` | `#1F1E1B` | 2px focus ring, offset 3px |
 

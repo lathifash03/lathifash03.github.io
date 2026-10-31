@@ -13,7 +13,9 @@
   --color-surface: #f8f7f4;
   --color-surface-2: #e5e2db;
   --color-ink: #1f1e1b;
-  --color-ink-2: #6b6860;
+  /* Darkened from #6b6860 so secondary text clears AA on --surface-2 panels
+     too (4.30 before, 5.15 now) — DESIGN.md §12, "AA contrast for all text". */
+  --color-ink-2: #5f5c56;
   --color-line: #dad6cc;
 
   --color-lane-ai: #5b7083;

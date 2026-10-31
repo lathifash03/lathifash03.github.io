@@ -67,7 +67,10 @@ export function LocaleToggle({
         href={targetPath}
         hrefLang={target}
         lang={target}
-        aria-label={there.name}
+        // WCAG 2.5.3: the accessible name has to contain the visible text, so a
+        // voice-control user can say what they see. "ID" alone says little, so
+        // the full name follows it rather than replacing it.
+        aria-label={`${there.short} — ${there.name}`}
         className="text-ink-2 transition-colors duration-200 hover:text-ink"
         // The section is written into the href just before the browser follows
         // it, rather than navigating in script: the link keeps working with no
