@@ -97,7 +97,7 @@
       "draft": false,
       "year": "2024",
       "title": "Kinderfin",
-      "context": "Community service project (KKN Abmas) · MCI Lab, ITS",
+      "context": "Community service project (KKN Abmas) · MCI Laboratory, ITS",
       "team": true,
       "summary": "A web-based financial management system for a kindergarten. We gathered requirements through surveys and interviews with teachers, treasurers and parents, then built five roles (administrator, secretary, treasurer, teacher, parent) covering enrolment, tuition, extracurricular payments, payroll and household expenses. Co-led.",
       "tags": ["Web app", "Requirements gathering", "Role-based access"],
@@ -129,7 +129,7 @@
       "title": "WeapMath",
       "context": "PKM-K · national funding recipient",
       "team": true,
-      "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights). Registered copyright: HKI EC00202495300.",
+      "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI EC00202495300, Ministry of Law and Human Rights).",
       "tags": ["Mobile game", "Education", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "WeapMath gameplay", "draft": false },
       "links": {
@@ -146,7 +146,7 @@
       "title": "ASLora",
       "context": "Course final project, written in journal-article format",
       "team": true,
-      "summary": "The app translates American Sign Lang Sign Language (ASL) hand gestures into text in real-time by combining image processing and a YOLO- based object detection model",
+      "summary": "The app translates American Sign Language (ASL) hand gestures into text in real-time by combining image processing and a YOLO-based object detection model.",
       "tags": ["YOLO", "Computer vision"],
       "image": { "src": "/images/projects/aslora.png", "alt": "ASLora translating two hand signs into letters with confidence scores", "draft": false },
       "links": {

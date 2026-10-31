@@ -97,7 +97,7 @@
       "draft": false,
       "year": "2024",
       "title": "Kinderfin",
-      "context": "Proyek pengabdian masyarakat (KKN Abmas) · MCI Lab, ITS",
+      "context": "Proyek pengabdian masyarakat (KKN Abmas) · MCI Laboratory, ITS",
       "team": true,
       "summary": "Sistem manajemen keuangan berbasis web untuk sebuah taman kanak-kanak. Kami menggali kebutuhan melalui survei dan wawancara dengan guru, bendahara dan orang tua, lalu membangun lima peran (administrator, sekretaris, bendahara, guru, orang tua) yang mencakup pendaftaran siswa, SPP, pembayaran ekstrakurikuler, penggajian dan pengeluaran rumah tangga. Saya ikut memimpin proyek ini.",
       "tags": ["Aplikasi web", "Analisis kebutuhan", "Akses berbasis peran"],
@@ -129,7 +129,7 @@
       "title": "WeapMath",
       "context": "PKM-K · penerima pendanaan nasional",
       "team": true,
-      "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI, Kementerian Hukum dan Hak Asasi Manusia). Tercatat sebagai HKI: EC00202495300.",
+      "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI EC00202495300, Kementerian Hukum dan Hak Asasi Manusia).",
       "tags": ["Game mobile", "Edukasi", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "Gameplay WeapMath", "draft": false },
       "links": {
