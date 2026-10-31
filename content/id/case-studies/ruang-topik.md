@@ -5,6 +5,7 @@ context: "Proyek akhir Text Mining · Teknik Informatika, ITS · 2026"
 role: "Proyek tim (3 orang); semua tahap dikerjakan bersama"
 stack: [Python, Gensim, scikit-learn, BERTopic, UMAP, HDBSCAN, Optuna, Sentence-Transformers, Streamlit]
 demo: "https://textmin-deploy.streamlit.app"
+demoNote: "Di-hosting di Streamlit; perlu sekitar 30 detik untuk aktif kembali."
 figures:
   - kind: images
     id: dashboard

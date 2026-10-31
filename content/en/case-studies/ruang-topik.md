@@ -5,6 +5,7 @@ context: "Text Mining final project · Informatics Engineering, ITS · 2026"
 role: "Team project (3 people); all stages done together"
 stack: [Python, Gensim, scikit-learn, BERTopic, UMAP, HDBSCAN, Optuna, Sentence-Transformers, Streamlit]
 demo: "https://textmin-deploy.streamlit.app"
+demoNote: "Hosted on Streamlit; it may take about 30 seconds to wake up."
 figures:
   - kind: images
     id: dashboard

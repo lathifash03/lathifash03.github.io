@@ -69,6 +69,7 @@
       "links": {
         "caseStudy": "/projects/ruang-topik/",
         "demo": "https://textmin-deploy.streamlit.app",
+        "demoNote": "Di-hosting di Streamlit; perlu sekitar 30 detik untuk aktif kembali.",
         "code": "https://github.com/lathifash03/textmin-deploy.git"
       }
     },
@@ -86,9 +87,7 @@
       "summary": "Proof of concept Flutter lintas platform yang memungkinkan manajer menyetujui atau menolak permintaan internal (izin HR, verifikasi keuangan, QMS) dari jarak jauh, di belakang tiga lapis autentikasi: perangkat terdaftar, password aplikasi dan face recognition, dengan lalu lintas yang dilewatkan melalui VPN WireGuard.",
       "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
       "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Layar splash dan login Secure Verification App", "draft": false },
-      "links": {
-        "code": "https://github.com/Aliyah-Pattoza/ubs_secure_verification.git"
-      }
+      "links": {}
     },
     {
       "slug": "kinderfin",
@@ -103,7 +102,7 @@
       "summary": "Sistem manajemen keuangan berbasis web untuk sebuah taman kanak-kanak. Kami menggali kebutuhan melalui survei dan wawancara dengan guru, bendahara dan orang tua, lalu membangun lima peran (administrator, sekretaris, bendahara, guru, orang tua) yang mencakup pendaftaran siswa, SPP, pembayaran ekstrakurikuler, penggajian dan pengeluaran rumah tangga. Saya ikut memimpin proyek ini.",
       "tags": ["Aplikasi web", "Analisis kebutuhan", "Akses berbasis peran"],
       "image": { "src": "/images/projects/kinderfin.png", "alt": "Halaman utama Kinderfin dengan daftar lima modulnya", "draft": false },
-      "links": { "demo": "https://kinderfin.labmci.site/" }
+      "links": {}
     },
     {
       "slug": "major-in",
@@ -130,11 +129,11 @@
       "title": "WeapMath",
       "context": "PKM-K · penerima pendanaan nasional",
       "team": true,
-      "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI, Kementerian Hukum dan Hak Asasi Manusia).",
+      "summary": "Game edukasi matematika multiplayer, dibiayai melalui program kewirausahaan mahasiswa nasional (PKM-K) dan tercatat sebagai hak cipta (HKI, Kementerian Hukum dan Hak Asasi Manusia). Tercatat sebagai HKI: EC00202495300.",
       "tags": ["Game mobile", "Edukasi", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "Gameplay WeapMath", "draft": false },
       "links": {
-        "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
+        "demo": "https://youtu.be/5Ut-1OkzQds?si=hm18d0SefwMmlk1d"
       }
     },
     {
@@ -142,7 +141,7 @@
       "group": "built",
       "lane": "ai",
       "order": 5,
-      "draft": true,
+      "draft": false,
       "year": "2025",
       "title": "ASLora",
       "context": "Proyek akhir mata kuliah, ditulis dalam format artikel jurnal",
@@ -151,7 +150,7 @@
       "tags": ["YOLO", "Computer vision"],
       "image": { "src": "/images/projects/aslora.png", "alt": "ASLora menerjemahkan dua isyarat tangan menjadi huruf beserta skor confidence", "draft": false },
       "links": {
-        "demo": "https://github.com/thoriqagfi/fp-ppb.git"
+        "code": "https://github.com/thoriqagfi/fp-ppb.git"
       }
     },
     {

@@ -234,10 +234,18 @@ export const projectSchema = z
         caseStudy: caseStudyRoute.optional(),
         code: z.url().optional(),
         demo: z.url().optional(),
+        // What the reader needs to know before clicking the demo (a sleeping
+        // host, a wait). It travels with the link, the way a caveat travels
+        // with a metric, so it lives in content and never in a component.
+        demoNote: z.string().optional(),
         report: z.url().optional(),
         article: z.url().optional(),
       })
-      .strict(),
+      .strict()
+      .refine((l) => l.demoNote === undefined || l.demo !== undefined, {
+        message: "demoNote is set but there is no demo link",
+        path: ["demoNote"],
+      }),
   })
   .strict()
   .refine((p) => p.teamSize === undefined || p.team, {
@@ -384,6 +392,7 @@ export const caseStudySchema = z
     role: z.string(),
     stack: z.array(z.string()),
     demo: z.url().optional(),
+    demoNote: z.string().optional(),
     code: z.url().optional(),
     report: z.url().optional(),
     figures: z.array(figure).optional(),

@@ -12,7 +12,13 @@ This is a portfolio, not a sales page: no pricing, no FAQ, no "hire me" funnels,
    fields, render them next to the number, never in a hidden tooltip only.
 3. **Team work is labelled.** Items with `"team": true` show "Team project" (plus team size if
    given). Never list teammates' names. Never phrase team work as solo work ("I built…" → "We built…").
-4. **No phone number, no home address, no teammate names, no internal server names** anywhere.
+4. **No phone number, no home address, no teammate names, no internal server names** in visible text
+   anywhere. One exception: a team project may link to its repository even when that repository lives
+   on a teammate's GitHub account, so the account name may appear in a `links.code` URL. Before adding
+   such a link, clone the repository read-only outside this project and check it for secrets and
+   internal details (`.env` files, API keys, tokens, passwords, private IPs, internal hostnames,
+   WireGuard `PrivateKey`/`Endpoint`, hard-coded company API URLs). If it holds any of those, do not
+   link it.
 5. **Draft gate.** `npm run build` runs `scripts/check-tbd.mjs` first. The build fails if any
    item that is NOT marked `"draft": true` contains `[TBD`. Draft items are excluded from the build.
    Never disable or weaken this check to get a build through — ask instead.

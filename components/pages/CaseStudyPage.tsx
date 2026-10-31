@@ -37,6 +37,7 @@ export function CaseStudyPage({
   // (a repo, a report) still belongs at the foot of the page.
   const links = {
     demo: study.demo ?? project?.links.demo,
+    demoNote: study.demoNote ?? project?.links.demoNote,
     code: study.code ?? project?.links.code,
     report: study.report ?? project?.links.report,
     article: project?.links.article,

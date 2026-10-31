@@ -10,13 +10,18 @@ export function ProjectLinks({
   ui: Ui;
   locale: Locale;
 }) {
-  const items: { href: string; label: string }[] = [];
+  const items: { href: string; label: string; note?: string }[] = [];
   if (links.caseStudy)
     items.push({
       href: localePath(locale, links.caseStudy),
       label: ui.actions.readCaseStudy,
     });
-  if (links.demo) items.push({ href: links.demo, label: ui.actions.liveDemo });
+  if (links.demo)
+    items.push({
+      href: links.demo,
+      label: ui.actions.liveDemo,
+      note: links.demoNote,
+    });
   if (links.code) items.push({ href: links.code, label: ui.actions.viewCode });
   if (links.report)
     items.push({ href: links.report, label: ui.actions.readReport });
@@ -28,7 +33,7 @@ export function ProjectLinks({
   return (
     <ul className="flex flex-wrap gap-x-6 gap-y-2">
       {items.map((item) => (
-        <li key={item.href}>
+        <li key={item.href} className="max-w-full">
           <a
             href={item.href}
             className="group inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
@@ -41,6 +46,11 @@ export function ProjectLinks({
               →
             </span>
           </a>
+          {/* Same treatment as a metric's caveat (DESIGN.md §4): it is read
+              with the link, not hidden behind a hover. */}
+          {item.note ? (
+            <span className="font-mono text-meta text-ink-2"> · {item.note}</span>
+          ) : null}
         </li>
       ))}
     </ul>

@@ -69,6 +69,7 @@
       "links": {
         "caseStudy": "/projects/ruang-topik/",
         "demo": "https://textmin-deploy.streamlit.app",
+        "demoNote": "Hosted on Streamlit; it may take about 30 seconds to wake up.",
         "code": "https://github.com/lathifash03/textmin-deploy.git"
       }
     },
@@ -86,9 +87,7 @@
       "summary": "A cross-platform Flutter proof of concept that lets managers approve or reject internal requests (HR leave, finance verification, QMS) remotely, behind three authentication layers: registered device, app password and face recognition, with traffic tunnelled through a WireGuard VPN.",
       "tags": ["Flutter", "Dart", "REST API", "WireGuard", "Face recognition"],
       "image": { "src": "/images/projects/secure-verification-app.png", "alt": "Splash and login screens of the Secure Verification App", "draft": false },
-      "links": {
-        "code": "https://github.com/Aliyah-Pattoza/ubs_secure_verification.git"
-      }
+      "links": {}
     },
     {
       "slug": "kinderfin",
@@ -103,7 +102,7 @@
       "summary": "A web-based financial management system for a kindergarten. We gathered requirements through surveys and interviews with teachers, treasurers and parents, then built five roles (administrator, secretary, treasurer, teacher, parent) covering enrolment, tuition, extracurricular payments, payroll and household expenses. Co-led.",
       "tags": ["Web app", "Requirements gathering", "Role-based access"],
       "image": { "src": "/images/projects/kinderfin.png", "alt": "Kinderfin home screen listing its five modules", "draft": false },
-      "links": { "demo": "https://kinderfin.labmci.site/" }
+      "links": {}
     },
     {
       "slug": "major-in",
@@ -130,11 +129,11 @@
       "title": "WeapMath",
       "context": "PKM-K · national funding recipient",
       "team": true,
-      "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights).",
+      "summary": "A multiplayer educational math game, funded through the national student entrepreneurship programme (PKM-K) and registered as copyright (HKI, Ministry of Law and Human Rights). Registered copyright: HKI EC00202495300.",
       "tags": ["Mobile game", "Education", "Unity"],
       "image": { "src": "/images/projects/weapmath-gameplay.png", "alt": "WeapMath gameplay", "draft": false },
       "links": {
-        "demo": "https://drive.google.com/file/d/1FQy-bm-mt95jfXLlU4P2CS5aI4SE9U2Q/view?usp=share_link"
+        "demo": "https://youtu.be/5Ut-1OkzQds?si=hm18d0SefwMmlk1d"
       }
     },
     {
@@ -142,7 +141,7 @@
       "group": "built",
       "lane": "ai",
       "order": 5,
-      "draft": true,
+      "draft": false,
       "year": "2025",
       "title": "ASLora",
       "context": "Course final project, written in journal-article format",
@@ -151,7 +150,7 @@
       "tags": ["YOLO", "Computer vision"],
       "image": { "src": "/images/projects/aslora.png", "alt": "ASLora translating two hand signs into letters with confidence scores", "draft": false },
       "links": {
-        "demo": "https://github.com/thoriqagfi/fp-ppb.git"
+        "code": "https://github.com/thoriqagfi/fp-ppb.git"
       }
     },
     {
