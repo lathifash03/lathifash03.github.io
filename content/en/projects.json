@@ -216,7 +216,7 @@
       "draft": false,
       "year": "2024",
       "title": "Sales dashboards in Tableau",
-      "context": "MCI Lab recruitment task",
+      "context": "MCI Laboratory recruitment task",
       "team": false,
       "summary": "Two views on a sales dataset: monthly sales, which climb from roughly 550K in February to about 1.55M in December with a sharp dip in July, and order value by US state, led by California.",
       "tags": ["Tableau", "Data visualisation"],

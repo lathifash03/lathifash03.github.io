@@ -70,7 +70,10 @@ function VerifyTrace({ profile, ui }: { profile: Profile; ui: Ui }) {
 function PortraitTile({ profile }: { profile: Profile }) {
   if (!profile.photo) return null;
   return (
-    <span className="inline-block -rotate-[5deg] rounded-[24px] border-[3px] border-white bg-tile shadow-tile">
+    // shrink-0: the tile shares a flex row with the name, and the name's
+    // min-content width would otherwise squeeze the tile out of square and
+    // crop the portrait off-centre.
+    <span className="inline-block shrink-0 -rotate-[5deg] rounded-[24px] border-[3px] border-white bg-tile shadow-tile">
       <Picture
         asset={profile.photo}
         priority
