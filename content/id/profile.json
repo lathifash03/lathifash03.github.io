@@ -4,7 +4,7 @@
   "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Potret Lathifah Sahda", "draft": false },
   "status": "Terbuka untuk bekerja",
   "statement": "Lulusan Teknik Informatika ITS. Saya membangun sistem berbasis language model, mengukur di mana sistem itu gagal, dan menjelaskan hasilnya kepada orang yang bukan engineer.",
-  "educationLine": "ITS · Teknik Informatika · IPK 3,70 · Lulus 2026",
+  "educationLine": "ITS · Teknik Informatika · IPK 3,70 · Beasiswa BPI (LPDP) · Lulus 2026",
   "location": { "city": "Jakarta", "zone": "WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
     { "text": "Halo", "lang": "id" },

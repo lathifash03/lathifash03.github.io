@@ -48,67 +48,62 @@ function VerifyTrace({ profile, ui }: { profile: Profile; ui: Ui }) {
   }));
 
   return (
-    <figure>
-      <div
-        data-dark
-        className="rotate-2 rounded-card bg-ink p-6 text-paper shadow-stack md:p-7"
-      >
-        <p className="font-mono text-meta text-paper/60">
-          {ui.labels.traceHeader}
-        </p>
-        <hr className="mt-4 border-paper/15" />
-        <ul className="mt-4 space-y-2.5">
-          {lines.map((line, i) => {
-            const { mark, className } = traceMark[line.status];
-            const last = i === lines.length - 1;
-            return (
-              <li
-                key={line.text}
-                className="flex items-baseline gap-x-3 font-mono text-meta"
+    <div
+      data-dark
+      className="rotate-2 rounded-card bg-ink p-6 text-paper shadow-stack md:p-7"
+    >
+      <p className="font-mono text-meta text-paper/60">
+        {ui.labels.traceHeader}
+      </p>
+      <hr className="mt-4 border-paper/15" />
+      <ul className="mt-4 space-y-2.5">
+        {lines.map((line, i) => {
+          const { mark, className } = traceMark[line.status];
+          const last = i === lines.length - 1;
+          return (
+            <li
+              key={line.text}
+              className="flex items-baseline gap-x-3 font-mono text-meta"
+            >
+              <span
+                aria-hidden="true"
+                className={`trace-mark ${className}`}
+                style={{
+                  animationDelay: `calc(var(--intro-delay) + ${line.delay + line.duration}ms)`,
+                }}
               >
+                {mark}
+              </span>
+              <span
+                className="trace-type"
+                style={
+                  {
+                    animation: `trace-type ${line.duration}ms steps(${line.chars}, end) both`,
+                    animationDelay: `calc(var(--intro-delay) + ${line.delay}ms)`,
+                  } as CSSProperties
+                }
+              >
+                <span className="text-paper">{line.text}</span>
+                {line.threshold ? (
+                  <span className="text-paper/55"> {line.threshold}</span>
+                ) : null}
+              </span>
+              {last ? (
                 <span
                   aria-hidden="true"
-                  className={`trace-mark ${className}`}
+                  className="trace-caret"
                   style={{
                     animationDelay: `calc(var(--intro-delay) + ${line.delay + line.duration}ms)`,
                   }}
                 >
-                  {mark}
+                  &nbsp;
                 </span>
-                <span
-                  className="trace-type"
-                  style={
-                    {
-                      animation: `trace-type ${line.duration}ms steps(${line.chars}, end) both`,
-                      animationDelay: `calc(var(--intro-delay) + ${line.delay}ms)`,
-                    } as CSSProperties
-                  }
-                >
-                  <span className="text-paper">{line.text}</span>
-                  {line.threshold ? (
-                    <span className="text-paper/55"> {line.threshold}</span>
-                  ) : null}
-                </span>
-                {last ? (
-                  <span
-                    aria-hidden="true"
-                    className="trace-caret"
-                    style={{
-                      animationDelay: `calc(var(--intro-delay) + ${line.delay + line.duration}ms)`,
-                    }}
-                  >
-                    &nbsp;
-                  </span>
-                ) : null}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <figcaption className="mt-5 text-meta text-ink-2">
-        {ui.labels.illustration}
-      </figcaption>
-    </figure>
+              ) : null}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

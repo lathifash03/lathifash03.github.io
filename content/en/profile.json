@@ -4,7 +4,7 @@
   "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Portrait of Lathifah Sahda", "draft": false },
   "status": "Open to work",
   "statement": "Computer science graduate from ITS. I build language-model systems, measure where they break, and explain the results to people who aren't engineers.",
-  "educationLine": "ITS · Computer Science · GPA 3.70 · Class of 2026",
+  "educationLine": "ITS · Computer Science · GPA 3.70 · BPI scholarship (LPDP) · Class of 2026",
   "location": { "city": "Jakarta", "zone": "WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
     { "text": "Halo", "lang": "id" },

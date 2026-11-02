@@ -260,8 +260,8 @@ the page is scrolled to the end — nothing stays blurred or dimmed at the botto
    above the rule reads `kg-agent · example run`. Each line shows its own threshold as content
    wrote it (`faithfulness 0.82 ≥ 0.7`), its text in `--paper`, its status mark in `--trace-pass` /
    `--trace-fail` / `--trace-retry`; the card never adds, edits or reorders line text.
-   `ui.labels.illustration` sits small **under** the card, on paper, always visible, never a
-   tooltip.
+   The header carries the word `example`, and that header is the only signal that the values are
+   illustrative: there is no caption under the card.
 
    The lines **type in**: 22ms per character, a 180ms pause between lines, each line's status mark
    fading in only once that line finishes, and a caret blinking at the end of the last line. It runs

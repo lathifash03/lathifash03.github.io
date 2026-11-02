@@ -189,7 +189,6 @@ export const uiSchema = z
       .object({
         teamProject: z.string(),
         teamSize: z.string(),
-        illustration: z.string(),
         traceHeader: z.string(),
         clock: z.string(),
         caveat: z.string(),

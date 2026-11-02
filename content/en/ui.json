@@ -38,7 +38,6 @@
   "labels": {
     "teamProject": "Team project",
     "teamSize": "{n} people",
-    "illustration": "Example values, for illustration",
     "traceHeader": "kg-agent · example run",
     "clock": "Local time",
     "caveat": "Note",
