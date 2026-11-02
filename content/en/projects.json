@@ -22,7 +22,6 @@
       "image": { "src": "/images/projects/kg-agent-pipeline.png", "alt": "kg-agent verify-then-retry pipeline diagram", "draft": true },
       "links": {
         "caseStudy": "/projects/kg-agent/",
-        "code": "https://github.com/lathifash03/kg-agentic.git",
         "report": "https://drive.google.com/file/d/1RPIH6PZuEYMwsxRAB3Favm0q4AeFBOIy/view?usp=sharing"
       }
     },
