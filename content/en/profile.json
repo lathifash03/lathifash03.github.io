@@ -28,7 +28,7 @@
       { "lane": "wr", "text": "write so the rest of the team understands. " },
       { "mark": "hl", "text": "Evidence before claims." }
     ],
-  "photoCard": { "src": "/images/gallery/hmtc-portrait.jpg", "alt": "Lathifah at the Informatics building, ITS", "position": "54% 50%", "draft": false },
+  "photoCard": { "src": "/images/gallery/ntust-teep.jpg", "alt": "Lathifah at National Taiwan University of Science and Technology (NTUST), Taipei, during her TEEP research internship", "position": "50% 100%", "draft": false },
   "lanes": [
     {
       "id": "ai",

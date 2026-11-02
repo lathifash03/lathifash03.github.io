@@ -28,7 +28,7 @@
       { "lane": "wr", "text": "menulis agar seluruh tim ikut paham. " },
       { "mark": "hl", "text": "Bukti sebelum klaim." }
     ],
-  "photoCard": { "src": "/images/gallery/hmtc-portrait.jpg", "alt": "Lathifah di gedung Informatika ITS", "position": "54% 50%", "draft": false },
+  "photoCard": { "src": "/images/gallery/ntust-teep.jpg", "alt": "Lathifah di National Taiwan University of Science and Technology (NTUST), Taipei, saat magang riset TEEP", "position": "50% 100%", "draft": false },
   "lanes": [
     {
       "id": "ai",

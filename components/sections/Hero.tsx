@@ -129,8 +129,15 @@ function PortraitTile({ profile }: { profile: Profile }) {
 
 /**
  * DESIGN.md §4, "the hero stack". The photo sits behind and the trace card
- * overlaps its lower-left corner; below 1024px they stop overlapping and
- * become two stacked blocks, so neither covers the other on a phone.
+ * clips its lower-left corner; below 1024px they stop overlapping and become
+ * two stacked blocks, so neither covers the other on a phone.
+ *
+ * Both are in flow, with the card pulled up over the photo's last few per
+ * cent. That overlap is what the photograph can spare: the subject stands in
+ * its lower half and the university's name runs across its upper third, so
+ * the card may take the pavement at the bottom and nothing above it. A margin
+ * in per cent keeps the same proportion at 1024, 1280 and 1440 — a fixed
+ * offset would eat into the subject on the narrower column.
  *
  * The photo is absent until its file exists (it is draft in content), and the
  * stack simply collapses to the trace card alone — never a broken image.
@@ -138,10 +145,10 @@ function PortraitTile({ profile }: { profile: Profile }) {
 function HeroStack({ profile, ui }: { profile: Profile; ui: Ui }) {
   const photo = profile.photoCard;
   return (
-    <div className={photo ? "lg:relative lg:pb-28" : ""}>
+    <div>
       {photo ? (
-        // Right-aligned, so the card below can clip its lower-left corner
-        // rather than sitting across the middle of the picture.
+        // Right-aligned, so the card below clips its lower-left corner rather
+        // than sitting across the middle of the picture.
         <div className="mb-8 -rotate-4 overflow-hidden rounded-card border-[3px] border-white shadow-tile lg:mb-0 lg:ml-auto lg:w-[72%]">
           <Picture
             asset={photo}
@@ -150,7 +157,7 @@ function HeroStack({ profile, ui }: { profile: Profile; ui: Ui }) {
           />
         </div>
       ) : null}
-      <div className={photo ? "lg:absolute lg:bottom-0 lg:left-0 lg:w-[88%]" : ""}>
+      <div className={photo ? "lg:-mt-[4%] lg:w-[88%]" : ""}>
         <VerifyTrace profile={profile} ui={ui} />
       </div>
     </div>
