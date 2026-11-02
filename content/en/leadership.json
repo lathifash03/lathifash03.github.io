@@ -4,10 +4,9 @@
     {
       "period": "Feb 2025 – Feb 2026",
       "role": "General Secretary of External Affairs",
-      "org": "HMTC ITS (Informatics Student Association)",
+      "org": "Computer-Informatics Engineering Student Association (HMTC) ITS",
       "detail": "Helped coordinate a 120-member executive board through 20+ programmes in one term, and managed partnerships with companies, universities and government agencies. Previously General Secretary of Administration II (2024).",
       "photos": [
-        { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah leading an HMTC staff session" },
         { "src": "/images/gallery/huawei-visit.jpg", "alt": "HMTC visit to Huawei ASEAN Academy Indonesia" },
         { "src": "/images/gallery/hmtc-night.jpg", "alt": "HMTC committee welcoming new Informatics students" }
       ]
@@ -48,7 +47,8 @@
   ],
   "speakingPhotos": [
     { "src": "/images/gallery/idsecconf-mc.jpg", "alt": "Lathifah as master of ceremony at IDSECCONF 2024, a national IT security conference" },
-    { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah presenting at an HMTC staff training" }
+    { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah presenting at an HMTC staff training" },
+    { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah delivering a session to HMTC staff" }
   ],
   "speaking": [
       { "title": "Master of Ceremony, IDSECCONF 2024 (Indonesia's annual IT security conference)", "detail": "Workshop, keynote and panel sessions." },

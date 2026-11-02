@@ -71,11 +71,9 @@ function ResearchCard({
             <TeamLabel project={project} ui={ui} />
           </div>
 
-          {/* Three lines is the card's share of the summary; the case study
-              carries it whole (DESIGN.md §4, "Research card"). */}
-          <p className="mt-4 line-clamp-3 max-w-[68ch] text-ink">
-            {project.summary}
-          </p>
+          {/* Nothing is clipped: a summary that would run past three lines
+              on the card is shortened in content instead (DESIGN.md §4). */}
+          <p className="mt-4 max-w-[68ch] text-ink">{project.summary}</p>
 
           {project.gallery?.length ? (
             <div className="mt-6">

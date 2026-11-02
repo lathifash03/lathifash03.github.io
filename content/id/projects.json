@@ -12,7 +12,7 @@
       "title": "kg-agent: lapisan verifikasi untuk RAG berbasis knowledge graph",
       "context": "Magang riset TEEP · CITI Lab, NTUST, Taipei",
       "team": false,
-      "summary": "Sebelum jawaban yang dihasilkan dari knowledge graph Neo4j dikembalikan, tiga gate independen memeriksanya: apakah jawaban itu setia pada data yang diambil, apakah node sumbernya layak dipercaya, dan apakah isinya masih berlaku. Kalau satu gate gagal, agent mencoba ulang dengan strategi retrieval yang berbeda.",
+      "summary": "Tiga gate memeriksa setiap jawaban dari knowledge graph Neo4j: apakah sesuai sumbernya, apakah sumbernya tepercaya, dan apakah masih berlaku? Jika satu gagal, agent mencoba lagi.",
       "metrics": [
         { "value": "0%", "label": "false-pass rate (jawaban tidak aman yang lolos)", "caveat": "20 item ground truth, 3 kali run" },
         { "value": "75%", "label": "akurasi gate end-to-end (15/20)", "caveat": "median dari 3 run; kategori low-trust hanya 1/5 benar" },

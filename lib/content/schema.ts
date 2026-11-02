@@ -393,9 +393,12 @@ export const leadershipSchema = z
         })
         .strict(),
     ),
-    /** A wide photo above the Speaking rows. */
-    /** The collage beside the Speaking rows. The first photo sits in front. */
-    speakingPhotos: z.array(asset).length(2).optional(),
+    /**
+      * The collage beside the Speaking rows: two or three prints, the first in
+      * front, the second tucked under its lower-right corner and the third
+      * behind its top-right one.
+      */
+    speakingPhotos: z.array(asset).min(2).max(3).optional(),
     // Rows, not sentences: the year sits in its own column and the detail is
     // set apart from the title (DESIGN.md §4, "Speaking / Training row card").
     speaking: z.array(

@@ -134,11 +134,12 @@ it is always visible in the markup which type is display and which is body.
 | Body | body | `1.0625rem` | 400 | 1.65 | 0 |
 | Small / meta (mono) | mono | `0.8125rem` | 400 | 1.4 | 0.02em |
 
-The **hero statement** is justified with `hyphens: auto` from 768px up, where the column is wide
-enough to spread; below that it is ragged-right with `text-wrap: pretty`. Hyphenation follows the
-page's `lang`, so it is the browser's English dictionary on `/` and its Indonesian one on `/id/` —
-where no engine ships one, so Indonesian lines take their slack in word spacing instead. If a line's
-gaps read as a river, the column gets wider; the size never gets smaller.
+The **hero statement** is justified with `hyphens: auto` from 768px up **in English only**: the
+rule is keyed to `html[lang="en"]`, because no browser ships an Indonesian hyphenation dictionary
+and the Indonesian lines took all their slack in word spacing — rivers down the paragraph, widest
+gap 6.3× a normal space. Everywhere else, and at every width below 768px, the statement is
+ragged-right with `text-wrap: pretty` (widest gap 0.96×). If a justified line's gaps ever read as a
+river, the column gets wider; the size never gets smaller.
 
 Bricolage Grotesque runs wider than the typeface it replaced, so the hero name's tracking does the
 work of keeping it on two lines at 1440 and the section titles keep their clamp. Every heading was
@@ -218,6 +219,11 @@ Sentence case everywhere. No ALL CAPS headlines.
     three 10px dots (`--line`) and a rounded `--white` address strip.
   The frame is chosen per project by a `frame` field in content (`phone` | `browser`), never guessed
   from the image.
+- **Speaking collage** (Leadership): two or three prints laid over one another beside the Speaking
+  rows — the first in front at a `-3deg` tilt, the second tucked under its lower-right corner at
+  `2deg`, the third behind its top-right one at `4deg`. Each keeps its own measured proportions,
+  radius 20px, 3px `--white` border, the tile shadow. Above the rows on a phone, beside them from
+  1024px.
 - **Speaking row card** (Leadership): the list is body size, not meta. Each item is a row card on
   `--lane-wr-tint`, radius 16px, padding 20px, with an optional mono year on the left
   (`--lane-wr-strong`), the title in `--ink` at `1.0625rem`, and its detail in `--ink-2` underneath.
@@ -244,12 +250,14 @@ Sentence case everywhere. No ALL CAPS headlines.
   A card whose visual is missing becomes single column, text only — never an empty placeholder box.
 
   **The card is compact on purpose:** it is a sticky card, and a card taller than the window hides
-  its own ending. So the summary is clamped to three lines (the case study carries it whole), the
-  figures are a **metric row** rather than a stack, and the visual panel is a fixed 400px tall at
-  ≥1024px with the drawing scaled to fit inside it — the drawing never sets the card's height.
-  Measured at 1440×900, the three cards come to 638 / 702 / 741px against the 765px the rule asks
-  for; Indonesian runs longer and lands at 638 / 764 / 758px. Where a card is still taller than the
-  window — any card at 1280×720 — §7.6 pins it by its bottom edge instead.
+  its own ending. So the summary is written to three lines **in content** — nothing on a card is
+  ever clipped or ellipsised; if it runs long, the content is shortened — the figures are a
+  **metric row** rather than a stack, and the drawing is dealt at its narrow size and scaled into
+  the panel, so it never sets the card's height.
+  Measured at 1440×900: English 640 / 702 / 741px against the 765px the rule asks for, with every
+  summary at three lines. Indonesian runs longer — two of its summaries take four lines, so those
+  cards are 792 and 786px. Where a card is taller than the window — any card at 1280×720 — §7.6
+  pins it by its bottom edge instead, so its ending is read before the next card arrives.
 - **Project card (built):** compact. Optional 16:10 image on top, then title, context line, team label,
   summary, tags, links. Same `--surface`, radius 24px, 1px `--line`; padding 24px. Two-column grid from
   768px. No image → text only, same card.

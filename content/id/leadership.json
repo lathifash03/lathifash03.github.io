@@ -4,10 +4,9 @@
     {
       "period": "Feb 2025 – Feb 2026",
       "role": "Sekretaris Jenderal Eksternal",
-      "org": "HMTC ITS (himpunan mahasiswa Teknik Informatika)",
+      "org": "Himpunan Mahasiswa Teknik Computer-Informatika (HMTC) ITS",
       "detail": "Ikut mengoordinasi kepengurusan 120 orang melewati 20+ program dalam satu periode, dan mengelola kemitraan dengan perusahaan, universitas dan lembaga pemerintah. Sebelumnya Sekretaris Jenderal Administrasi II (2024).",
       "photos": [
-        { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah memimpin sesi staf HMTC" },
         { "src": "/images/gallery/huawei-visit.jpg", "alt": "Kunjungan HMTC ke Huawei ASEAN Academy Indonesia" },
         { "src": "/images/gallery/hmtc-night.jpg", "alt": "Panitia HMTC menyambut mahasiswa baru Teknik Informatika" }
       ]
@@ -48,7 +47,8 @@
   ],
   "speakingPhotos": [
     { "src": "/images/gallery/idsecconf-mc.jpg", "alt": "Lathifah sebagai pembawa acara di IDSECCONF 2024, konferensi keamanan TI nasional" },
-    { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah membawakan materi di pelatihan staf HMTC" }
+    { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah membawakan materi di pelatihan staf HMTC" },
+    { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah membawakan materi untuk staf HMTC" }
   ],
   "speaking": [
       { "title": "Master of Ceremony, IDSECCONF 2024 (konferensi keamanan IT tahunan di Indonesia)", "detail": "Sesi workshop, keynote dan panel." },

@@ -140,6 +140,21 @@
   --marker: var(--color-marker);
 }
 
+/*
+ * DESIGN.md §3. The hero statement is justified only where the browser can
+ * hyphenate it: no engine ships an Indonesian dictionary, so on /id/ the lines
+ * would take all their slack in word spacing — rivers down the paragraph —
+ * and it stays ragged-right instead. `<html lang>` is set per route, so the
+ * rule reads the page's own language rather than a prop threaded through the
+ * components.
+ */
+@media (min-width: 768px) {
+  html[lang="en"] .hero-statement {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
 body {
   background-color: var(--paper);
   color: var(--ink);

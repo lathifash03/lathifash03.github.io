@@ -12,7 +12,7 @@
       "title": "kg-agent: a verification layer for knowledge-graph RAG",
       "context": "TEEP research internship · CITI Lab, NTUST, Taipei",
       "team": false,
-      "summary": "Before an answer generated from a Neo4j knowledge graph is returned, three independent gates check it: is it faithful to what was retrieved, are the source nodes trustworthy, and are they still current? If a gate fails, the agent retries with a different retrieval strategy.",
+      "summary": "Three gates check every answer drawn from a Neo4j knowledge graph: is it faithful to its sources, are those sources trustworthy, and are they still current? If one fails, the agent retries.",
       "metrics": [
         { "value": "0%", "label": "false-pass rate (unsafe answers let through)", "caveat": "20-item ground-truth set, 3 runs" },
         { "value": "75%", "label": "end-to-end gate accuracy (15/20)", "caveat": "median of 3 runs; low-trust category only 1/5 correct" },

@@ -4,37 +4,65 @@ import { ExternalIcon } from "@/components/ui/ExternalIcon";
 import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
 import type {
+  Asset,
   Leadership as LeadershipContent,
   TrainingCategory,
   Ui,
 } from "@/lib/content";
 
+/** One print in the collage, kept at its own measured proportions. */
+function CollagePhoto({
+  asset,
+  className,
+}: {
+  asset: Asset;
+  className: string;
+}) {
+  return (
+    <div
+      className={`overflow-hidden rounded-[20px] border-[3px] border-white shadow-tile ${className}`}
+    >
+      <Picture
+        asset={asset}
+        className="w-full bg-surface-2 object-cover"
+        style={
+          asset.width && asset.height
+            ? { aspectRatio: `${asset.width} / ${asset.height}` }
+            : undefined
+        }
+      />
+    </div>
+  );
+}
+
 /**
- * DESIGN.md §4: two photos overlapping, the portrait in front and the
- * landscape behind and offset, each tilted its own way so they read as prints
- * laid down rather than a grid. The tilts are static layout, not motion, so
- * they survive prefers-reduced-motion.
+ * DESIGN.md §4: prints overlapping, the first in front and the others tucked
+ * behind its corners, each tilted its own way so they read as photographs laid
+ * down rather than a grid. The tilts are static layout, not motion, so they
+ * survive prefers-reduced-motion.
  */
 function SpeakingCollage({
   photos,
 }: {
   photos: NonNullable<LeadershipContent["speakingPhotos"]>;
 }) {
-  const [front, behind] = photos;
+  const [front, under, behind] = photos;
   return (
-    <div className="relative pb-10 sm:pb-16">
-      <div className="w-[72%] rotate-[-3deg] overflow-hidden rounded-[20px] border-[3px] border-white shadow-tile">
-        <Picture
-          asset={front}
-          className="aspect-[600/1003] w-full bg-surface-2 object-cover"
-        />
-      </div>
-      <div className="absolute right-0 bottom-0 w-[62%] rotate-2 overflow-hidden rounded-[20px] border-[3px] border-white shadow-tile">
-        <Picture
+    <div className="relative pb-10 sm:pb-14">
+      {behind ? (
+        <CollagePhoto
           asset={behind}
-          className="aspect-[1080/635] w-full bg-surface-2 object-cover"
+          className="absolute top-0 right-0 w-[44%] rotate-[4deg]"
         />
-      </div>
+      ) : null}
+      <CollagePhoto
+        asset={front}
+        className={`relative z-10 w-[66%] rotate-[-3deg] ${behind ? "mt-10" : ""}`}
+      />
+      <CollagePhoto
+        asset={under}
+        className="absolute right-0 bottom-0 w-[58%] rotate-2"
+      />
     </div>
   );
 }

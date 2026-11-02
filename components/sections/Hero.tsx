@@ -186,12 +186,11 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
               <h1 className="font-display text-hero-name text-ink">{profile.name}</h1>
             </div>
 
-            {/* DESIGN.md §3: justified with hyphenation from 768px, where the
-                column is wide enough for even word spacing; below that it is
-                ragged-right, with `pretty` taking the worst breaks out. The
-                browser hyphenates in the page's own language. */}
+            {/* `hero-statement` is what globals.css justifies, and only in
+                English (DESIGN.md §3); everywhere else this stays
+                ragged-right with `pretty` taking the worst breaks out. */}
             <p
-              className="hero-rise mt-8 max-w-[68ch] text-pretty text-hero-statement text-ink md:hyphens-auto md:text-justify"
+              className="hero-statement hero-rise mt-8 max-w-[68ch] text-pretty text-hero-statement text-ink"
               style={{ "--i": 2 } as CSSProperties}
             >
               {profile.statement}
