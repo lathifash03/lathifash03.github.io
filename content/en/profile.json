@@ -19,6 +19,15 @@
     { "text": "temporal VALID", "status": "pass" },
     { "text": "answer verified", "status": "done" }
   ],
+  "lanesStatement": [
+      { "text": "I " },
+      { "lane": "ai", "text": "research where language models fail, " },
+      { "lane": "sw", "text": "build the apps people actually use, " },
+      { "text": "and " },
+      { "lane": "wr", "text": "write so the rest of the team understands. " },
+      { "mark": "hl", "text": "Evidence before claims." }
+    ],
+  "photoCard": { "src": "/images/gallery/hmtc-portrait.jpg", "alt": "Lathifah at the Informatics building, ITS", "position": "54% 50%", "draft": false },
   "lanes": [
     {
       "id": "ai",

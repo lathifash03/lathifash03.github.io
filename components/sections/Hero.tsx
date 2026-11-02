@@ -14,42 +14,91 @@ const traceMark: Record<string, { mark: string; className: string }> = {
   done: { mark: "✓", className: "text-trace-pass" },
 };
 
+/** DESIGN.md §7.3. */
+const PER_CHAR = 22;
+const LINE_GAP = 180;
+/** The lines start after the hero itself has settled. */
+const START = 400;
+
 /**
- * DESIGN.md §7.3. The lines arrive one by one, in file order, and the card
- * never adds, edits or reorders their text. The 2deg tilt is layout, not
- * motion, so it stays under prefers-reduced-motion. The caption sits under the
- * card, on paper, and is always visible.
+ * DESIGN.md §7.3. The lines type in, in file order, and the card never adds,
+ * edits or reorders their text.
+ *
+ * Each line's timing is worked out here, from its own character count, and
+ * written into the element as a complete `animation` shorthand. It has to be a
+ * literal rather than a `var()` inside `steps()`, which Safari refuses — and
+ * the stylesheet's reduced-motion block carries `!important`, so it still
+ * overrides these inline values and leaves every line finished.
  */
 function VerifyTrace({ profile, ui }: { profile: Profile; ui: Ui }) {
+  const specs = profile.heroTrace.map((line) => {
+    const full = line.threshold ? `${line.text} ${line.threshold}` : line.text;
+    const chars = full.length;
+    return { ...line, chars, duration: chars * PER_CHAR };
+  });
+  // Each line waits for every line before it, summed rather than accumulated
+  // in place: a render must not carry state between its own iterations.
+  const lines = specs.map((spec, i) => ({
+    ...spec,
+    delay:
+      START +
+      specs
+        .slice(0, i)
+        .reduce((sum, previous) => sum + previous.duration + LINE_GAP, 0),
+  }));
+
   return (
     <figure>
       <div
         data-dark
-        className="rotate-2 rounded-card bg-ink p-6 text-paper md:p-7"
+        className="rotate-2 rounded-card bg-ink p-6 text-paper shadow-stack md:p-7"
       >
         <p className="font-mono text-meta text-paper/60">
           {ui.labels.traceHeader}
         </p>
         <hr className="mt-4 border-paper/15" />
         <ul className="mt-4 space-y-2.5">
-          {profile.heroTrace.map((line, i) => {
+          {lines.map((line, i) => {
             const { mark, className } = traceMark[line.status];
+            const last = i === lines.length - 1;
             return (
               <li
                 key={line.text}
-                // Baseline-aligned, and the threshold sits straight after the
-                // value rather than out at the right edge: the card is tilted,
-                // so anything far from its value drifts a line's worth away
-                // from it down the slope.
-                className="trace-line flex items-baseline gap-x-3 font-mono text-meta"
-                style={{ "--i": i } as CSSProperties}
+                className="flex items-baseline gap-x-3 font-mono text-meta"
               >
-                <span aria-hidden="true" className={className}>
+                <span
+                  aria-hidden="true"
+                  className={`trace-mark ${className}`}
+                  style={{
+                    animationDelay: `calc(var(--intro-delay) + ${line.delay + line.duration}ms)`,
+                  }}
+                >
                   {mark}
                 </span>
-                <span className="text-paper">{line.text}</span>
-                {line.threshold ? (
-                  <span className="text-paper/55">{line.threshold}</span>
+                <span
+                  className="trace-type"
+                  style={
+                    {
+                      animation: `trace-type ${line.duration}ms steps(${line.chars}, end) both`,
+                      animationDelay: `calc(var(--intro-delay) + ${line.delay}ms)`,
+                    } as CSSProperties
+                  }
+                >
+                  <span className="text-paper">{line.text}</span>
+                  {line.threshold ? (
+                    <span className="text-paper/55"> {line.threshold}</span>
+                  ) : null}
+                </span>
+                {last ? (
+                  <span
+                    aria-hidden="true"
+                    className="trace-caret"
+                    style={{
+                      animationDelay: `calc(var(--intro-delay) + ${line.delay + line.duration}ms)`,
+                    }}
+                  >
+                    &nbsp;
+                  </span>
                 ) : null}
               </li>
             );
@@ -65,7 +114,7 @@ function VerifyTrace({ profile, ui }: { profile: Profile; ui: Ui }) {
 
 /**
  * DESIGN.md §4: a small tilted tile holding the cut-out portrait, inline with
- * the name. It is the only portrait on the page.
+ * the name. It is the only portrait in the hero.
  */
 function PortraitTile({ profile }: { profile: Profile }) {
   if (!profile.photo) return null;
@@ -77,9 +126,39 @@ function PortraitTile({ profile }: { profile: Profile }) {
       <Picture
         asset={profile.photo}
         priority
-        className="size-[72px] rounded-[21px] object-cover object-top md:size-24"
+        className="size-24 rounded-[21px] object-cover object-top md:size-36"
       />
     </span>
+  );
+}
+
+/**
+ * DESIGN.md §4, "the hero stack". The photo sits behind and the trace card
+ * overlaps its lower-left corner; below 1024px they stop overlapping and
+ * become two stacked blocks, so neither covers the other on a phone.
+ *
+ * The photo is absent until its file exists (it is draft in content), and the
+ * stack simply collapses to the trace card alone — never a broken image.
+ */
+function HeroStack({ profile, ui }: { profile: Profile; ui: Ui }) {
+  const photo = profile.photoCard;
+  return (
+    <div className={photo ? "lg:relative lg:pb-28" : ""}>
+      {photo ? (
+        // Right-aligned, so the card below can clip its lower-left corner
+        // rather than sitting across the middle of the picture.
+        <div className="mb-8 -rotate-4 overflow-hidden rounded-card border-[3px] border-white shadow-tile lg:mb-0 lg:ml-auto lg:w-[72%]">
+          <Picture
+            asset={photo}
+            className="aspect-4/5 w-full bg-surface-2 object-cover"
+            style={photo.position ? { objectPosition: photo.position } : undefined}
+          />
+        </div>
+      ) : null}
+      <div className={photo ? "lg:absolute lg:bottom-0 lg:left-0 lg:w-[88%]" : ""}>
+        <VerifyTrace profile={profile} ui={ui} />
+      </div>
+    </div>
   );
 }
 
@@ -154,7 +233,7 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
             className="hero-rise lg:col-span-5 lg:pt-10"
             style={{ "--i": 2 } as CSSProperties}
           >
-            <VerifyTrace profile={profile} ui={ui} />
+            <HeroStack profile={profile} ui={ui} />
           </div>
         </div>
       </Container>

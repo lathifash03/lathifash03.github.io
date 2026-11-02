@@ -43,6 +43,20 @@
   /* The portrait tile's ground. Never behind text. */
   --color-tile: #e8c4a0;
 
+  /* Accents — a filled chip, a marker or a panel, never a text colour
+     (DESIGN.md §2). White on each chip clears the 3:1 a non-text graphic
+     needs: 4.08 / 3.30 / 3.22. */
+  --color-chip-ai: #4c7bd9;
+  --color-chip-sw: #4f9d69;
+  --color-chip-wr: #e76a3e;
+  /* The same three hues, darkened until white *text* on them clears AA
+     (4.75 / 4.61 / 4.57). A chip that carries a word uses these; a chip that
+     carries only a glyph uses the lighter pair above. */
+  --color-chip-ai-text: #3b6fd5;
+  --color-chip-sw-text: #418257;
+  --color-chip-wr-text: #ce491a;
+  --color-marker: #f6de7a;
+
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
@@ -111,6 +125,10 @@
   --trace-fail: var(--color-trace-fail);
   --trace-retry: var(--color-trace-retry);
   --tile: var(--color-tile);
+  --chip-ai: var(--color-chip-ai);
+  --chip-sw: var(--color-chip-sw);
+  --chip-wr: var(--color-chip-wr);
+  --marker: var(--color-marker);
 }
 
 body {
@@ -273,10 +291,58 @@ html[data-intro="done"] .intro {
     calc(var(--intro-delay) + var(--i, 0) * 80ms) both;
 }
 
-/* The trace lines appear one by one, after the hero itself has settled. */
-.trace-line {
-  animation: rise-in 300ms var(--ease-site)
-    calc(var(--intro-delay) + 400ms + var(--i) * 110ms) both;
+/*
+ * The trace lines type in (§7.3). Each line is a mono run clipped to a width
+ * measured in `ch`, so stepping the width by one character is exactly one
+ * glyph. The component computes each line's character count, duration and
+ * delay and writes them into the element — the shorthand is set inline so
+ * `steps()` gets a literal integer, which Safari will not take from a var().
+ *
+ * `animation: none !important` in the reduced-motion block below overrides the
+ * inline shorthand too, and the base width here is the finished line, so
+ * stillness leaves the card complete rather than empty.
+ */
+.trace-type {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/*
+ * The reveal clips rather than resizing. Clipping by width in `ch` assumes
+ * every glyph is one character wide, and the thresholds carry "≥" and "→",
+ * which fall back to a proportional family and are wider — so a width clip
+ * cut the last characters off those lines for good. An inset clip leaves the
+ * line at its true width from the start, which also means nothing reflows as
+ * it types, and `steps()` still advances it a character at a time.
+ */
+@keyframes trace-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+/* A mark means "this gate settled", so it waits for its own line to finish. */
+.trace-mark {
+  animation: trace-mark 160ms var(--ease-site) both;
+}
+
+@keyframes trace-mark {
+  from {
+    opacity: 0;
+  }
+}
+
+.trace-caret {
+  display: inline-block;
+  width: 1ch;
+  background-color: var(--trace-pass);
+  animation: trace-caret 900ms steps(1, end) infinite;
+}
+
+@keyframes trace-caret {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ---------- 7. Screenshot belt ---------- */
@@ -340,6 +406,34 @@ html[data-intro="done"] .intro {
   }
 }
 
+/* ---------- 11. Marker sweep (Lanes statement) ---------- */
+
+/*
+ * The highlighter is a background band across the lower 45% of the line, so
+ * the words never move and descenders stay readable. Full width is the base
+ * state: the band only starts collapsed where script is running AND motion is
+ * welcome, so neither a reduced-motion reader nor a scriptless one is left
+ * looking at an unhighlighted phrase.
+ */
+.lane-marker {
+  background-image: linear-gradient(var(--marker), var(--marker));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 45%;
+  padding-inline: 0.1em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-js] .lane-marker {
+    background-size: 0% 45%;
+    transition: background-size 700ms var(--ease-site);
+  }
+
+  html[data-js] [data-shown] .lane-marker {
+    background-size: 100% 45%;
+  }
+}
+
 /* ---------- 10. Section reveals ---------- */
 
 /* Held at the start of the rise until the observer marks the element seen. */
@@ -381,6 +475,12 @@ html.lenis body {
 
   /* The intro is pure motion with no still equivalent, so it never runs. */
   .intro {
+    display: none !important;
+  }
+
+  /* A caret that cannot blink is just a block sitting after the last line,
+     so it goes rather than freezing (DESIGN.md §7.3). */
+  .trace-caret {
     display: none !important;
   }
 

@@ -51,6 +51,12 @@
     "medium": "Medium articles",
     "emailMe": "Email Lathifah Sahda"
   },
+  "message": {
+    "line": "Pick a subject — it opens in your mail app.",
+    "internship": "Internship opportunity",
+    "research": "Research collaboration",
+    "hello": "Just saying hi"
+  },
   "locales": {
     "en": {
       "short": "EN",

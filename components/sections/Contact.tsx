@@ -8,6 +8,32 @@ import type { Profile, Ui } from "@/lib/content";
  * block. Everything that was `--ink` / `--ink-2` on white becomes
  * `--paper` / `--paper` at 70% here, which is 14.25:1 and 9.5:1 on ink.
  */
+/**
+ * DESIGN.md §4, "Start-a-message card". Three `mailto:` links with a prefilled
+ * subject — the reader's own mail client does the work, so there is no form,
+ * no backend and nothing is posted anywhere.
+ */
+function StartMessage({ email, ui }: { email: string; ui: Ui }) {
+  const options = [ui.message.internship, ui.message.research, ui.message.hello];
+  return (
+    <div className="rounded-card bg-white p-6 md:p-8">
+      <p className="text-ink">{ui.message.line}</p>
+      <ul className="mt-5 flex flex-wrap gap-2">
+        {options.map((subject) => (
+          <li key={subject}>
+            <a
+              href={`mailto:${email}?subject=${encodeURIComponent(subject)}`}
+              className="inline-flex items-center rounded-full border border-line px-4 py-2 text-[0.9375rem] text-ink transition-colors duration-200 hover:bg-surface-2"
+            >
+              {subject}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
   const { contact, education, languages, skills } = profile;
 
@@ -53,7 +79,9 @@ export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
         </div>
 
         <div data-reveal className="lg:col-span-5">
-          <h3 className="text-[1.375rem] leading-snug text-white">
+          <StartMessage email={contact.email} ui={ui} />
+
+          <h3 className="mt-12 text-[1.375rem] leading-snug text-white">
             {education.degree}
           </h3>
           <p className="mt-2 text-paper/70">{education.school}</p>

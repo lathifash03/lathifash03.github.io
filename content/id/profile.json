@@ -19,6 +19,15 @@
     { "text": "temporal VALID", "status": "pass" },
     { "text": "answer verified", "status": "done" }
   ],
+  "lanesStatement": [
+      { "text": "Saya " },
+      { "lane": "ai", "text": "meneliti di mana language model gagal, " },
+      { "lane": "sw", "text": "membangun aplikasi yang benar-benar dipakai orang, " },
+      { "text": "dan " },
+      { "lane": "wr", "text": "menulis agar seluruh tim ikut paham. " },
+      { "mark": "hl", "text": "Bukti sebelum klaim." }
+    ],
+  "photoCard": { "src": "/images/gallery/hmtc-portrait.jpg", "alt": "Lathifah di gedung Informatika ITS", "position": "54% 50%", "draft": false },
   "lanes": [
     {
       "id": "ai",

@@ -32,6 +32,7 @@
       "detail": "Treasurer, Keluarga Muslim Informatika (2024). Tim Kawal Gemastik ITS (2025), supporting ITS teams at the national ICT competition."
     }
   ],
+  "speakingImage": { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah served as the MC for an international conference.", "draft": false },
   "speaking": [
       { "title": "Master of Ceremony, IDSECCONF 2024 (Indonesia's annual IT security conference)", "detail": "Workshop, keynote and panel sessions." },
       { "title": "Speaker, Basic Media Schooling", "detail": "Journalism training for students across departments." },

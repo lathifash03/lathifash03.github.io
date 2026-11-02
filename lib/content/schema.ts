@@ -70,6 +70,34 @@ export const profileSchema = z
           .strict(),
       )
       .min(1),
+    /**
+     * The Lanes statement, as ordered segments (DESIGN.md §4). A segment with
+     * a `lane` is preceded by that lane's icon chip; `mark: "hl"` is drawn
+     * with the highlighter. Joining every `text` in order gives the sentence,
+     * so the words live in content and the component only decorates them.
+     */
+    lanesStatement: z
+      .array(
+        z
+          .object({
+            text: z.string(),
+            lane: laneId.optional(),
+            mark: z.literal("hl").optional(),
+          })
+          .strict()
+          .refine((s) => !(s.lane && s.mark), {
+            message: "a segment is either a lane chip or the highlight, not both",
+          }),
+      )
+      .min(1),
+    /** The photo behind the trace card in the hero stack. */
+    photoCard: asset
+      .extend({
+        /** CSS object-position, so the crop is aimed from content. */
+        position: z.string().optional(),
+      })
+      .strict()
+      .optional(),
     lanes: z
       .array(
         z.object({ id: laneId, title: z.string(), summary: z.string() }).strict(),
@@ -172,6 +200,8 @@ export const uiSchema = z
       })
       .strict(),
     notFound: strings("title", "home"),
+    /** The start-a-message card: one line and three mailto subjects. */
+    message: strings("line", "internship", "research", "hello"),
     // Figure labels: the diagrams are drawn in code, so their words live here
     // rather than in the components (CLAUDE.md hard rule 6).
     diagrams: z
@@ -263,6 +293,11 @@ export const projectSchema = z
     image: asset.optional(),
     /** Which CSS device frame the screenshot sits in — never guessed. */
     frame: z.enum(["phone", "browser"]).optional(),
+    /** Flat ground behind this card's diagram (DESIGN.md §2, §4). */
+    panel: z
+      .string()
+      .regex(/^#[0-9A-F]{6}$/, "panel must be an uppercase #RRGGBB colour")
+      .optional(),
     gallery: z.array(asset).optional(),
     links: z
       .object({
@@ -326,6 +361,8 @@ export const leadershipSchema = z
         })
         .strict(),
     ),
+    /** A wide photo above the Speaking rows. */
+    speakingImage: asset.optional(),
     // Rows, not sentences: the year sits in its own column and the detail is
     // set apart from the title (DESIGN.md §4, "Speaking / Training row card").
     speaking: z.array(

@@ -63,6 +63,44 @@ Dark ground, used exactly twice — the hero's verify-trace card and the Contact
 
 Portrait tile ground: `#E8C4A0`. It sits behind a cut-out portrait and never behind text.
 
+Accent colours — saturated, and used **only** as a filled chip, a marker or a panel. Never as text
+colour, never as a page or section background. A white glyph sits inside a chip; a chip never holds
+a word.
+
+| Token | Hex | Role |
+|---|---|---|
+| `--chip-ai` | `#4C7BD9` | AI & Data icon chip, research index chip |
+| `--chip-sw` | `#4F9D69` | Software icon chip, research index chip |
+| `--chip-wr` | `#E76A3E` | Writing & Leadership icon chip |
+| `--marker` | `#F6DE7A` | highlighter behind the closing phrase, lower 45% of the line |
+
+White on each chip measures **4.08:1** (ai), **3.30:1** (sw) and **3.22:1** (wr). None reaches the
+4.5:1 that body text needs, so these three only ever carry a glyph: as a non-text graphic each
+clears the 3:1 of WCAG 1.4.11, and the phrase beside it carries the meaning.
+Ink on `--marker` is **12.42:1**.
+
+A chip that carries a **word** — the research card's `01 / 03` index — uses the text-safe shade of
+the same hue instead, where white clears AA outright:
+
+| Token | Hex | White on it |
+|---|---|---|
+| `--chip-ai-text` | `#3B6FD5` | 4.75:1 |
+| `--chip-sw-text` | `#418257` | 4.61:1 |
+| `--chip-wr-text` | `#CE491A` | 4.57:1 |
+
+`--chip-wr` is `#E76A3E` rather than a lighter orange because white on `#E97850` measures 2.89:1 —
+below the 3:1 floor. It is the same hue, 4% darker in lightness.
+
+Research panel grounds — one flat colour per card, declared in content (`panel`), with the diagram
+drawn on top. Measured: `--ink` 13.26 / 13.08 / 13.88, `--ink-2` 5.30 / 5.23 / 5.55 and
+`--lane-ai-strong` 7.36 / 7.26 / 7.71, so every label a diagram draws on a panel clears AA.
+
+| Project | Panel |
+|---|---|
+| kg-agent | `#DCE6F7` |
+| narrative-to-procedural | `#E6E1F7` |
+| ruang-topik | `#F7E9CC` |
+
 ## 3. Typography
 
 - Display and UI: **Plus Jakarta Sans** (weights 400, 500, 600). Body text also Plus Jakarta Sans.
@@ -93,9 +131,15 @@ Sentence case everywhere. No ALL CAPS headlines.
 - **Hero.** Not a container — it sits directly on paper, and holds:
   - **Status pill**, top right of the hero block (above the name on mobile): `--lane-sw-tint` fill,
     `--lane-sw-strong` mono text, a 8px `--lane-sw` dot, pill radius, 1px `--lane-sw-strong` at 20%.
-  - **Portrait tile**, left of the name, inline with it: 96px desktop / 72px mobile, radius 24px,
+  - **Portrait tile**, left of the name, inline with it: 144px desktop / 96px mobile, radius 24px,
     `#E8C4A0` ground, 3px `--white` border, `rotate(-5deg)`, soft shadow, holding
-    `portrait-cutout.png` (transparent PNG, no frame of its own). There is no large portrait.
+    `portrait-cutout.png` (transparent PNG, no frame of its own). It never shrinks in its flex row.
+  - **The hero stack**, in the right column, two layers deep:
+    - *back* — a photo card, radius 24px, `rotate(-4deg)`, about 70% of the column width, its
+      `object-position` set on the subject;
+    - *front* — the verify-trace card, `rotate(2deg)`, overlapping the photo's lower-left corner.
+
+    Below 1024px they stop overlapping and stack: photo card, then trace card.
   - **Social buttons**, under the CTAs: 44px circles, 1px `--line`, ink glyph, hover fills
     `--surface-2`. GitHub, LinkedIn, Medium, email. The Jakarta clock sits to their right,
     separated by a 1px `--line` hairline (the hairline drops below 640px and the clock wraps).
@@ -111,8 +155,18 @@ Sentence case everywhere. No ALL CAPS headlines.
 - **Buttons:** pill, height 48px, padding 0 24px. Primary = `--ink` fill, `--paper` text.
   Secondary = transparent, 1px `--line` border, ink text. Arrow icon nudges 3px on hover.
 - **Tags:** pill, `--lane-*-tint` fill, `--lane-*-strong` text, no border, mono 12px.
-- **Lane cards** (three-kinds-of-work): each lane's card is filled with its own tint, radius 24px,
-  padding 32px. Title and body in `--ink`; the 2px rule above the title in `--lane-*-strong`.
+- **Lanes section** — a statement, then tabs.
+  - *Statement*: one sentence at section-title size, from `profile.lanesStatement` in content as
+    ordered segments. A segment tagged with a lane id is preceded by an **icon chip** — a 0.8em
+    rounded square in that lane's `--chip-*`, tilted a few degrees, holding a white glyph, marked
+    `aria-hidden`. A segment tagged `hl` is drawn with the **marker**: a `--marker` band across the
+    lower 45% of its line, painted as a background so descenders stay readable. Words are never
+    recoloured; the chip and the marker carry the colour.
+  - *Tabs*: the three lanes as a row of bordered cells. The selected tab takes its lane tint and its
+    summary appears below. A real `role="tablist"` with `aria-selected` and roving tabindex: arrow
+    keys move between tabs, Home and End jump to the ends, and the panel is labelled by its tab.
+    AI & Data is selected first, and the panel renders server-side so the summary is present
+    without script.
 - **Device frames** (Built section). Screenshots are framed in CSS, never in a photographic mockup:
   - *Phone* — for projects whose screenshot is a phone screen: max-width 240px, radius 36px, 10px
     `--ink` bezel, a 56×5px `--ink`-at-30% speaker notch centred at the top of the screen.
@@ -124,7 +178,11 @@ Sentence case everywhere. No ALL CAPS headlines.
   card on `--lane-wr-tint`, radius 16px, padding 20px, with an optional mono year on the left
   (`--lane-wr-strong`), the title in `--ink` at `1.0625rem`, and its detail in `--ink-2` underneath.
   Two columns from 1024px.
-- **Project card (research):** `--surface`, radius 24px, 1px `--line`, padding 40px desktop / 24px mobile.
+- **Project card (research):** white, radius 24px, 1px `--line`, padding 40px desktop / 24px mobile.
+  Its **visual panel** is a flat colour from content (`panel`), with the diagram drawn on top, and
+  its **index** (`01 / 03`) is a small chip in that lane's `--chip-*-text` with white digits, ahead
+  of the year — the text-safe shade, because this chip carries a word. It is the card's only
+  saturated mark.
   Two columns ≥1024px: text left (index `01 / 03`, year, title, 2-line summary, 1–3 key figures with
   caveats, tags, buttons), visual right (diagram or screenshot, radius 16px, `--surface-2` behind).
   A card whose visual is missing becomes single column, text only — never an empty placeholder box.
@@ -145,6 +203,10 @@ Sentence case everywhere. No ALL CAPS headlines.
 - **Contact band:** the closing section is one solid `--ink` container (radius 28px), `--paper` text,
   `--white` headings. Buttons invert: primary becomes `--paper` fill with `--ink` text, secondary a
   1px `--paper`-at-30% border with `--paper` text. It is the only dark section besides the trace card.
+- **Start-a-message card** (inside the Contact band): a white card, radius 24px, carrying one short
+  line and three option pills. Each pill is a `mailto:` with a prefilled subject, so it opens the
+  reader's own mail client — there is no form and no backend, and nothing is ever posted anywhere.
+  Line and pill labels come from content.
 - **Images:** real screenshots and photos only. Radius 16px. Blur or crop anything showing internal
   company data. Every image needs alt text.
 
@@ -182,14 +244,20 @@ the page is scrolled to the end — nothing stays blurred or dimmed at the botto
    `aria-hidden`, content is not hidden), so it never delays reading or SEO.
 2. **Hero entrance.** Status pill, portrait tile + name, statement, buttons, socials rise 16px +
    fade, staggered 80ms.
-3. **Verify-trace card** (hero, right column ≥1024px; below the text on mobile). A dark `--ink` card,
-   radius 24px, `rotate(2deg)`, in mono, showing the lines of `profile.heroTrace` in file order and
-   appearing one by one. A header line above the rule reads `kg-agent · example run`. Each line shows
-   its own threshold as content wrote it (`faithfulness 0.82 ≥ 0.7`), its text in `--paper`, its
-   status mark in `--trace-pass` / `--trace-fail` / `--trace-retry`; the card never adds, edits or
-   reorders line text. `ui.labels.illustration` sits small **under** the card, on paper, always
-   visible, never a tooltip. Plays once. The rotation is static, not animated, and survives reduced
-   motion — it is layout, not movement.
+3. **Verify-trace card** (hero, front of the stack). A dark `--ink` card, radius 24px,
+   `rotate(2deg)`, in mono, showing the lines of `profile.heroTrace` in file order. A header line
+   above the rule reads `kg-agent · example run`. Each line shows its own threshold as content
+   wrote it (`faithfulness 0.82 ≥ 0.7`), its text in `--paper`, its status mark in `--trace-pass` /
+   `--trace-fail` / `--trace-retry`; the card never adds, edits or reorders line text.
+   `ui.labels.illustration` sits small **under** the card, on paper, always visible, never a
+   tooltip.
+
+   The lines **type in**: 22ms per character, a 180ms pause between lines, each line's status mark
+   fading in only once that line finishes, and a caret blinking at the end of the last line. It runs
+   once, after the intro has cleared. Each line's duration and delay are computed from its own
+   character count and written into the element, so the stylesheet needs no per-line rule. Under
+   `prefers-reduced-motion` the whole card is simply there, complete, with no caret. The rotation is
+   layout, not movement, so it stays either way.
 4. **Live clock.** `profile.location.label` + HH:MM:SS in `profile.location.timezone`, seconds in
    `--ink-2`. Accessible name: `ui.labels.clock`.
 5. **Smooth scroll.** Lenis, desktop fine-pointer only; native scroll on touch devices. Nav clicks
@@ -202,6 +270,14 @@ the page is scrolled to the end — nothing stays blurred or dimmed at the botto
 9. **Blur-to-clear** (Leadership). Each entry starts at `filter: blur(8px)`, opacity 0.25 and resolves
    to sharp as it reaches 60% viewport height. Scrubbed by scroll, not timed.
 10. **Section reveals** elsewhere: 16px rise + fade once, on entering viewport.
+11. **Marker sweep** (Lanes statement). The `--marker` band behind the closing phrase grows from
+    0 to full width in 700ms when the statement is revealed, left to right. It is a
+    `background-size` transition on the phrase, so the words never move. The start state lives
+    inside `prefers-reduced-motion: no-preference` **and** `html[data-js]`: with either missing the
+    band is simply drawn at full width, never absent.
+12. **Tab change** (Lanes tabs). The selected cell's tint and the panel's text swap with no
+    animation beyond the standard 200ms colour transition. Changing tabs never moves the layout:
+    the panel's height is governed by its longest summary, so the page does not jump.
 
 ## 8. Responsive
 

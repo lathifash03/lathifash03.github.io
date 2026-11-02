@@ -7,12 +7,23 @@ import { MetricBlock } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { Picture } from "@/components/ui/Picture";
 import { TagList } from "@/components/ui/Tag";
-import type { Locale, Project, Ui } from "@/lib/content";
+import type { LaneId, Locale, Project, Ui } from "@/lib/content";
 
 /** Diagrams are drawn per project; a project without one is single column (decision B). */
 const diagrams: Record<string, DiagramName> = {
   "kg-agent": "kgAgent",
   "narrative-to-procedural": "thesis",
+};
+
+/**
+ * DESIGN.md §4: white digits on the lane's chip colour. This chip carries a
+ * word, not a glyph, so it uses the text-safe shade of the hue — white on the
+ * lighter chip is 4.08:1, which is fine for an icon and short of AA for text.
+ */
+const indexChip: Record<LaneId, string> = {
+  ai: "bg-chip-ai-text",
+  sw: "bg-chip-sw-text",
+  wr: "bg-chip-wr-text",
 };
 
 function ResearchCard({
@@ -36,15 +47,18 @@ function ResearchCard({
   ) : null;
 
   return (
-    <article className="rounded-card bg-surface p-6 md:p-10">
+    <article className="rounded-card border border-line bg-white p-6 md:p-10">
       <div
         className={
           visual ? "grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12" : ""
         }
       >
         <div className={visual ? "lg:col-span-7" : ""}>
-          <p className="flex gap-4 font-mono text-meta text-ink-2">
-            <span>{`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`}</span>
+          <p className="flex items-center gap-4 font-mono text-meta text-ink-2">
+            {/* DESIGN.md §4: the index is the card's one saturated mark. */}
+            <span className={`rounded-full px-2.5 py-1 text-white ${indexChip[project.lane]}`}>
+              {`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`}
+            </span>
             <span>{project.year}</span>
           </p>
 
@@ -82,7 +96,12 @@ function ResearchCard({
         </div>
 
         {visual ? (
-          <div className="rounded-image bg-surface-2 p-4 md:p-8 lg:col-span-5">
+          // The panel colour comes from content, so a new card brings its own
+          // ground rather than editing this component (DESIGN.md §2).
+          <div
+            className="rounded-image p-4 md:p-8 lg:col-span-5"
+            style={{ backgroundColor: project.panel ?? "var(--surface-2)" }}
+          >
             {visual}
           </div>
         ) : null}

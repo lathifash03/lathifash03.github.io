@@ -51,6 +51,12 @@
     "medium": "Artikel Medium",
     "emailMe": "Email Lathifah Sahda"
   },
+  "message": {
+    "line": "Pilih subjek — akan terbuka di aplikasi email Anda.",
+    "internship": "Peluang magang",
+    "research": "Kolaborasi riset",
+    "hello": "Sekadar menyapa"
+  },
   "locales": {
     "en": {
       "short": "EN",

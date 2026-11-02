@@ -77,7 +77,20 @@ export function Leadership({
         ))}
       </ul>
 
-      <div className="mt-20 grid gap-12 lg:grid-cols-2 lg:gap-8">
+      {content.speakingImage ? (
+        <div className="mt-20 overflow-hidden rounded-card">
+          <Picture
+            asset={content.speakingImage}
+            className="aspect-21/9 w-full bg-surface-2 object-cover"
+          />
+        </div>
+      ) : null}
+
+      <div
+        className={`grid gap-12 lg:grid-cols-2 lg:gap-8 ${
+          content.speakingImage ? "mt-10" : "mt-20"
+        }`}
+      >
         <RowList title={ui.sections.speaking} items={content.speaking} />
         <RowList title={ui.sections.training} items={content.training} />
       </div>
