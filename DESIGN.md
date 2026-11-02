@@ -47,6 +47,17 @@ Where each is used:
 - **strong** — text and numbers sitting on that lane's tint. Never on paper-coloured ground, where
   body text stays `--ink`.
 
+Training categories reuse the lane pairs and add one of their own, because a category is not a
+lane: `ict` → ai, `community` → wr, `business` → sw, and
+
+| Category | `--growth-tint` (bg) | `--growth-strong` (text on tint) |
+|---|---|---|
+| productivity — personal growth (violet) | `#EDE8F7` | `#51417F` |
+
+measured like the lanes: 7.25:1 on its own tint, 8.70:1 on white, 7.44:1 on paper. The label each
+chip carries comes from `ui.labels.categories`, so a category is a content word and a colour here,
+never a string in a component.
+
 Body text is always `--ink`; `strong` colours label and accent, they never set a paragraph.
 
 Status pill in hero: `--lane-sw-tint` fill, `--lane-sw-strong` text, a `--lane-sw` dot.
@@ -123,6 +134,12 @@ it is always visible in the markup which type is display and which is body.
 | Body | body | `1.0625rem` | 400 | 1.65 | 0 |
 | Small / meta (mono) | mono | `0.8125rem` | 400 | 1.4 | 0.02em |
 
+The **hero statement** is justified with `hyphens: auto` from 768px up, where the column is wide
+enough to spread; below that it is ragged-right with `text-wrap: pretty`. Hyphenation follows the
+page's `lang`, so it is the browser's English dictionary on `/` and its Indonesian one on `/id/` —
+where no engine ships one, so Indonesian lines take their slack in word spacing instead. If a line's
+gaps read as a river, the column gets wider; the size never gets smaller.
+
 Bricolage Grotesque runs wider than the typeface it replaced, so the hero name's tracking does the
 work of keeping it on two lines at 1440 and the section titles keep their clamp. Every heading was
 re-checked for new wraps at 390, 768 and 1440 after the switch.
@@ -152,7 +169,8 @@ Sentence case everywhere. No ALL CAPS headlines.
 
     Below 1024px they stop overlapping and stack: photo card, then trace card.
   - **Social buttons**, under the CTAs: 44px circles, 1px `--line`, ink glyph, hover fills
-    `--surface-2`. GitHub, LinkedIn, Medium, email. The Jakarta clock sits to their right,
+    `--surface-2`. GitHub, LinkedIn, Linktree, email — Medium belongs to the Writing section and to
+    the contact row, not here. Each is icon-only, so its name comes from `ui.labels`. The Jakarta clock sits to their right,
     separated by a 1px `--line` hairline (the hairline drops below 640px and the clock wraps).
   - **Verify-trace card**: see §7.3.
 - **Top nav (sticky):** name left; section tabs right (Work · Experience · Leadership · Writing · Contact);
@@ -164,7 +182,12 @@ Sentence case everywhere. No ALL CAPS headlines.
   no tab is active.
   Mobile (<768px): name + a "Menu" text button opening a full-width sheet with the same links.
 - **Buttons:** pill, height 48px, padding 0 24px. Primary = `--ink` fill, `--paper` text.
-  Secondary = transparent, 1px `--line` border, ink text. Arrow icon nudges 3px on hover.
+  Secondary = transparent, 1px `--line` border, ink text. A button carries its words and nothing
+  else — no arrow glyph.
+- **External mark:** a link that leaves the site (a demo, a repository, an article, a certificate,
+  a screenshot opened at full size) ends with a small 0.9em "arrow out of a box", `aria-hidden`.
+  A link that stays on the site — a case study — carries no glyph at all, so the mark means one
+  thing wherever it appears.
 - **Tags:** pill, `--lane-*-tint` fill, `--lane-*-strong` text, no border, mono 12px.
 - **Lanes section** — a statement, then tabs.
   - *Statement*: one sentence at section-title size, from `profile.lanesStatement` in content as
@@ -178,6 +201,16 @@ Sentence case everywhere. No ALL CAPS headlines.
     keys move between tabs, Home and End jump to the ends, and the panel is labelled by its tab.
     AI & Data is selected first, and the panel renders server-side so the summary is present
     without script.
+  - *Skills*: each lane's `skills` list. Below 768px it is a row of tag pills. From 768px the same
+    list is still in the markup — visually hidden, and the one thing a screen reader reads — and
+    beside it the **skill graph** (below) draws the picture.
+- **Skill graph** (lane panel, ≥768px): the portrait tile as the centre node, that lane's skills as
+  small mono pills on the lane's tint/strong pair, each joined to the centre by a hairline in
+  `--lane-*-strong` at 30%. Nodes sit in two columns either side of the portrait, their places
+  computed from the index so the server and the client draw the same graph; no ring is ever drawn.
+  Edges live in a 0–100 box stretched to the panel, with `non-scaling-stroke` so the hairline stays
+  a hairline, and `pathLength="100"` so every pulse is the same length whatever the edge. The whole
+  graph is `aria-hidden`: it is a picture of the list beside it. Motion in §7.14.
 - **Device frames** (Built section). Screenshots are framed in CSS, never in a photographic mockup:
   - *Phone* — for projects whose screenshot is a phone screen: max-width 240px, radius 36px, 10px
     `--ink` bezel, a 56×5px `--ink`-at-30% speaker notch centred at the top of the screen.
@@ -185,26 +218,52 @@ Sentence case everywhere. No ALL CAPS headlines.
     three 10px dots (`--line`) and a rounded `--white` address strip.
   The frame is chosen per project by a `frame` field in content (`phone` | `browser`), never guessed
   from the image.
-- **Speaking / Training row card** (Leadership): the list is body size, not meta. Each item is a row
-  card on `--lane-wr-tint`, radius 16px, padding 20px, with an optional mono year on the left
+- **Speaking row card** (Leadership): the list is body size, not meta. Each item is a row card on
+  `--lane-wr-tint`, radius 16px, padding 20px, with an optional mono year on the left
   (`--lane-wr-strong`), the title in `--ink` at `1.0625rem`, and its detail in `--ink-2` underneath.
-  Two columns from 1024px.
+  It sits beside the speaking collage from 1024px.
+- **Training card** (Leadership): training is a card, not a row, because each item carries five
+  things. White, radius 16px, 1px `--line`, padding 20px, two columns from 1024px, in one row:
+  the **category chip** (§2) and the date in mono `--ink-2`; then the title in `--ink` at
+  `1.0625rem`, the organiser in `--ink-2`, one line of detail, and — where the issuer has one — a
+  `Verify` link with the external mark, pinned to the bottom of the card so a row of cards lines up.
+- **Role photo stack** (Leadership): one to three prints tucked behind a role's right edge, each
+  117×88px, radius 14px, 3px `--white` border, the tile shadow, tilted a few degrees apart and
+  mostly hidden behind one another. Pointing at the stack, tabbing to it or tapping it fans it out
+  and deepens the front print to 160px — it keeps its width, so it cannot swallow the prints behind.
+  The stack is a button, its accessible name is the photographs' own alt text, and it carries no
+  caption. Below 1280px the role cells are too narrow to hold both the words and a fanned stack, so
+  it becomes a block under the words instead. Motion in §7.15.
 - **Project card (research):** white, radius 24px, 1px `--line`, padding 40px desktop / 24px mobile.
   Its **visual panel** is a flat colour from content (`panel`), with the diagram drawn on top, and
   its **index** (`01 / 03`) is a small chip in that lane's `--chip-*-text` with white digits, ahead
   of the year — the text-safe shade, because this chip carries a word. It is the card's only
   saturated mark.
-  Two columns ≥1024px: text left (index `01 / 03`, year, title, 2-line summary, 1–3 key figures with
-  caveats, tags, buttons), visual right (diagram or screenshot, radius 16px, `--surface-2` behind).
+  Two columns ≥1024px: text left in 8 of 12 (index `01 / 03`, year, title, summary, key figures,
+  tags, links), visual right in 4 (diagram or screenshot, radius 16px, the panel colour behind).
   A card whose visual is missing becomes single column, text only — never an empty placeholder box.
+
+  **The card is compact on purpose:** it is a sticky card, and a card taller than the window hides
+  its own ending. So the summary is clamped to three lines (the case study carries it whole), the
+  figures are a **metric row** rather than a stack, and the visual panel is a fixed 400px tall at
+  ≥1024px with the drawing scaled to fit inside it — the drawing never sets the card's height.
+  Measured at 1440×900, the three cards come to 638 / 702 / 741px against the 765px the rule asks
+  for; Indonesian runs longer and lands at 638 / 764 / 758px. Where a card is still taller than the
+  window — any card at 1280×720 — §7.6 pins it by its bottom edge instead.
 - **Project card (built):** compact. Optional 16:10 image on top, then title, context line, team label,
   summary, tags, links. Same `--surface`, radius 24px, 1px `--line`; padding 24px. Two-column grid from
   768px. No image → text only, same card.
 - **Data row (Data and analysis):** bordered rows, not cards: 1px `--line` between rows, no fill. Each
-  row holds title, context, its metric inline with the metric's caveat, tags and links. A row with a
-  gallery shows it as two thumbnails.
-- **Metric figure:** number in Plex Mono 2rem, label below in `--ink-2`, caveat line below that
-  (`n = 20`, `3 runs`…). Always show the caveat.
+  row holds title, context, its metric inline with the metric's caveat, tags and links. A row's own
+  `image` leads its thumbnails, followed by any `gallery`; each thumbnail is 16:10, `object-contain`
+  on `--surface` so axes and legends stay inside the frame, and each is a link to the file itself,
+  opened in a new tab, so a word cloud or a scatter can be read at full size. The image's alt text
+  names the link.
+- **Metric row** (research cards): up to three to a row — two take half the card each rather than
+  leaving a column empty, since a narrower chip is a taller card. Each is a small `--surface` box
+  holding the number in its lane pill, the label under it in `--ink`, and the caveat under that in
+  mono `--ink-2`. A fourth figure wraps onto a second row; it is never dropped, and the caveat is
+  never dropped (CLAUDE.md hard rule 2).
 - **Metric chip** (Data rows): the metric's number in a `--lane-*-tint` pill with
   `--lane-*-strong` mono text; the label and caveat stay beside it in `--ink` / `--ink-2`. The chip
   is a fill, not a border, and never replaces the caveat.
@@ -214,6 +273,9 @@ Sentence case everywhere. No ALL CAPS headlines.
 - **Contact band:** the closing section is one solid `--ink` container (radius 28px), `--paper` text,
   `--white` headings. Buttons invert: primary becomes `--paper` fill with `--ink` text, secondary a
   1px `--paper`-at-30% border with `--paper` text. It is the only dark section besides the trace card.
+- **Contact profile links:** the same 44px circles as the hero row, inverted for the dark ground
+  (1px `--paper` at 30%, paper glyph, hover `--paper` at 10%): GitHub, LinkedIn, Medium, Linktree.
+  Icon-only, each named from `ui.labels` — the address itself is the filled pill above them.
 - **Start-a-message card** (inside the Contact band): a white card, radius 24px, carrying one short
   line and three option pills. Each pill is a `mailto:` with a prefilled subject, so it opens the
   reader's own mail client — there is no form and no backend, and nothing is ever posted anywhere.
@@ -274,21 +336,45 @@ the page is scrolled to the end — nothing stays blurred or dimmed at the botto
 5. **Smooth scroll.** Lenis, desktop fine-pointer only; native scroll on touch devices. Nav clicks
    scroll with an offset equal to the nav height. Scrollspy via IntersectionObserver.
 6. **Stacked research cards.** Each card `position: sticky` with top offsets 96/112/128px; as the next
-   card arrives, the previous scales to 0.96 and dims to 70% brightness. Mobile: plain vertical list.
+   card arrives, the previous scales to 0.96 and dims to 70% brightness. Two rules keep a card
+   readable before it is covered: a card taller than the window pins by its **bottom** edge instead
+   (its `top` becomes `window height − card height − 24px`, measured after the fonts land, so the
+   last line is read before the next card arrives), and under 700px of window height the stacking
+   is switched off altogether and the cards are a plain list. Below 1024px: plain vertical list.
 7. **Screenshot belt** (Built section). A horizontal row of project screenshots drifting slowly
    (40s loop), pauses on hover/focus. Mobile: native swipe with scroll-snap, no auto-drift.
 8. **Timeline line** (Experience). The vertical rule draws downward with scroll progress.
 9. **Blur-to-clear** (Leadership). Each entry starts at `filter: blur(8px)`, opacity 0.25 and resolves
    to sharp as it reaches 60% viewport height. Scrubbed by scroll, not timed.
 10. **Section reveals** elsewhere: 16px rise + fade once, on entering viewport.
-11. **Marker sweep** (Lanes statement). The `--marker` band behind the closing phrase grows from
-    0 to full width in 700ms when the statement is revealed, left to right. It is a
-    `background-size` transition on the phrase, so the words never move. The start state lives
-    inside `prefers-reduced-motion: no-preference` **and** `html[data-js]`: with either missing the
-    band is simply drawn at full width, never absent.
+11. **Marker sweep** (Lanes statement). The `--marker` band behind the closing phrase grows from 0
+    to full width, left to right, as the tail of the statement scrub (13) — it starts only once the
+    last word is in. It is `background-size` on the phrase, so the words never move. The start
+    state lives inside `prefers-reduced-motion: no-preference` **and** `html[data-js]`: with either
+    missing the band is simply drawn at full width, never absent.
 12. **Tab change** (Lanes tabs). The selected cell's tint and the panel's text swap with no
     animation beyond the standard 200ms colour transition. Changing tabs never moves the layout:
     the panel's height is governed by its longest summary, so the page does not jump.
+13. **Statement scrub** (Lanes statement). Scrubbed by scroll, not timed: the statement's top
+    entering at 0.88 of the window is 0, reaching 0.35 is 1. Across that, the words come up one
+    after another — opacity 0.15 → 1 with an 8px rise — and each lane chip pops in as its own
+    phrase starts to arrive: 420ms, scaling from 0.3 with 25° of rotation and overshooting 12° past
+    its resting tilt. The chips are one-way; scrubbing back up un-reveals words, but a chip that
+    blinked in and out would read as a fault. The marker (11) takes the last three word-widths of
+    the scrub, so the statement always ends fully visible. The component writes one progress value
+    on the paragraph and the stylesheet derives every word from it, so a frame costs one property
+    write rather than one per word. Under `prefers-reduced-motion`, or with no script, the sentence
+    is simply there, complete.
+14. **Skill graph** (Lanes tabs, ≥768px). Each node drifts a few pixels on its own period (5.2–8.8s)
+    and delay, so the field never falls into step, and a single dash runs out along each edge from
+    the portrait to its node every 3.4s, staggered. Both are pure CSS on top of a static layout:
+    with motion off the nodes sit exactly on their edge-ends and the pulses are invisible, leaving
+    the still graph the stylesheet drew.
+15. **Role photo stack** (Leadership). Hover, focus or tap fans the prints out — each slides 40px
+    further left, 10px down and 9° further round than the one in front of it — while the front
+    print deepens from 88px to 160px. 320ms on transform and height. Under
+    `prefers-reduced-motion` the transition is dropped: the same gesture simply shows them, with
+    nothing in motion.
 
 ## 8. Responsive
 

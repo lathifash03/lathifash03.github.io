@@ -32,6 +32,7 @@
     "readArticle": "Baca artikel",
     "viewArchive": "Semua tulisan",
     "readReport": "Baca laporan",
+    "verify": "Verifikasi",
     "backToWork": "Kembali ke karya",
     "skipIntro": "Lewati"
   },
@@ -47,7 +48,15 @@
     "github": "Profil GitHub",
     "linkedin": "Profil LinkedIn",
     "medium": "Artikel Medium",
-    "emailMe": "Email Lathifah Sahda"
+    "linktree": "Halaman Linktree",
+    "skills": "Keahlian",
+    "emailMe": "Email Lathifah Sahda",
+    "categories": {
+      "ict": "Teknologi",
+      "community": "Kepemimpinan",
+      "business": "Bisnis",
+      "productivity": "Pengembangan diri"
+    }
   },
   "message": {
     "line": "Pilih subjek — akan terbuka di aplikasi email Anda.",

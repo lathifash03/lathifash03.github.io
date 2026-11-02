@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import type { LaneId, Profile } from "@/lib/content";
+import { SkillGraph } from "@/components/sections/SkillGraph";
+import type { Asset, LaneId, Profile, Ui } from "@/lib/content";
 
 const laneTint: Record<LaneId, string> = {
   ai: "bg-lane-ai-tint text-ink",
@@ -26,7 +27,15 @@ const laneSkill: Record<LaneId, string> = {
  * in the markup of the page's one server-rendered default, so a reader
  * without script still sees a lane described rather than an empty box.
  */
-export function LaneTabs({ lanes }: { lanes: Profile["lanes"] }) {
+export function LaneTabs({
+  lanes,
+  photo,
+  ui,
+}: {
+  lanes: Profile["lanes"];
+  photo?: Asset;
+  ui: Ui;
+}) {
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
@@ -36,20 +45,23 @@ export function LaneTabs({ lanes }: { lanes: Profile["lanes"] }) {
     tabs.current[i]?.focus();
   }
 
+  const lane = lanes[active];
+  const skills = lane.skills ?? [];
+
   return (
     <div>
       <div role="tablist" className="grid gap-3 sm:grid-cols-3">
-        {lanes.map((lane, i) => {
+        {lanes.map((item, i) => {
           const selected = i === active;
           return (
             <button
-              key={lane.id}
+              key={item.id}
               ref={(node) => {
                 tabs.current[i] = node;
               }}
               type="button"
               role="tab"
-              id={`lane-tab-${lane.id}`}
+              id={`lane-tab-${item.id}`}
               aria-selected={selected}
               aria-controls="lane-panel"
               tabIndex={selected ? 0 : -1}
@@ -71,11 +83,11 @@ export function LaneTabs({ lanes }: { lanes: Profile["lanes"] }) {
               }}
               className={`rounded-image border px-5 py-4 text-left text-[1.0625rem] transition-colors duration-200 ${
                 selected
-                  ? `border-transparent ${laneTint[lane.id]}`
+                  ? `border-transparent ${laneTint[item.id]}`
                   : "border-line text-ink-2 hover:text-ink"
               }`}
             >
-              {lane.title}
+              {item.title}
             </button>
           );
         })}
@@ -86,24 +98,31 @@ export function LaneTabs({ lanes }: { lanes: Profile["lanes"] }) {
       <div
         id="lane-panel"
         role="tabpanel"
-        aria-labelledby={`lane-tab-${lanes[active].id}`}
+        aria-labelledby={`lane-tab-${lane.id}`}
         tabIndex={0}
-        className="mt-6 sm:min-h-[11rem]"
+        className="mt-6"
       >
-        <p className="max-w-[68ch] text-ink">{lanes[active].summary}</p>
-        {/* The skills list used to be its own block in Contact; it belongs to
-            the lane it describes (DESIGN.md §4). A lane may carry none. */}
-        {lanes[active].skills?.length ? (
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {lanes[active].skills.map((skill) => (
-              <li
-                key={skill}
-                className={`rounded-full px-3 py-1 font-mono text-[0.75rem] leading-5 ${laneSkill[lanes[active].id]}`}
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
+        <p className="max-w-[68ch] text-ink sm:min-h-[6rem]">{lane.summary}</p>
+
+        {skills.length ? (
+          <>
+            {/* One list, two jobs: the pills a phone sees, and the plain text
+                the graph beside it is a picture of (DESIGN.md §4). */}
+            <ul
+              aria-label={ui.labels.skills}
+              className="mt-5 flex flex-wrap gap-2 md:sr-only"
+            >
+              {skills.map((skill) => (
+                <li
+                  key={skill}
+                  className={`rounded-full px-3 py-1 font-mono text-[0.75rem] leading-5 ${laneSkill[lane.id]}`}
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
+            <SkillGraph skills={skills} lane={lane.id} photo={photo} />
+          </>
         ) : null}
       </div>
     </div>

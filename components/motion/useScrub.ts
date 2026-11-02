@@ -10,13 +10,16 @@ import { useEffect, useState } from "react";
  * prefers-reduced-motion block. It starts false and turns on after mount, so
  * the server markup is always the plain, finished layout.
  */
-export function useScrub(minWidth = 0): boolean {
+export function useScrub(minWidth = 0, minHeight = 0): boolean {
   const [on, setOn] = useState(false);
 
   useEffect(() => {
     const queries = [
       "(prefers-reduced-motion: no-preference)",
       ...(minWidth ? [`(min-width: ${minWidth}px)`] : []),
+      // A short window cannot hold a stacked card at all, so the effect is
+      // switched off rather than squeezed (DESIGN.md §7.6).
+      ...(minHeight ? [`(min-height: ${minHeight}px)`] : []),
     ].map((query) => window.matchMedia(query));
 
     const sync = () => setOn(queries.every((query) => query.matches));
@@ -26,7 +29,7 @@ export function useScrub(minWidth = 0): boolean {
     return () => {
       for (const query of queries) query.removeEventListener("change", sync);
     };
-  }, [minWidth]);
+  }, [minWidth, minHeight]);
 
   return on;
 }

@@ -1,6 +1,12 @@
+import { ExternalIcon } from "@/components/ui/ExternalIcon";
 import { localePath, type Locale, type Project, type Ui } from "@/lib/content";
 
 /** Every label comes from ui.json (CLAUDE.md hard rule 6). */
+/** Everything but the case study is another site (DESIGN.md §4). */
+function leavesSite(href: string): boolean {
+  return !href.startsWith("/");
+}
+
 export function ProjectLinks({
   links,
   ui,
@@ -36,15 +42,10 @@ export function ProjectLinks({
         <li key={item.href} className="max-w-full">
           <a
             href={item.href}
-            className="group inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
+            className="inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
           >
             {item.label}
-            <span
-              aria-hidden="true"
-              className="transition-transform duration-200 group-hover:translate-x-[3px]"
-            >
-              →
-            </span>
+            {leavesSite(item.href) ? <ExternalIcon /> : null}
           </a>
           {/* Same treatment as a metric's caveat (DESIGN.md §4): it is read
               with the link, not hidden behind a hover. */}

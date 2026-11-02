@@ -16,6 +16,11 @@ function DataRow({
   ui: Ui;
   locale: Locale;
 }) {
+  const thumbnails = [
+    ...(project.image ? [project.image] : []),
+    ...(project.gallery ?? []),
+  ];
+
   return (
     <article
       data-reveal
@@ -49,9 +54,11 @@ function DataRow({
           </div>
         ) : null}
 
-        {project.gallery?.length ? (
+        {/* The row's own screenshot leads, then any extra ones: both are
+            thumbnails that open at full size (DESIGN.md §4, "Data row"). */}
+        {thumbnails.length ? (
           <div className="mt-6">
-            <Gallery images={project.gallery} />
+            <Gallery images={thumbnails} />
           </div>
         ) : null}
 

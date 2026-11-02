@@ -28,14 +28,8 @@ export function LinkButton({
   download?: boolean;
 }) {
   return (
-    <a href={href} download={download} className={`group ${buttonStyles[variant]}`}>
+    <a href={href} download={download} className={buttonStyles[variant]}>
       {children}
-      <span
-        aria-hidden="true"
-        className="transition-transform duration-200 group-hover:translate-x-[3px]"
-      >
-        →
-      </span>
     </a>
   );
 }

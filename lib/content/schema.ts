@@ -133,6 +133,7 @@ export const profileSchema = z
         github: z.url(),
         linkedin: z.url(),
         medium: z.url(),
+        linktree: z.url(),
         cv: z.string().startsWith("/"),
         headline: z.string(),
         closing: z.string(),
@@ -181,6 +182,7 @@ export const uiSchema = z
         readArticle: z.string(),
         viewArchive: z.string(),
         readReport: z.string(),
+        verify: z.string(),
         backToWork: z.string(),
         skipIntro: z.string(),
       })
@@ -199,7 +201,12 @@ export const uiSchema = z
         github: z.string(),
         linkedin: z.string(),
         medium: z.string(),
+        linktree: z.string(),
+        /** Names the skills list the lane's graph is drawn from. */
+        skills: z.string(),
         emailMe: z.string(),
+        /** What a training card's category chip reads — one per category. */
+        categories: strings("ict", "community", "business", "productivity"),
       })
       .strict(),
     // The EN/ID toggle names both languages in both files, so each locale is
@@ -358,6 +365,14 @@ export const experienceSchema = z
   })
   .strict();
 
+/** DESIGN.md §2: each category carries its own chip colour. */
+export const trainingCategory = z.enum([
+  "ict",
+  "community",
+  "business",
+  "productivity",
+]);
+
 export const leadershipSchema = z
   .object({
     intro: z.string(),
@@ -368,6 +383,12 @@ export const leadershipSchema = z
           role: z.string(),
           org: z.string(),
           detail: z.string(),
+          /**
+           * The small stack tucked behind the row's right edge (DESIGN.md §4,
+           * "Role photo stack"). Three is the most the stack can fan out
+           * without the cards behind becoming slivers.
+           */
+          photos: z.array(asset).min(1).max(3).optional(),
           ...draftable,
         })
         .strict(),
@@ -387,12 +408,22 @@ export const leadershipSchema = z
         })
         .strict(),
     ),
+    /**
+     * Training is a card, not a row: the category decides the chip's colour
+     * and its label comes from ui.labels.categories, so a new category is a
+     * content change in two files rather than a component change.
+     */
     training: z.array(
       z
         .object({
-          year: z.string().optional(),
+          category: trainingCategory,
           title: z.string(),
-          detail: z.string().optional(),
+          org: z.string(),
+          /** Written as content wrote it — a single month when start = end. */
+          date: z.string(),
+          detail: z.string(),
+          /** The issuer's own verification page, where one exists. */
+          verify: z.url().optional(),
           ...draftable,
         })
         .strict(),
@@ -511,6 +542,7 @@ export type ProjectGroup = Project["group"];
 export type LaneId = z.infer<typeof laneId>;
 export type ExperienceItem = z.infer<typeof experienceSchema>["experience"][number];
 export type Leadership = z.infer<typeof leadershipSchema>;
+export type TrainingCategory = z.infer<typeof trainingCategory>;
 export type Writing = z.infer<typeof writingSchema>;
 export type Figure = z.infer<typeof figure>;
 export type ChartFigure = Extract<Figure, { kind: "chart" }>;

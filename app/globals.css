@@ -43,6 +43,12 @@
   /* The portrait tile's ground. Never behind text. */
   --color-tile: #e8c4a0;
 
+  /* A fourth tint/strong pair, for the one training category that is not a
+     lane: personal growth. Measured like the lanes — 7.25 on its own tint,
+     8.70 on white, 7.44 on paper (DESIGN.md §2). */
+  --color-growth-tint: #ede8f7;
+  --color-growth-strong: #51417f;
+
   /* Accents — a filled chip, a marker or a panel, never a text colour
      (DESIGN.md §2). White on each chip clears the 3:1 a non-text graphic
      needs: 4.08 / 3.30 / 3.22. */
@@ -129,6 +135,8 @@
   --chip-ai: var(--color-chip-ai);
   --chip-sw: var(--color-chip-sw);
   --chip-wr: var(--color-chip-wr);
+  --growth-tint: var(--color-growth-tint);
+  --growth-strong: var(--color-growth-strong);
   --marker: var(--color-marker);
 }
 
@@ -425,14 +433,181 @@ html[data-intro="done"] .intro {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html[data-js] .lane-marker {
-    background-size: 0% 45%;
-    transition: background-size 700ms var(--ease-site);
+  /* Scrubbed with the words rather than timed: the statement writes --m, and
+     the band is its only reader. It is 0 until the component mounts, so the
+     sweep is never caught half-painted on the first frame. */
+  html[data-js] .statement .lane-marker {
+    background-size: calc(var(--m, 0) * 100%) 45%;
+  }
+}
+
+/* ---------- 13. The Lanes statement (DESIGN.md §7.13) ---------- */
+
+/*
+ * Each word carries its place in the sentence (--i) and reads the one
+ * progress value the component writes on the paragraph (--p); the rest is
+ * arithmetic in the stylesheet, so a frame costs one property write rather
+ * than one per word. --q is that word's own 0-1 share of the scrub.
+ *
+ * Base state is the finished sentence. The dimmed start exists only where
+ * script is running and motion is welcome — the same bargain [data-reveal]
+ * makes — so a reader without either sees the statement plainly.
+ */
+.statement-word {
+  display: inline-block;
+}
+
+.lane-chip {
+  transform: rotate(var(--tilt));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html[data-js] .statement-word {
+    --q: clamp(0, calc(var(--p, 0) * var(--n) - var(--i)), 1);
+    opacity: calc(0.15 + 0.85 * var(--q));
+    transform: translateY(calc(8px * (1 - var(--q))));
   }
 
-  html[data-js] [data-shown] .lane-marker {
-    background-size: 100% 45%;
+  html[data-js] .lane-chip {
+    opacity: 0;
   }
+
+  /* The component sets data-on as the chip's phrase starts to arrive. The
+     overshoot ends on the chip's own resting tilt, which is why the tilt is a
+     custom property and not a utility class. */
+  html[data-js] .lane-chip[data-on] {
+    animation: chip-pop 420ms var(--ease-site) both;
+  }
+}
+
+@keyframes chip-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(calc(var(--tilt) - 25deg));
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.14) rotate(calc(var(--tilt) + 12deg));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(var(--tilt));
+  }
+}
+
+/* ---------- 14. Skill graph (DESIGN.md §7.14) ---------- */
+
+.graph-centre {
+  transform: translate(-50%, -50%) rotate(-5deg);
+}
+
+/*
+ * A few pixels of drift, each node on its own period and delay so the field
+ * never falls into step. The centred position is the base transform, so
+ * `animation: none` leaves every node exactly on its edge's end.
+ */
+.graph-node {
+  transform: translate(-50%, -50%);
+  animation: node-drift var(--dur, 6s) var(--ease-site) var(--delay, 0ms)
+    infinite alternate;
+}
+
+@keyframes node-drift {
+  to {
+    transform: translate(
+      calc(-50% + var(--dx, 0px)),
+      calc(-50% + var(--dy, 0px))
+    );
+  }
+}
+
+/* The pulse is a single dash walking the length of its edge. It is invisible
+   at rest, so a still graph is lines and nodes rather than dashes. */
+.graph-pulse {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .graph-pulse {
+    animation: graph-pulse 3.4s linear var(--delay, 0ms) infinite;
+  }
+}
+
+@keyframes graph-pulse {
+  from {
+    opacity: 1;
+    stroke-dashoffset: 100;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- 15. Role photo stack (DESIGN.md §4, §7.15) ---------- */
+
+/*
+ * One to three prints tucked behind a role's right edge. The role cells are
+ * two to a row, so only from 1280px is a cell wide enough to hold both the
+ * words and the fanned-out front print; under that the stack is a block below
+ * the words instead.
+ */
+.photo-stack {
+  position: relative;
+  display: block;
+  width: 170px;
+  height: 88px;
+  margin-top: 1.25rem;
+  cursor: pointer;
+}
+
+@media (min-width: 1280px) {
+  .photo-stack {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+  }
+}
+
+.photo-stack-card {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 117px;
+  height: 88px;
+  overflow: hidden;
+  border: 3px solid var(--white);
+  border-radius: 14px;
+  background-color: var(--surface-2);
+  box-shadow: var(--shadow-tile);
+  transform-origin: top right;
+  /* The first card is the one in front, so the stack reads in content order. */
+  z-index: calc(3 - var(--i));
+  transform: translateX(calc(var(--i) * -13px))
+    rotate(calc(var(--i) * 6deg - 4deg));
+  transition:
+    transform 320ms var(--ease-site),
+    height 320ms var(--ease-site);
+}
+
+/* Pointing at the stack, tabbing to it or tapping it fans it out and lifts
+   the front print. The prints behind slide further out than the front one
+   grows — the front keeps its width and deepens, so it cannot swallow them —
+   and under prefers-reduced-motion the transition is dropped, so the same
+   gesture simply shows them, with nothing in motion. */
+.photo-stack:hover .photo-stack-card,
+.photo-stack:focus .photo-stack-card,
+.photo-stack:active .photo-stack-card {
+  transform: translateX(calc(var(--i) * -40px))
+    translateY(calc(var(--i) * 10px)) rotate(calc(var(--i) * 9deg - 6deg));
+}
+
+.photo-stack:hover .photo-stack-card:first-child,
+.photo-stack:focus .photo-stack-card:first-child,
+.photo-stack:active .photo-stack-card:first-child {
+  height: 160px;
 }
 
 /* ---------- 10. Section reveals ---------- */

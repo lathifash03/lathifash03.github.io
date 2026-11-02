@@ -242,6 +242,10 @@
       "context": "Personal analysis · written up on Medium",
       "team": false,
       "summary": "Lexicon- and rule-based sentiment analysis of Play Store reviews with NLTK's VADER.",
+      "image": {
+        "src": "/images/projects/sentiment-wordcloud.png",
+        "alt": "Word cloud of Indonesian Mobile Legends reviews"
+      },
       "tags": ["NLTK", "VADER", "Python"],
       "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
     },
@@ -256,6 +260,10 @@
       "context": "Personal analysis · written up on Medium",
       "team": true,
       "summary": "Classification and clustering of how urban-development factors relate to a person's happiness.",
+      "image": {
+        "src": "/images/projects/urban-clusters.png",
+        "alt": "3D scatter of K-Means clusters by street quality, house cost and police trust"
+      },
       "tags": ["KNN", "K-Means", "scikit-learn"],
       "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
     },

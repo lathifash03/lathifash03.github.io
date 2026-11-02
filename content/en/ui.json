@@ -32,6 +32,7 @@
     "readArticle": "Read article",
     "viewArchive": "All articles",
     "readReport": "Read report",
+    "verify": "Verify",
     "backToWork": "Back to work",
     "skipIntro": "Skip"
   },
@@ -47,7 +48,15 @@
     "github": "GitHub profile",
     "linkedin": "LinkedIn profile",
     "medium": "Medium articles",
-    "emailMe": "Email Lathifah Sahda"
+    "linktree": "Linktree page",
+    "skills": "Skills",
+    "emailMe": "Email Lathifah Sahda",
+    "categories": {
+      "ict": "Technology",
+      "community": "Leadership",
+      "business": "Business",
+      "productivity": "Personal growth"
+    }
   },
   "message": {
     "line": "Pick a subject — it opens in your mail app.",

@@ -10,20 +10,49 @@ const laneChip: Record<LaneId, string> = {
 };
 
 /**
- * DESIGN.md §4 + CLAUDE.md hard rule 2: the caveat is rendered next to the
- * number, never hidden behind a tooltip.
+ * DESIGN.md §4, "Metric row". The compact form a stacked research card uses:
+ * at most three to a row, each one the number in its lane chip with the label
+ * under it — and the caveat under that, in the card, never behind a hover
+ * (CLAUDE.md hard rule 2). A fourth metric wraps onto a second row rather
+ * than being dropped.
+ *
+ * A row of two takes half the card each rather than leaving a third column
+ * empty: the labels are sentences, and a narrower chip is a taller card.
  */
-export function MetricBlock({ metric }: { metric: Metric }) {
+const columns: Record<number, string> = {
+  1: "sm:grid-cols-1",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-3",
+};
+
+export function MetricChips({
+  metrics,
+  lane,
+}: {
+  metrics: NonNullable<Project["metrics"]>;
+  lane: LaneId;
+}) {
+  if (!metrics.length) return null;
   return (
-    <div>
-      <p className="font-mono text-[2rem] leading-tight text-ink">
-        {metric.value}
-      </p>
-      <p className="mt-1 text-ink-2">{metric.label}</p>
-      {metric.caveat ? (
-        <p className="mt-1 font-mono text-meta text-ink-2">{metric.caveat}</p>
-      ) : null}
-    </div>
+    <ul className={`grid gap-3 ${columns[Math.min(metrics.length, 3)]}`}>
+      {metrics.map((metric) => (
+        <li key={metric.label} className="rounded-image bg-surface p-4">
+          <p>
+            <span
+              className={`inline-block rounded-full px-2.5 py-0.5 font-mono text-[1.0625rem] ${laneChip[lane]}`}
+            >
+              {metric.value}
+            </span>
+          </p>
+          <p className="mt-2 text-meta leading-snug text-ink">{metric.label}</p>
+          {metric.caveat ? (
+            <p className="mt-1.5 font-mono text-[0.75rem] leading-5 text-ink-2">
+              {metric.caveat}
+            </p>
+          ) : null}
+        </li>
+      ))}
+    </ul>
   );
 }
 

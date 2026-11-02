@@ -5,25 +5,39 @@
       "period": "Feb 2025 – Feb 2026",
       "role": "Sekretaris Jenderal Eksternal",
       "org": "HMTC ITS (himpunan mahasiswa Teknik Informatika)",
-      "detail": "Ikut mengoordinasi kepengurusan 120 orang melewati 20+ program dalam satu periode, dan mengelola kemitraan dengan perusahaan, universitas dan lembaga pemerintah. Sebelumnya Sekretaris Jenderal Administrasi II (2024)."
+      "detail": "Ikut mengoordinasi kepengurusan 120 orang melewati 20+ program dalam satu periode, dan mengelola kemitraan dengan perusahaan, universitas dan lembaga pemerintah. Sebelumnya Sekretaris Jenderal Administrasi II (2024).",
+      "photos": [
+        { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah memimpin sesi staf HMTC" },
+        { "src": "/images/gallery/huawei-visit.jpg", "alt": "Kunjungan HMTC ke Huawei ASEAN Academy Indonesia" },
+        { "src": "/images/gallery/hmtc-night.jpg", "alt": "Panitia HMTC menyambut mahasiswa baru Teknik Informatika" }
+      ]
     },
     {
       "period": "2024",
       "role": "Kepala Divisi Humas",
       "org": "Schematics ITS (acara IT nasional)",
-      "detail": "Memimpin strategi promosi multikanal bersama 20+ media partner, menyesuaikan pesan untuk pelajar SMA, mahasiswa dan masyarakat umum; acaranya menjangkau 2.000+ peserta."
+      "detail": "Memimpin strategi promosi multikanal bersama 20+ media partner, menyesuaikan pesan untuk pelajar SMA, mahasiswa dan masyarakat umum; acaranya menjangkau 2.000+ peserta.",
+      "photos": [
+        { "src": "/images/gallery/team-teal.jpg", "alt": "Tim humas Schematics" }
+      ]
     },
     {
       "period": "Mei 2024 – Mei 2025",
       "role": "Sekretaris dan Anggota Pengurus",
       "org": "Ikatan Mahasiswa Muhammadiyah (IMM) ITS",
-      "detail": "Menyusun 15+ proposal pendanaan dengan anggaran yang ketat dan ikut merencanakan 10+ program pengembangan anggota dan pengabdian masyarakat."
+      "detail": "Menyusun 15+ proposal pendanaan dengan anggaran yang ketat dan ikut merencanakan 10+ program pengembangan anggota dan pengabdian masyarakat.",
+      "photos": [
+        { "src": "/images/gallery/imm-graduation.jpg", "alt": "Anggota IMM ITS saat wisuda" }
+      ]
     },
     {
       "period": "Maret 2023 – Maret 2025",
       "role": "Ketua",
       "org": "Forum Daerah Bengkulu ITS",
-      "detail": "Memimpin 30 mahasiswa asal Bengkulu dari berbagai departemen di ITS dan menjalankan program rutin untuk membangun kerja sama antar anggota."
+      "detail": "Memimpin 30 mahasiswa asal Bengkulu dari berbagai departemen di ITS dan menjalankan program rutin untuk membangun kerja sama antar anggota.",
+      "photos": [
+        { "src": "/images/gallery/ilits-chair.jpg", "alt": "Lathifah sebagai ketua" }
+      ]
     },
     {
       "period": "2024 – 2025",
@@ -42,11 +56,57 @@
       { "title": "Pemateri manajemen proyek dan tim, Bluecamp, Teknik Informatika ITS" }
     ],
   "training": [
-      { "year": "2024", "title": "LKMM Tingkat Menengah", "detail": "ITS" },
-      { "title": "LKMM Tingkat Dasar", "detail": "Teknik Informatika ITS" },
-      { "year": "2022", "title": "Pelatihan Kewirausahaan Mahasiswa", "detail": "ITS dan ITS Career Center" },
-      { "year": "2023", "title": "Pelatihan Version Control System", "detail": "Laboratorium Rekayasa Perangkat Lunak, Teknik Informatika ITS" }
-    ],
+    {
+      "category": "ict",
+      "title": "AI Fluency: Framework and Foundations",
+      "org": "Anthropic Academy",
+      "date": "Nov 2026",
+      "detail": "Kerangka kerja untuk bekerja dengan AI generatif secara efektif, etis dan aman.",
+      "verify": "https://academy.claude.com/verify/902137b75e37b8f7589fb4bbf57c077c"
+    },
+    {
+      "category": "ict",
+      "title": "Pelatihan Version Control System",
+      "org": "Departemen Teknik Informatika, ITS",
+      "date": "Agu 2023",
+      "detail": "Git untuk kerja kode bersama: branching, commit dan alur versioning."
+    },
+    {
+      "category": "ict",
+      "title": "Bootcamp and Seminar of Technology 2023",
+      "org": "Departemen Teknik Informatika, ITS",
+      "date": "Sep 2023",
+      "detail": "Strategi karier TI dan wawasan industri, bersama mitra seperti Telkomsel dan Dicoding."
+    },
+    {
+      "category": "ict",
+      "title": "Formulas and Functions in Microsoft Excel",
+      "org": "amanexcel",
+      "date": "Okt 2026",
+      "detail": "Rumus dan fungsi, referensi relatif/absolut/campuran, serta kesalahan yang sering terjadi."
+    },
+    {
+      "category": "community",
+      "title": "LKMM Tingkat Menengah XVII “Cakrawala”",
+      "org": "ITS",
+      "date": "Okt–Nov 2024",
+      "detail": "Kepemimpinan dan manajemen organisasi tingkat menengah: integritas, growth mindset, perubahan terencana dan kepemimpinan kolektif; dinyatakan lulus."
+    },
+    {
+      "category": "business",
+      "title": "LKMW-TD (Pelatihan Kewirausahaan Mahasiswa)",
+      "org": "Kemahasiswaan ITS bersama ITS Career",
+      "date": "Nov 2022",
+      "detail": "Pola pikir wirausaha, penyusunan rencana bisnis dan memulai usaha."
+    },
+    {
+      "category": "productivity",
+      "title": "ESQ Character Building",
+      "org": "ESQ Training",
+      "date": "Agu 2023",
+      "detail": "Kesadaran diri serta kecerdasan emosional dan spiritual untuk menghadapi tantangan akademik dan kehidupan."
+    }
+  ],
   "gallery": [
     { "src": "/images/gallery/01.jpg", "alt": "[TBD]", "caption": "[TBD]", "draft": true }
   ]

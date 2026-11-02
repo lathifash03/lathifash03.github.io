@@ -1,7 +1,13 @@
+import type { CSSProperties } from "react";
 import { BlurIn } from "@/components/motion/BlurIn";
+import { ExternalIcon } from "@/components/ui/ExternalIcon";
 import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
-import type { Leadership as LeadershipContent, Ui } from "@/lib/content";
+import type {
+  Leadership as LeadershipContent,
+  TrainingCategory,
+  Ui,
+} from "@/lib/content";
 
 /**
  * DESIGN.md §4: two photos overlapping, the portrait in front and the
@@ -34,19 +40,39 @@ function SpeakingCollage({
 }
 
 /**
- * DESIGN.md §4, "Speaking / Training row card". These were a small meta-sized
- * list; they are the same words at body size on the wr tint, with the year in
- * its own mono column and the detail set below the title.
+ * DESIGN.md §4, "Role photo stack". One to three prints tucked behind the
+ * right edge of a role, tilted and mostly hidden; pointing at them — or
+ * tapping, or tabbing to them — fans them out and lifts the front one. It is
+ * a button because that gesture is an action, and its accessible name is the
+ * photographs' own alt text, which is the context the stack carries.
  */
-function RowList({
+function PhotoStack({
+  photos,
+}: {
+  photos: NonNullable<LeadershipContent["roles"][number]["photos"]>;
+}) {
+  return (
+    <button type="button" className="photo-stack">
+      {photos.map((photo, i) => (
+        <span
+          key={photo.src}
+          className="photo-stack-card"
+          style={{ "--i": i } as CSSProperties}
+        >
+          <Picture asset={photo} className="size-full object-cover" />
+        </span>
+      ))}
+    </button>
+  );
+}
+
+/** DESIGN.md §4, "Speaking row card": body size on the wr tint, year apart. */
+function SpeakingList({
   title,
   items,
-  twoUp = false,
 }: {
   title: string;
   items: LeadershipContent["speaking"];
-  /** Rows side by side once the list has the full width to itself. */
-  twoUp?: boolean;
 }) {
   if (!items.length) return null;
   // One list, one left edge: once any row carries a year, every row reserves
@@ -55,11 +81,7 @@ function RowList({
   return (
     <div>
       <h3 className="font-mono text-meta text-ink-2">{title}</h3>
-      <ul
-        className={`mt-5 ${
-          twoUp ? "grid gap-3 lg:grid-cols-2 lg:items-start" : "space-y-3"
-        }`}
-      >
+      <ul className="mt-5 space-y-3">
         {items.map((item) => (
           <li
             key={item.title}
@@ -86,6 +108,63 @@ function RowList({
   );
 }
 
+/** DESIGN.md §2: the chip carries the category, so the category is a colour. */
+const categoryChip: Record<TrainingCategory, string> = {
+  ict: "bg-lane-ai-tint text-lane-ai-strong",
+  community: "bg-lane-wr-tint text-lane-wr-strong",
+  business: "bg-lane-sw-tint text-lane-sw-strong",
+  productivity: "bg-growth-tint text-growth-strong",
+};
+
+/** DESIGN.md §4, "Training card": chip, title, organiser, date, one line. */
+function TrainingList({
+  title,
+  items,
+  ui,
+}: {
+  title: string;
+  items: LeadershipContent["training"];
+  ui: Ui;
+}) {
+  if (!items.length) return null;
+  return (
+    <div>
+      <h3 className="font-mono text-meta text-ink-2">{title}</h3>
+      <ul className="mt-5 grid gap-4 lg:grid-cols-2">
+        {items.map((item) => (
+          <li
+            key={item.title}
+            className="flex h-full flex-col rounded-image border border-line p-5"
+          >
+            <p className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span
+                className={`rounded-full px-3 py-1 font-mono text-[0.75rem] leading-5 ${categoryChip[item.category]}`}
+              >
+                {ui.labels.categories[item.category]}
+              </span>
+              <span className="font-mono text-meta text-ink-2">{item.date}</span>
+            </p>
+            <p className="mt-4 text-body text-ink">{item.title}</p>
+            <p className="mt-1 text-ink-2">{item.org}</p>
+            <p className="mt-3 text-ink-2">{item.detail}</p>
+            {item.verify ? (
+              <p className="mt-auto pt-4">
+                <a
+                  href={item.verify}
+                  className="inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
+                >
+                  {ui.actions.verify}
+                  <ExternalIcon />
+                </a>
+              </p>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function Leadership({
   content,
   ui,
@@ -103,12 +182,21 @@ export function Leadership({
         {content.roles.map((role) => (
           <li key={`${role.org}-${role.role}`}>
             <BlurIn>
-              <p className="font-mono text-meta text-ink-2">{role.period}</p>
-              <h3 className="mt-3 font-display text-[1.375rem] leading-snug text-ink">
-                {role.role}
-              </h3>
-              <p className="mt-1 text-ink-2">{role.org}</p>
-              <p className="mt-4 max-w-[60ch] text-ink">{role.detail}</p>
+              {/* The stack sits against the row's right edge, so the role's
+                  own words keep the measure they had (DESIGN.md §4). */}
+              <div className="relative">
+                {/* Only the heading lines give way to the stack; the detail
+                    paragraph below it keeps the full measure. */}
+                <div className={role.photos ? "xl:pr-[13.5rem]" : undefined}>
+                  <p className="font-mono text-meta text-ink-2">{role.period}</p>
+                  <h3 className="mt-3 font-display text-[1.375rem] leading-snug text-ink">
+                    {role.role}
+                  </h3>
+                  <p className="mt-1 text-ink-2">{role.org}</p>
+                </div>
+                <p className="mt-4 max-w-[60ch] text-ink">{role.detail}</p>
+                {role.photos ? <PhotoStack photos={role.photos} /> : null}
+              </div>
             </BlurIn>
           </li>
         ))}
@@ -124,12 +212,12 @@ export function Leadership({
           </div>
         ) : null}
         <div className={content.speakingPhotos ? "lg:col-span-7" : "lg:col-span-12"}>
-          <RowList title={ui.sections.speaking} items={content.speaking} />
+          <SpeakingList title={ui.sections.speaking} items={content.speaking} />
         </div>
       </div>
 
       <div className="mt-16">
-        <RowList title={ui.sections.training} items={content.training} twoUp />
+        <TrainingList title={ui.sections.training} items={content.training} ui={ui} />
       </div>
 
       {content.gallery.length ? (

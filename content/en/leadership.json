@@ -5,25 +5,39 @@
       "period": "Feb 2025 – Feb 2026",
       "role": "General Secretary of External Affairs",
       "org": "HMTC ITS (Informatics Student Association)",
-      "detail": "Helped coordinate a 120-member executive board through 20+ programmes in one term, and managed partnerships with companies, universities and government agencies. Previously General Secretary of Administration II (2024)."
+      "detail": "Helped coordinate a 120-member executive board through 20+ programmes in one term, and managed partnerships with companies, universities and government agencies. Previously General Secretary of Administration II (2024).",
+      "photos": [
+        { "src": "/images/gallery/hmtc-teaching.jpg", "alt": "Lathifah leading an HMTC staff session" },
+        { "src": "/images/gallery/huawei-visit.jpg", "alt": "HMTC visit to Huawei ASEAN Academy Indonesia" },
+        { "src": "/images/gallery/hmtc-night.jpg", "alt": "HMTC committee welcoming new Informatics students" }
+      ]
     },
     {
       "period": "2024",
       "role": "Head of Public Relations",
       "org": "Schematics ITS (national IT event)",
-      "detail": "Led a multi-channel promotion strategy with 20+ media partners, tailoring the message for high-school students, university students and the public; the event reached 2,000+ participants."
+      "detail": "Led a multi-channel promotion strategy with 20+ media partners, tailoring the message for high-school students, university students and the public; the event reached 2,000+ participants.",
+      "photos": [
+        { "src": "/images/gallery/team-teal.jpg", "alt": "Schematics public relations team" }
+      ]
     },
     {
       "period": "May 2024 – May 2025",
       "role": "Secretary and Executive Board Member",
       "org": "Ikatan Mahasiswa Muhammadiyah (IMM) ITS",
-      "detail": "Prepared 15+ funding proposals under a tight budget and co-planned 10+ member-development and community-service programmes."
+      "detail": "Prepared 15+ funding proposals under a tight budget and co-planned 10+ member-development and community-service programmes.",
+      "photos": [
+        { "src": "/images/gallery/imm-graduation.jpg", "alt": "IMM ITS members at graduation" }
+      ]
     },
     {
       "period": "March 2023 - March 2025",
       "role": "Chair",
       "org": "Forum Daerah Bengkulu ITS",
-      "detail": "Led 30 students from Bengkulu across ITS departments and ran routine programmes to build cooperation among members."
+      "detail": "Led 30 students from Bengkulu across ITS departments and ran routine programmes to build cooperation among members.",
+      "photos": [
+        { "src": "/images/gallery/ilits-chair.jpg", "alt": "Lathifah as chair" }
+      ]
     },
     {
       "period": "2024 – 2025",
@@ -42,11 +56,57 @@
       { "title": "Speaker on project and team management, Bluecamp, Informatics ITS" }
     ],
   "training": [
-      { "year": "2024", "title": "LKMM Tingkat Menengah (intermediate student leadership and management training)", "detail": "ITS" },
-      { "title": "LKMM Tingkat Dasar (basic student leadership training)", "detail": "Informatics ITS" },
-      { "year": "2022", "title": "Student Entrepreneurship Training", "detail": "ITS and ITS Career Center" },
-      { "year": "2023", "title": "Version Control System Training", "detail": "Software Engineering Laboratory, Informatics ITS" }
-    ],
+    {
+      "category": "ict",
+      "title": "AI Fluency: Framework and Foundations",
+      "org": "Anthropic Academy",
+      "date": "Nov 2026",
+      "detail": "Framework for working with generative AI effectively, ethically and safely.",
+      "verify": "https://academy.claude.com/verify/902137b75e37b8f7589fb4bbf57c077c"
+    },
+    {
+      "category": "ict",
+      "title": "Version Control System Training",
+      "org": "Informatics Department, ITS",
+      "date": "Aug 2023",
+      "detail": "Git for collaborative code: branching, commits and versioning workflows."
+    },
+    {
+      "category": "ict",
+      "title": "Bootcamp and Seminar of Technology 2023",
+      "org": "Informatics Department, ITS",
+      "date": "Sep 2023",
+      "detail": "IT career strategy and industry insights, with partners including Telkomsel and Dicoding."
+    },
+    {
+      "category": "ict",
+      "title": "Formulas and Functions in Microsoft Excel",
+      "org": "amanexcel",
+      "date": "Oct 2026",
+      "detail": "Formulas vs functions, relative/absolute/mixed references, common errors."
+    },
+    {
+      "category": "community",
+      "title": "LKMM Tingkat Menengah XVII “Cakrawala”",
+      "org": "ITS",
+      "date": "Oct–Nov 2024",
+      "detail": "Intermediate leadership and organisational management: integrity, growth mindset, planned change and collective leadership; completed with passing status."
+    },
+    {
+      "category": "business",
+      "title": "LKMW-TD (Student Entrepreneurship Training)",
+      "org": "ITS Student Affairs with ITS Career",
+      "date": "Nov 2022",
+      "detail": "Entrepreneurial mindset, business planning and starting a venture."
+    },
+    {
+      "category": "productivity",
+      "title": "ESQ Character Building",
+      "org": "ESQ Training",
+      "date": "Aug 2023",
+      "detail": "Self-awareness and emotional and spiritual intelligence for academic and life challenges."
+    }
+  ],
   "gallery": [
     { "src": "/images/gallery/01.jpg", "alt": "[TBD]", "caption": "[TBD]", "draft": true }
   ]

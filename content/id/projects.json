@@ -242,6 +242,10 @@
       "context": "Analisis pribadi · ditulis di Medium",
       "team": false,
       "summary": "Analisis sentimen berbasis leksikon dan aturan atas ulasan Play Store dengan VADER dari NLTK.",
+      "image": {
+        "src": "/images/projects/sentiment-wordcloud.png",
+        "alt": "Word cloud ulasan Mobile Legends berbahasa Indonesia"
+      },
       "tags": ["NLTK", "VADER", "Python"],
       "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
     },
@@ -256,6 +260,10 @@
       "context": "Analisis pribadi · ditulis di Medium",
       "team": true,
       "summary": "Klasifikasi dan clustering atas kaitan antara faktor-faktor pembangunan kota dengan kebahagiaan seseorang.",
+      "image": {
+        "src": "/images/projects/urban-clusters.png",
+        "alt": "Sebaran 3D klaster K-Means berdasarkan kualitas jalan, biaya rumah, dan kepercayaan pada polisi"
+      },
       "tags": ["KNN", "K-Means", "scikit-learn"],
       "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
     },

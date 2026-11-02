@@ -3,6 +3,7 @@ import { Section } from "@/components/ui/Section";
 import { LinkButton } from "@/components/ui/Button";
 import { CopyEmail } from "@/components/ui/CopyEmail";
 import { Picture } from "@/components/ui/Picture";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import type { Profile, Ui } from "@/lib/content";
 
 /**
@@ -130,20 +131,11 @@ export function Contact({ profile, ui }: { profile: Profile; ui: Ui }) {
             </LinkButton>
           </div>
 
-          {/* No aria-label here: the visible text is the address, and a label
-              that does not contain it would fail WCAG 2.5.3 rather than help. */}
-          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
-            {[contact.github, contact.linkedin, contact.medium].map((href) => (
-              <li key={href}>
-                <a
-                  href={href}
-                  className="font-mono text-meta text-paper/80 underline decoration-paper/30 underline-offset-4 transition-colors duration-200 hover:text-paper hover:decoration-paper"
-                >
-                  {href.replace(/^https?:\/\/(www\.)?/, "")}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {/* The same circles as the hero row, inverted for the dark ground.
+              Each is icon-only, so its name comes from ui.json. */}
+          <div className="mt-10">
+            <SocialLinks profile={profile} ui={ui} set="contact" onDark />
+          </div>
         </div>
 
         <div data-reveal>

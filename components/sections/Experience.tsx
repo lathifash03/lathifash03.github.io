@@ -61,15 +61,9 @@ export function Experience({
                   {item.caseStudy ? (
                     <a
                       href={localePath(locale, item.caseStudy)}
-                      className="group mt-4 inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
+                      className="mt-4 inline-block text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
                     >
                       {ui.actions.readCaseStudy}
-                      <span
-                        aria-hidden="true"
-                        className="transition-transform duration-200 group-hover:translate-x-[3px]"
-                      >
-                        →
-                      </span>
                     </a>
                   ) : null}
                 </div>

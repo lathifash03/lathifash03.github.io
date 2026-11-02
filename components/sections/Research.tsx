@@ -3,7 +3,7 @@ import { Diagram, type DiagramName } from "@/components/diagrams/Diagram";
 import { StackedCards } from "@/components/motion/StackedCards";
 import { Section } from "@/components/ui/Section";
 import { Gallery } from "@/components/ui/Gallery";
-import { MetricBlock } from "@/components/ui/Metric";
+import { MetricChips } from "@/components/ui/Metric";
 import { ProjectLinks, TeamLabel } from "@/components/ui/ProjectLinks";
 import { Picture } from "@/components/ui/Picture";
 import { TagList } from "@/components/ui/Tag";
@@ -41,19 +41,22 @@ function ResearchCard({
 }) {
   const name = diagrams[project.slug];
   const visual: ReactNode = name ? (
-    <Diagram name={name} ui={ui} />
+    <Diagram name={name} ui={ui} narrow />
   ) : project.image ? (
-    <Picture asset={project.image} className="w-full rounded-[8px] object-cover" />
+    <Picture
+      asset={project.image}
+      className="max-h-full w-full rounded-[8px] object-contain"
+    />
   ) : null;
 
   return (
-    <article className="rounded-card border border-line bg-white p-6 md:p-10">
+    <article className="rounded-card border border-line bg-white p-6 md:p-8 lg:p-10">
       <div
         className={
           visual ? "grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12" : ""
         }
       >
-        <div className={visual ? "lg:col-span-7" : ""}>
+        <div className={visual ? "lg:col-span-8" : ""}>
           <p className="flex items-center gap-4 font-mono text-meta text-ink-2">
             {/* DESIGN.md §4: the index is the card's one saturated mark. */}
             <span className={`rounded-full px-2.5 py-1 text-white ${indexChip[project.lane]}`}>
@@ -62,35 +65,35 @@ function ResearchCard({
             <span>{project.year}</span>
           </p>
 
-          <h3 className="mt-5 font-display text-card text-ink">{project.title}</h3>
-          <p className="mt-3 text-ink-2">{project.context}</p>
+          <h3 className="mt-4 font-display text-card text-ink">{project.title}</h3>
+          <p className="mt-2 text-ink-2">{project.context}</p>
           <div className="mt-1">
             <TeamLabel project={project} ui={ui} />
           </div>
 
-          <p className="mt-6 max-w-[68ch] text-ink">{project.summary}</p>
+          {/* Three lines is the card's share of the summary; the case study
+              carries it whole (DESIGN.md §4, "Research card"). */}
+          <p className="mt-4 line-clamp-3 max-w-[68ch] text-ink">
+            {project.summary}
+          </p>
 
           {project.gallery?.length ? (
-            <div className="mt-8">
+            <div className="mt-6">
               <Gallery images={project.gallery} />
             </div>
           ) : null}
 
           {project.metrics?.length ? (
-            <ul className="mt-10 space-y-8">
-              {project.metrics.map((metric) => (
-                <li key={metric.label}>
-                  <MetricBlock metric={metric} />
-                </li>
-              ))}
-            </ul>
+            <div className="mt-5">
+              <MetricChips metrics={project.metrics} lane={project.lane} />
+            </div>
           ) : null}
 
-          <div className="mt-10">
+          <div className="mt-5">
             <TagList tags={project.tags} lane={project.lane} />
           </div>
 
-          <div className="mt-8">
+          <div className="mt-5">
             <ProjectLinks links={project.links} ui={ui} locale={locale} />
           </div>
         </div>
@@ -98,8 +101,11 @@ function ResearchCard({
         {visual ? (
           // The panel colour comes from content, so a new card brings its own
           // ground rather than editing this component (DESIGN.md §2).
+          // The panel is a fixed height once the cards stack, and the
+          // drawing inside is scaled to fit it rather than setting the card's
+          // height itself (DESIGN.md §4, §7.6).
           <div
-            className="rounded-image p-4 md:p-8 lg:col-span-5"
+            className="flex flex-col justify-center rounded-image p-4 md:p-8 lg:col-span-4 lg:p-6 lg:[&_svg]:max-h-[37rem]"
             style={{ backgroundColor: project.panel ?? "var(--surface-2)" }}
           >
             {visual}
