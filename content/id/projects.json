@@ -37,7 +37,7 @@
       "title": "Mengubah teks naratif berita menjadi teks langkah demi langkah",
       "context": "Tugas akhir sarjana · ITS",
       "team": false,
-      "summary": "Sebuah hybrid pipeline: NER berbasis aturan dan analisis temporal menyusun constraint untuk setiap artikel, tiga LLM mengonversi artikel di bawah constraint itu, lalu validator berbasis aturan dan penyisipan entitas memperbaiki apa yang dijatuhkan model.",
+      "summary": "Pipeline hybrid: NER dan analisis temporal berbasis aturan menyusun constraint per artikel, tiga LLM mengonversi artikel, lalu validator dan entity injection memperbaiki yang terlewat.",
       "metrics": [
         { "value": "≤33% → 57–67%", "label": "artikel yang mempertahankan seluruh entitas wajib, prompt saja vs pipeline penuh", "caveat": "480 artikel per model; masih di bawah target 85%" },
         { "value": "0,645–0,700", "label": "BERTScore F1 pada ketiga model", "caveat": "target ≥ 0,60 tercapai oleh ketiganya" },
@@ -62,7 +62,7 @@
       "context": "Proyek akhir Text Mining · ITS",
       "team": true,
       "teamSize": 3,
-      "summary": "Kami mengambil data dari enam portal berita nasional, membandingkan LDA, NMF dan BERTopic, menyetel BERTopic dengan Optuna, menguji lima model embedding, lalu merilis hasilnya sebagai dashboard Streamlit untuk pembaca non-teknis.",
+      "summary": "Kami mengumpulkan berita dari enam portal nasional, membandingkan LDA, NMF, dan BERTopic, menguji lima model embedding, lalu menyajikannya sebagai dashboard Streamlit.",
       "metrics": [
         { "value": "0,825", "label": "coherence topik terbaik (NMF, C_v, k = 25)", "caveat": "vs BERTopic 0,778 dan LDA 0,616" },
         { "value": "3,5×", "label": "pilihan embedding menggeser coherence lebih besar daripada tuning hyperparameter", "caveat": "selisih 0,075 antar embedding vs +0,021 dari Optuna" }
