@@ -4,7 +4,7 @@
   "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Portrait of Lathifah Sahda", "draft": false },
   "status": "Open to work",
   "statement": "Computer science graduate from ITS. I build language-model systems, measure where they break, and explain the results to people who aren't engineers.",
-  "educationLine": "ITS · Computer Science · GPA 3.70 · BPI scholarship (LPDP) · Class of 2026",
+  "educationLine": "ITS · Computer Science · GPA 3.70 · Indonesian Education Scholarship (LPDP) · Class of 2026",
   "location": { "city": "Jakarta", "zone": "WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
     { "text": "Halo", "lang": "id" },
@@ -53,7 +53,7 @@
     "degree": "Bachelor of Computer Science (Informatics Engineering)",
     "period": "2022 – Aug 2026",
     "gpa": "3.70 / 4.00",
-    "scholarship": "Beasiswa Pendidikan Indonesia (BPI), AMN scheme, funded by LPDP",
+    "scholarship": "Indonesian Education Scholarship, Asrama Mahasiswa Nusantara scheme, funded by LPDP",
     "thesis": "A hybrid pipeline for converting narrative news into procedural text using a constraint-based LLM approach"
   },
   "contact": {
