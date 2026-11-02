@@ -84,7 +84,7 @@ export function CaseStudyPage({
             {/* One reading column, centred: a 68ch measure left against a
                 1200px container leaves the page half empty (DESIGN.md §5). */}
             <div className="mx-auto max-w-[68ch]">
-              <h1 className="max-w-[20ch] text-section text-ink">
+              <h1 className="max-w-[20ch] font-display text-section text-ink">
                 {study.title}
               </h1>
 

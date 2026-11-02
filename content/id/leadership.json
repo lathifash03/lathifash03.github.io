@@ -32,7 +32,10 @@
       "detail": "Bendahara, Keluarga Muslim Informatika (2024). Tim Kawal Gemastik ITS (2025), mendampingi tim-tim ITS di kompetisi TIK nasional."
     }
   ],
-  "speakingImage": { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah bertugas sebagai pembawa acara untuk sebuah konferensi internasional.", "draft": false },
+  "speakingPhotos": [
+    { "src": "/images/gallery/idsecconf-mc.jpg", "alt": "Lathifah sebagai pembawa acara di IDSECCONF 2024, konferensi keamanan TI nasional" },
+    { "src": "/images/gallery/hmtc-speaking.jpg", "alt": "Lathifah membawakan materi di pelatihan staf HMTC" }
+  ],
   "speaking": [
       { "title": "Master of Ceremony, IDSECCONF 2024 (konferensi keamanan IT tahunan di Indonesia)", "detail": "Sesi workshop, keynote dan panel." },
       { "title": "Pemateri, Basic Media Schooling", "detail": "Pelatihan jurnalistik untuk mahasiswa lintas departemen." },

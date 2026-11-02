@@ -188,7 +188,7 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
               style={{ "--i": 1 } as CSSProperties}
             >
               <PortraitTile profile={profile} />
-              <h1 className="text-hero-name text-ink">{profile.name}</h1>
+              <h1 className="font-display text-hero-name text-ink">{profile.name}</h1>
             </div>
 
             <p
@@ -198,9 +198,18 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
               {profile.statement}
             </p>
 
+            {/* The education block used to sit in Contact; it is one mono
+                line here instead (DESIGN.md §4, "Hero"). */}
+            <p
+              className="hero-rise mt-5 font-mono text-meta text-ink-2"
+              style={{ "--i": 3 } as CSSProperties}
+            >
+              {profile.educationLine}
+            </p>
+
             <div
               className="hero-rise mt-10 flex flex-wrap items-center gap-3"
-              style={{ "--i": 3 } as CSSProperties}
+              style={{ "--i": 4 } as CSSProperties}
             >
               <LinkButton href={profile.contact.cv} variant="primary">
                 {ui.actions.downloadCv}
@@ -214,7 +223,7 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
                 rule is hidden once the row wraps, where it would dangle. */}
             <div
               className="hero-rise mt-8 flex flex-wrap items-center gap-x-6 gap-y-4"
-              style={{ "--i": 4 } as CSSProperties}
+              style={{ "--i": 5 } as CSSProperties}
             >
               <SocialLinks profile={profile} ui={ui} />
               <span
@@ -222,7 +231,8 @@ export function Hero({ profile, ui }: { profile: Profile; ui: Ui }) {
                 className="hidden h-8 w-px bg-line sm:block"
               />
               <LocalClock
-                label={profile.location.label}
+                city={profile.location.city}
+                zone={profile.location.zone}
                 timeZone={profile.location.timezone}
                 ariaLabel={ui.labels.clock}
               />

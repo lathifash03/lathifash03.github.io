@@ -42,7 +42,7 @@ export function Experience({
                   {item.period}
                 </p>
                 <div className="md:col-span-9">
-                  <h3 className="text-[1.375rem] leading-snug text-ink">
+                  <h3 className="font-display text-[1.375rem] leading-snug text-ink">
                     {item.role}
                   </h3>
                   <p className="mt-1 text-ink-2">

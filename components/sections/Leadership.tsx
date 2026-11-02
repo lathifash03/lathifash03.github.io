@@ -4,6 +4,36 @@ import { Section } from "@/components/ui/Section";
 import type { Leadership as LeadershipContent, Ui } from "@/lib/content";
 
 /**
+ * DESIGN.md §4: two photos overlapping, the portrait in front and the
+ * landscape behind and offset, each tilted its own way so they read as prints
+ * laid down rather than a grid. The tilts are static layout, not motion, so
+ * they survive prefers-reduced-motion.
+ */
+function SpeakingCollage({
+  photos,
+}: {
+  photos: NonNullable<LeadershipContent["speakingPhotos"]>;
+}) {
+  const [front, behind] = photos;
+  return (
+    <div className="relative pb-10 sm:pb-16">
+      <div className="w-[72%] rotate-[-3deg] overflow-hidden rounded-[20px] border-[3px] border-white shadow-tile">
+        <Picture
+          asset={front}
+          className="aspect-[600/1003] w-full bg-surface-2 object-cover"
+        />
+      </div>
+      <div className="absolute right-0 bottom-0 w-[62%] rotate-2 overflow-hidden rounded-[20px] border-[3px] border-white shadow-tile">
+        <Picture
+          asset={behind}
+          className="aspect-[1080/635] w-full bg-surface-2 object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
  * DESIGN.md §4, "Speaking / Training row card". These were a small meta-sized
  * list; they are the same words at body size on the wr tint, with the year in
  * its own mono column and the detail set below the title.
@@ -11,9 +41,12 @@ import type { Leadership as LeadershipContent, Ui } from "@/lib/content";
 function RowList({
   title,
   items,
+  twoUp = false,
 }: {
   title: string;
   items: LeadershipContent["speaking"];
+  /** Rows side by side once the list has the full width to itself. */
+  twoUp?: boolean;
 }) {
   if (!items.length) return null;
   // One list, one left edge: once any row carries a year, every row reserves
@@ -22,7 +55,11 @@ function RowList({
   return (
     <div>
       <h3 className="font-mono text-meta text-ink-2">{title}</h3>
-      <ul className="mt-5 space-y-3">
+      <ul
+        className={`mt-5 ${
+          twoUp ? "grid gap-3 lg:grid-cols-2 lg:items-start" : "space-y-3"
+        }`}
+      >
         {items.map((item) => (
           <li
             key={item.title}
@@ -67,7 +104,7 @@ export function Leadership({
           <li key={`${role.org}-${role.role}`}>
             <BlurIn>
               <p className="font-mono text-meta text-ink-2">{role.period}</p>
-              <h3 className="mt-3 text-[1.375rem] leading-snug text-ink">
+              <h3 className="mt-3 font-display text-[1.375rem] leading-snug text-ink">
                 {role.role}
               </h3>
               <p className="mt-1 text-ink-2">{role.org}</p>
@@ -77,22 +114,22 @@ export function Leadership({
         ))}
       </ul>
 
-      {content.speakingImage ? (
-        <div className="mt-20 overflow-hidden rounded-card">
-          <Picture
-            asset={content.speakingImage}
-            className="aspect-21/9 w-full bg-surface-2 object-cover"
-          />
+      {/* The collage sits beside the Speaking rows from 1024px and above them
+          on a phone, so the photos and the list they belong to are read
+          together (DESIGN.md §4). */}
+      <div className="mt-20 grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-10">
+        {content.speakingPhotos ? (
+          <div className="lg:col-span-5">
+            <SpeakingCollage photos={content.speakingPhotos} />
+          </div>
+        ) : null}
+        <div className={content.speakingPhotos ? "lg:col-span-7" : "lg:col-span-12"}>
+          <RowList title={ui.sections.speaking} items={content.speaking} />
         </div>
-      ) : null}
+      </div>
 
-      <div
-        className={`grid gap-12 lg:grid-cols-2 lg:gap-8 ${
-          content.speakingImage ? "mt-10" : "mt-20"
-        }`}
-      >
-        <RowList title={ui.sections.speaking} items={content.speaking} />
-        <RowList title={ui.sections.training} items={content.training} />
+      <div className="mt-16">
+        <RowList title={ui.sections.training} items={content.training} twoUp />
       </div>
 
       {content.gallery.length ? (

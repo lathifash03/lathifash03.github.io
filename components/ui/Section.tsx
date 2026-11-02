@@ -55,7 +55,7 @@ export function Section({
           ) : null}
           <h2
             id={`${id}-title`}
-            className={`text-section text-ink ${index ? "md:col-span-10" : "md:col-span-12"}`}
+            className={`font-display text-section text-ink ${index ? "md:col-span-10" : "md:col-span-12"}`}
           >
             {title}
           </h2>

@@ -32,7 +32,7 @@ export function Writing({
       <div className="grid gap-16 lg:grid-cols-12 lg:gap-8">
         <div data-reveal className="lg:col-span-5">
           <p className="font-mono text-meta text-ink-2">{journalism.period}</p>
-          <h3 className="mt-3 text-card text-ink">{journalism.role}</h3>
+          <h3 className="mt-3 font-display text-card text-ink">{journalism.role}</h3>
           <p className="mt-2 text-ink-2">{journalism.org}</p>
           <p className="mt-6 max-w-[60ch] text-ink">{journalism.summary}</p>
           <a

@@ -42,7 +42,7 @@ export function Lanes({ profile, ui }: { profile: Profile; ui: Ui }) {
     <Section id="lanes" title={ui.sections.lanes}>
       {/* data-reveal is what ScrollReveals marks shown, and the marker sweep
           hangs off that one attribute (DESIGN.md §7.11). */}
-      <p data-reveal className="max-w-[24ch] text-section text-ink sm:max-w-[20ch]">
+      <p data-reveal className="max-w-[24ch] font-display text-section text-ink sm:max-w-[20ch]">
         {profile.lanesStatement.map((segment, i) => (
           <span key={i} className={segment.mark === "hl" ? "lane-marker" : undefined}>
             {segment.lane ? <LaneChip lane={segment.lane} /> : null}

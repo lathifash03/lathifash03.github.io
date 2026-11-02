@@ -45,7 +45,11 @@ export const profileSchema = z
     photo: asset.optional(),
     status: z.string(),
     statement: z.string(),
-    location: z.object({ label: z.string(), timezone: z.string() }).strict(),
+    /** The clock renders city and zone separately, so neither is parsed out
+     *  of a combined label at render time (DESIGN.md §7.4). */
+    location: z
+      .object({ city: z.string(), zone: z.string(), timezone: z.string() })
+      .strict(),
     greetings: z
       .array(
         z
@@ -100,7 +104,15 @@ export const profileSchema = z
       .optional(),
     lanes: z
       .array(
-        z.object({ id: laneId, title: z.string(), summary: z.string() }).strict(),
+        z
+          .object({
+            id: laneId,
+            title: z.string(),
+            summary: z.string(),
+            /** Shown as tag pills in this lane's tab. A lane may have none. */
+            skills: z.array(z.string()).optional(),
+          })
+          .strict(),
       )
       .min(1),
     education: z
@@ -113,8 +125,8 @@ export const profileSchema = z
         thesis: z.string(),
       })
       .strict(),
-    languages: z.array(z.string()),
-    skills: z.record(z.string(), z.array(z.string())),
+    /** The one-line version shown in the hero, under the statement. */
+    educationLine: z.string(),
     contact: z
       .object({
         email: z.email(),
@@ -122,6 +134,7 @@ export const profileSchema = z
         linkedin: z.url(),
         medium: z.url(),
         cv: z.string().startsWith("/"),
+        headline: z.string(),
         closing: z.string(),
       })
       .strict(),
@@ -180,7 +193,6 @@ export const uiSchema = z
         traceHeader: z.string(),
         clock: z.string(),
         caveat: z.string(),
-        languages: z.string(),
         context: z.string(),
         role: z.string(),
         screenshots: z.string(),
@@ -201,7 +213,7 @@ export const uiSchema = z
       .strict(),
     notFound: strings("title", "home"),
     /** The start-a-message card: one line and three mailto subjects. */
-    message: strings("line", "internship", "research", "hello"),
+    message: strings("line", "internship", "research", "hello", "note"),
     // Figure labels: the diagrams are drawn in code, so their words live here
     // rather than in the components (CLAUDE.md hard rule 6).
     diagrams: z
@@ -362,7 +374,8 @@ export const leadershipSchema = z
         .strict(),
     ),
     /** A wide photo above the Speaking rows. */
-    speakingImage: asset.optional(),
+    /** The collage beside the Speaking rows. The first photo sits in front. */
+    speakingPhotos: z.array(asset).length(2).optional(),
     // Rows, not sentences: the year sits in its own column and the detail is
     // set apart from the title (DESIGN.md §4, "Speaking / Training row card").
     speaking: z.array(

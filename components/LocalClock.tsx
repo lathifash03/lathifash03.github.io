@@ -4,16 +4,26 @@ import { useEffect, useState } from "react";
 
 /**
  * DESIGN.md §7.4. Rendered only after mount: the server has no business
- * guessing the reader's clock, and the label alone holds the space.
+ * guessing the reader's clock, and the city alone holds the space.
+ *
+ * Two shapes, one source. "full" is the hero's `Jakarta · WIB · 07:12:34`;
+ * "compact" is the contact card's `Jakarta · 07:12 WIB`, which drops the
+ * seconds because nothing there is ticking for the reader to watch.
  */
 export function LocalClock({
-  label,
+  city,
+  zone,
   timeZone,
   ariaLabel,
+  variant = "full",
+  className = "font-mono text-meta text-ink-2",
 }: {
-  label: string;
+  city: string;
+  zone: string;
   timeZone: string;
   ariaLabel: string;
+  variant?: "full" | "compact";
+  className?: string;
 }) {
   const [time, setTime] = useState<{ hm: string; s: string } | null>(null);
 
@@ -30,13 +40,27 @@ export function LocalClock({
       setTime({ hm: `${hh}:${mm}`, s: ss });
     };
     tick();
-    const id = window.setInterval(tick, 1000);
+    const id = window.setInterval(tick, variant === "compact" ? 15_000 : 1000);
     return () => window.clearInterval(id);
-  }, [timeZone]);
+  }, [timeZone, variant]);
+
+  if (variant === "compact") {
+    return (
+      <p className={className} aria-label={ariaLabel}>
+        {city}
+        {time ? (
+          <>
+            {" · "}
+            <span className="tabular-nums">{time.hm}</span> {zone}
+          </>
+        ) : null}
+      </p>
+    );
+  }
 
   return (
-    <p className="font-mono text-meta text-ink-2" aria-label={ariaLabel}>
-      {label}
+    <p className={className} aria-label={ariaLabel}>
+      {city} · {zone}
       {time ? (
         <>
           {" · "}

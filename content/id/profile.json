@@ -4,7 +4,8 @@
   "photo": { "src": "/images/profile/portrait-cutout.png", "alt": "Potret Lathifah Sahda", "draft": false },
   "status": "Terbuka untuk bekerja",
   "statement": "Lulusan Teknik Informatika ITS. Saya membangun sistem berbasis language model, mengukur di mana sistem itu gagal, dan menjelaskan hasilnya kepada orang yang bukan engineer.",
-  "location": { "label": "Jakarta · WIB", "timezone": "Asia/Jakarta" },
+  "educationLine": "ITS · Teknik Informatika · IPK 3,70 · Lulus 2026",
+  "location": { "city": "Jakarta", "zone": "WIB", "timezone": "Asia/Jakarta" },
   "greetings": [
     { "text": "Halo", "lang": "id" },
     { "text": "Hello", "lang": "en" },
@@ -32,12 +33,14 @@
     {
       "id": "ai",
       "title": "AI & Data",
-      "summary": "Pipeline LLM, verifikasi agentik di atas knowledge graph, topic modeling, dan evaluasi yang melaporkan keterbatasannya sendiri."
+      "summary": "Pipeline LLM, verifikasi agentik di atas knowledge graph, topic modeling, dan evaluasi yang melaporkan keterbatasannya sendiri.",
+      "skills": ["Python", "PyTorch", "Transformers", "spaCy", "scikit-learn", "XGBoost", "LightGBM", "BERTopic", "Optuna", "RAG / GraphRAG", "LangGraph", "MCP", "Neo4j / Cypher", "Streamlit", "Tableau"]
     },
     {
       "id": "sw",
       "title": "Software",
-      "summary": "Aplikasi web dan mobile untuk pengguna nyata: aplikasi persetujuan aman untuk perusahaan, sistem keuangan untuk TK, dan website kampus."
+      "summary": "Aplikasi web dan mobile untuk pengguna nyata: aplikasi persetujuan aman untuk perusahaan, sistem keuangan untuk TK, dan website kampus.",
+      "skills": ["Next.js", "Flutter / Dart", "Laravel", "Flask", "Golang", "REST API", "MySQL", "WordPress", "Docker", "Git"]
     },
     {
       "id": "wr",
@@ -53,18 +56,13 @@
     "scholarship": "Beasiswa Pendidikan Indonesia skema AMN (dibiayai LPDP)",
     "thesis": "Pengembangan hybrid pipeline untuk konversi teks naratif berita menjadi format prosedural dengan pendekatan constraint-based LLM"
   },
-  "languages": ["Indonesia", "Inggris", "Arab"],
-  "skills": {
-    "AI & data": ["Python", "PyTorch", "Transformers", "spaCy", "scikit-learn", "XGBoost", "LightGBM", "BERTopic", "Optuna", "RAG / GraphRAG", "LangGraph", "MCP", "Neo4j / Cypher", "Streamlit", "Tableau"],
-    "Software": ["Next.js", "Flutter / Dart", "Laravel", "Flask", "Golang", "REST API", "MySQL", "WordPress", "Docker", "Git"],
-    "Praktik": ["Evaluasi LLM", "Root-cause analysis", "Analisis kebutuhan", "Penulisan teknis", "Figma (UI/UX)"]
-  },
   "contact": {
     "email": "lathifahsahda03@gmail.com",
     "github": "https://github.com/lathifash03",
     "linkedin": "https://www.linkedin.com/in/lathifah-sahda",
     "medium": "https://medium.com/@lathifahsahda03",
     "cv": "/cv.pdf",
-    "closing": "Cara tercepat menghubungi saya adalah lewat email."
+    "headline": "Punya posisi atau ide riset? Mari ngobrol.",
+    "closing": "Email adalah cara tercepat menghubungi saya."
   }
 }

@@ -57,7 +57,8 @@
   --color-chip-wr-text: #ce491a;
   --color-marker: #f6de7a;
 
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-instrument), sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 
   --text-hero-name: clamp(3.25rem, 9vw, 7.5rem);
@@ -518,6 +519,7 @@ html.lenis body {
 }
 
 .case-prose h2 {
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 500;
   line-height: 1.15;

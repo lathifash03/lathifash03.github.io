@@ -103,18 +103,29 @@ drawn on top. Measured: `--ink` 13.26 / 13.08 / 13.88, `--ink-2` 5.30 / 5.23 / 5
 
 ## 3. Typography
 
-- Display and UI: **Plus Jakarta Sans** (weights 400, 500, 600). Body text also Plus Jakarta Sans.
+- Display — the hero name, section titles, card titles, the lanes statement, the contact headline:
+  **Bricolage Grotesque** (500, 600), loaded as a variable font with its optical-size axis, so the
+  large sizes get the tighter display cut and the small ones stay open.
+- Body and UI — paragraphs, buttons, tabs, links, labels: **Instrument Sans** (400, 500, 600).
 - Metadata, indices, numbers with units, code: **IBM Plex Mono** 400.
-- Never more than these two families. No weight 700+.
+- Never more than these three families. No weight 700+.
 
-| Role | Size | Weight | Line height | Tracking |
-|---|---|---|---|---|
-| Hero name | `clamp(3.25rem, 9vw, 7.5rem)` | 600 | 0.95 | -0.03em |
-| Hero statement | `clamp(1.375rem, 2.6vw, 2.25rem)` | 400 | 1.25 | -0.01em |
-| Section title | `clamp(2rem, 5vw, 3.75rem)` | 500 | 1.05 | -0.02em |
-| Card title | `clamp(1.5rem, 3vw, 2.5rem)` | 500 | 1.1 | -0.015em |
-| Body | `1.0625rem` | 400 | 1.65 | 0 |
-| Small / meta (mono) | `0.8125rem` | 400 | 1.4 | 0.02em |
+Display is applied by the `font-display` utility on the element, not inherited from a wrapper, so
+it is always visible in the markup which type is display and which is body.
+
+| Role | Family | Size | Weight | Line height | Tracking |
+|---|---|---|---|---|---|
+| Hero name | display | `clamp(3.25rem, 9vw, 7.5rem)` | 600 | 0.95 | -0.03em |
+| Hero statement | body | `clamp(1.375rem, 2.6vw, 2.25rem)` | 400 | 1.25 | -0.01em |
+| Section title | display | `clamp(2rem, 5vw, 3.75rem)` | 500 | 1.05 | -0.02em |
+| Card title | display | `clamp(1.5rem, 3vw, 2.5rem)` | 500 | 1.1 | -0.015em |
+| Contact headline | display | `clamp(2rem, 3.6vw, 3.25rem)` | 500 | 1.1 | -0.02em |
+| Body | body | `1.0625rem` | 400 | 1.65 | 0 |
+| Small / meta (mono) | mono | `0.8125rem` | 400 | 1.4 | 0.02em |
+
+Bricolage Grotesque runs wider than the typeface it replaced, so the hero name's tracking does the
+work of keeping it on two lines at 1440 and the section titles keep their clamp. Every heading was
+re-checked for new wraps at 390, 768 and 1440 after the switch.
 
 Section eyebrows are mono, sentence case, preceded by the section index in the form `01 / Research`.
 The main sections are numbered 01 Research, 02 Built, 03 Data, 04 Experience, 05 Leadership,

@@ -9,6 +9,13 @@ const laneTint: Record<LaneId, string> = {
   wr: "bg-lane-wr-tint text-ink",
 };
 
+/** Same pair as a tag pill elsewhere: tint fill, strong text (DESIGN.md §4). */
+const laneSkill: Record<LaneId, string> = {
+  ai: "bg-lane-ai-tint text-lane-ai-strong",
+  sw: "bg-lane-sw-tint text-lane-sw-strong",
+  wr: "bg-lane-wr-tint text-lane-wr-strong",
+};
+
 /**
  * DESIGN.md §4, "Lanes section". A real tablist: arrow keys move the
  * selection, Home and End jump to the ends, and only the selected tab is in
@@ -81,9 +88,23 @@ export function LaneTabs({ lanes }: { lanes: Profile["lanes"] }) {
         role="tabpanel"
         aria-labelledby={`lane-tab-${lanes[active].id}`}
         tabIndex={0}
-        className="mt-6 max-w-[68ch] text-ink sm:min-h-[6.5rem]"
+        className="mt-6 sm:min-h-[11rem]"
       >
-        {lanes[active].summary}
+        <p className="max-w-[68ch] text-ink">{lanes[active].summary}</p>
+        {/* The skills list used to be its own block in Contact; it belongs to
+            the lane it describes (DESIGN.md §4). A lane may carry none. */}
+        {lanes[active].skills?.length ? (
+          <ul className="mt-5 flex flex-wrap gap-2">
+            {lanes[active].skills.map((skill) => (
+              <li
+                key={skill}
+                className={`rounded-full px-3 py-1 font-mono text-[0.75rem] leading-5 ${laneSkill[lanes[active].id]}`}
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </div>
   );

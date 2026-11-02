@@ -29,7 +29,7 @@ function DataRow({
       </div>
 
       <div className="md:col-span-9">
-        <h3 className="text-[1.375rem] leading-snug text-ink">{project.title}</h3>
+        <h3 className="font-display text-[1.375rem] leading-snug text-ink">{project.title}</h3>
         <p className="mt-2 text-ink-2">{project.context}</p>
         <p className="mt-4 max-w-[68ch] text-ink">{project.summary}</p>
 

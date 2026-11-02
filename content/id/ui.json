@@ -42,7 +42,6 @@
     "traceHeader": "kg-agent · contoh jalannya sistem",
     "clock": "Waktu setempat",
     "caveat": "Catatan",
-    "languages": "Bahasa",
     "context": "Konteks",
     "role": "Peran",
     "screenshots": "Tangkapan layar dari proyek di bawah",
@@ -55,7 +54,8 @@
     "line": "Pilih subjek — akan terbuka di aplikasi email Anda.",
     "internship": "Peluang magang",
     "research": "Kolaborasi riset",
-    "hello": "Sekadar menyapa"
+    "hello": "Sekadar menyapa",
+    "note": "Membuka aplikasi email dengan subjek yang sudah terisi."
   },
   "locales": {
     "en": {

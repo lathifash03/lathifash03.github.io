@@ -62,7 +62,7 @@ function ResearchCard({
             <span>{project.year}</span>
           </p>
 
-          <h3 className="mt-5 text-card text-ink">{project.title}</h3>
+          <h3 className="mt-5 font-display text-card text-ink">{project.title}</h3>
           <p className="mt-3 text-ink-2">{project.context}</p>
           <div className="mt-1">
             <TeamLabel project={project} ui={ui} />

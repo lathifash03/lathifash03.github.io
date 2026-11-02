@@ -28,7 +28,7 @@ function BuiltCard({
       ) : null}
 
       <p className="font-mono text-meta text-ink-2">{project.year}</p>
-      <h3 className="mt-4 text-[1.375rem] leading-snug text-ink">
+      <h3 className="mt-4 font-display text-[1.375rem] leading-snug text-ink">
         {project.title}
       </h3>
       <p className="mt-2 text-ink-2">{project.context}</p>
