@@ -1,11 +1,13 @@
 import { ExternalIcon } from "@/components/ui/ExternalIcon";
 import { Section } from "@/components/ui/Section";
 import type { Ui, Writing as WritingContent } from "@/lib/content";
+import { newTab } from "@/lib/links";
 
 function ArticleLink({ title, url }: { title: string; url: string }) {
   return (
     <a
       href={url}
+      {...newTab(url)}
       className="group grid gap-2 py-6 md:grid-cols-12 md:gap-8 border-t border-line"
     >
       <span className="text-ink md:col-span-10">{title}</span>
@@ -35,6 +37,7 @@ export function Writing({
           <p className="mt-6 max-w-[60ch] text-ink">{journalism.summary}</p>
           <a
             href={journalism.archive}
+            {...newTab(journalism.archive)}
             className="mt-6 inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
           >
             {ui.actions.viewArchive}

@@ -92,7 +92,12 @@ function ResearchCard({
           </div>
 
           <div className="mt-5">
-            <ProjectLinks links={project.links} ui={ui} locale={locale} />
+            <ProjectLinks
+              links={project.links}
+              ui={ui}
+              locale={locale}
+              title={project.title}
+            />
           </div>
         </div>
 

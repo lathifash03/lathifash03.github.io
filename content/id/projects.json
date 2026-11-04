@@ -39,14 +39,14 @@
       "summary": "Pipeline hybrid: NER dan analisis temporal berbasis aturan menyusun constraint per artikel, tiga LLM mengonversi artikel, lalu validator dan entity injection memperbaiki yang terlewat.",
       "metrics": [
         { "value": "≤33% → 57–67%", "label": "artikel yang mempertahankan seluruh entitas wajib, prompt saja vs pipeline penuh", "caveat": "480 artikel per model; masih di bawah target 85%" },
-        { "value": "0,645–0,700", "label": "BERTScore F1 pada ketiga model", "caveat": "target ≥ 0,60 tercapai oleh ketiganya" },
+        { "value": "0,645–0,700", "label": "BERTScore F1 pada ketiga model", "caveat": "target revisi ≥ 0,60 tercapai oleh ketiganya; target awal 0,70 hanya dicapai GPT-4o-mini (0,700)" },
         { "value": "1.440", "label": "titik data evaluasi (480 artikel × 3 model, 16 domain berita)", "caveat": "diambil dari 26.526 artikel valid" }
       ],
       "tags": ["spaCy", "Llama 3.3 70B", "GPT-4o-mini", "Claude Haiku", "ROUGE", "BERTScore"],
       "image": { "src": "/images/projects/thesis-pipeline.png", "alt": "Diagram hybrid pipeline empat fase", "draft": true },
       "links": {
         "caseStudy": "/projects/narrative-to-procedural/",
-        "code": "https://github.com/lathifash03/ta_demo.git"
+        "code": "https://github.com/lathifash03/ta_demo"
       }
     },
     {
@@ -72,7 +72,7 @@
         "caseStudy": "/projects/ruang-topik/",
         "demo": "https://textmin-deploy.streamlit.app",
         "demoNote": "Di-hosting di Streamlit; perlu sekitar 30 detik untuk aktif kembali.",
-        "code": "https://github.com/lathifash03/ruang-topik-deploy.git"
+        "code": "https://github.com/lathifash03/ruang-topik-deploy"
       }
     },
     {
@@ -199,16 +199,16 @@
       "order": 2,
       "draft": false,
       "year": "2025",
-      "title": "Mendeteksi fraud pinjaman online dengan ensemble learning",
+      "title": "Deteksi fraud pada transaksi mobile-money sintetis",
       "context": "Proyek akhir mata kuliah, ditulis dalam format artikel jurnal (tidak dipublikasikan)",
       "team": true,
       "teamSize": 3,
-      "summary": "Membandingkan single learner (logistic regression, SVM) dengan ensemble (random forest, XGBoost, LightGBM), memakai SMOTE untuk menangani ketidakseimbangan kelas, pada dataset transaksi keuangan sintetis.",
+      "summary": "Pada dataset mobile money sintetis bergaya PaySim berisi 83.561 baris, membandingkan Logistic Regression dengan pembobotan kelas dan Decision Tree, dengan SMOTE hanya pada data latih.",
       "metrics": [
-        { "value": "0,93 / 0,97", "label": "F1 / AUC-ROC, LightGBM + SMOTE", "caveat": "dataset sintetis" }
+        { "value": "0,769 / 0,862", "label": "F1 / PR-AUC, Decision Tree", "caveat": "data sintetis; ROC-AUC terlihat tinggi bahkan untuk model yang lemah, jadi PR-AUC-lah metrik yang jujur" }
       ],
-      "tags": ["LightGBM", "XGBoost", "SMOTE", "scikit-learn"],
-      "links": {}
+      "tags": ["scikit-learn", "SMOTE", "Decision Tree", "Logistic Regression"],
+      "links": { "code": "https://github.com/lathifash03/data-science-project/tree/main/fraud-detection" }
     },
     {
       "slug": "tableau-sales",
@@ -238,15 +238,21 @@
       "draft": false,
       "year": "2024",
       "title": "Sentimen ulasan Mobile Legends di Google Play",
-      "context": "Analisis pribadi · ditulis di Medium",
+      "context": "Tugas akhir mata kuliah machine learning · ditulis di Medium",
       "team": false,
-      "summary": "Analisis sentimen berbasis leksikon dan aturan atas ulasan Play Store dengan VADER dari NLTK.",
+      "summary": "Melabeli ulasan Play Store dengan VADER, lalu melatih Random Forest, SVM, dan Naive Bayes pada label tersebut. VADER adalah leksikon bahasa Inggris dan salah membaca banyak ulasan berbahasa Indonesia, jadi akurasinya mengukur kesesuaian dengan VADER, bukan sentimen sebenarnya.",
+      "metrics": [
+        { "value": "0,883", "label": "akurasi Random Forest terhadap label VADER", "caveat": "SMOTE sebelum split menaikkan angka ini; split lain menghasilkan 52–71%" }
+      ],
       "image": {
         "src": "/images/projects/sentiment-wordcloud.png",
         "alt": "Word cloud ulasan Mobile Legends berbahasa Indonesia"
       },
-      "tags": ["NLTK", "VADER", "Python"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
+      "tags": ["NLTK", "VADER", "Random Forest", "SVM", "Naive Bayes"],
+      "links": {
+        "code": "https://github.com/lathifash03/data-science-project/tree/main/mlbb-sentiment",
+        "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736"
+      }
     },
     {
       "slug": "urban-happiness",
@@ -255,16 +261,22 @@
       "order": 5,
       "draft": false,
       "year": "2024",
-      "title": "Kaitan pembangunan kota dengan kebahagiaan (KNN dan K-Means)",
-      "context": "Analisis pribadi · ditulis di Medium",
+      "title": "Survei kebahagiaan warga: KNN dan K-Means",
+      "context": "Tugas mata kuliah · ditulis di Medium",
       "team": true,
       "summary": "Klasifikasi dan clustering atas kaitan antara faktor-faktor pembangunan kota dengan kebahagiaan seseorang.",
+      "metrics": [
+        { "value": "0,70", "label": "akurasi KNN (k = 3)", "caveat": "67 sampel uji; silhouette K-Means 0,17–0,20 = struktur klaster lemah" }
+      ],
       "image": {
         "src": "/images/projects/urban-clusters.png",
         "alt": "Sebaran 3D klaster K-Means berdasarkan kualitas jalan, biaya rumah, dan kepercayaan pada polisi"
       },
       "tags": ["KNN", "K-Means", "scikit-learn"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
+      "links": {
+        "code": "https://github.com/lathifash03/data-science-project/tree/main/happiness-clustering",
+        "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44"
+      }
     },
     {
       "slug": "stock-ann",
@@ -273,27 +285,16 @@
       "order": 6,
       "draft": false,
       "year": "2025",
-      "title": "Prediksi harga saham dengan LSTM, GRU, dan Transformer",
+      "title": "Prediksi harga saham dengan Transformer",
       "context": "Tugas akhir Deep Learning · ITS",
       "team": true,
-      "summary": "Membandingkan model LSTM, GRU dan Transformer untuk memprediksi harga saham Microsoft (MSFT), dengan dollar-bar sampling, label trend-scanning dan piecewise aggregate approximation pada tahap praproses. Akurasinya hanya bertahan pada horizon pendek.",
+      "summary": "Menguji apakah Transformer kecil bisa memprediksi harga penutupan saham Microsoft, dan apakah membingkainya sebagai naik/turun lebih berhasil. Ternyata tidak: regresinya lebih buruk daripada menebak nilai rata-rata, dan classifier-nya belajar untuk selalu menjawab 'naik'.",
       "metrics": [
-        { "value": "0,39", "label": "R\u00b2 pada horizon 1 hari", "caveat": "menjadi negatif sejak hari ke-4 (\u22121,26 pada hari ke-7)" }
+        { "value": "R\u00b2 \u22122,83", "label": "run regresi terbaik (S1)", "caveat": "negatif = lebih buruk daripada nilai rata-rata" },
+        { "value": "0,556", "label": "akurasi naik/turun", "caveat": "sama dengan proporsi hari 'naik' \u2014 baseline kelas mayoritas" }
       ],
-      "chart": {
-        "title": "R\u00b2 menurut horizon prediksi",
-        "bars": [
-          { "label": "1 hari", "value": 0.395, "display": "0,395" },
-          { "label": "2 hari", "value": 0.272, "display": "0,272" },
-          { "label": "3 hari", "value": 0.062, "display": "0,062" },
-          { "label": "4 hari", "value": -0.205, "display": "\u22120,205" },
-          { "label": "5 hari", "value": -0.519, "display": "\u22120,519" },
-          { "label": "6 hari", "value": -0.867, "display": "\u22120,867" },
-          { "label": "7 hari", "value": -1.256, "display": "\u22121,256" }
-        ]
-      },
-      "tags": ["LSTM", "GRU", "Transformer", "Time series", "Python"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
+      "tags": ["Transformer", "Time series", "SMOTE", "Python"],
+      "links": { "code": "https://github.com/lathifash03/data-science-project/tree/main/stock-transformer" }
     }
   ]
 }

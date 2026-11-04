@@ -3,6 +3,7 @@ import { BlurIn } from "@/components/motion/BlurIn";
 import { ExternalIcon } from "@/components/ui/ExternalIcon";
 import { Picture } from "@/components/ui/Picture";
 import { Section } from "@/components/ui/Section";
+import { newTab } from "@/lib/links";
 import type {
   Asset,
   Leadership as LeadershipContent,
@@ -179,6 +180,7 @@ function TrainingList({
               <p className="mt-auto pt-4">
                 <a
                   href={item.verify}
+                  {...newTab(item.verify)}
                   className="inline-flex items-center gap-1.5 text-ink underline decoration-line underline-offset-4 transition-colors duration-200 hover:decoration-ink"
                 >
                   {ui.actions.verify}

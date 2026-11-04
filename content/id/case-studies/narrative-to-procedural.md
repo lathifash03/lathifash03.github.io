@@ -4,6 +4,7 @@ title: "Mengubah teks naratif berita menjadi teks langkah demi langkah"
 context: "Tugas akhir sarjana · Teknik Informatika, ITS · 2026"
 role: "Individu"
 stack: [Python, spaCy en_core_web_md, Llama 3.3 70B (Groq), GPT-4o-mini, Claude Haiku, rouge-score, BERTScore]
+evalCode: "https://github.com/lathifash03/human-eval"
 figures:
   - kind: diagram
     id: pipeline
@@ -49,7 +50,8 @@ Untuk konversi: 30 per domain × 16 = 480 artikel per model, × 3 model = **1.44
 | Format pass rate | 99,6% | 99,8% | 99,6% |
 | Overall pass rate | 100% | 98,5% | 99,2% |
 
-Targetnya BERTScore F1 ≥ 0,60 dan ROUGE-L ≥ 0,20; ketiga model memenuhi keduanya.
+Target revisinya BERTScore F1 ≥ 0,60 dan ROUGE-L ≥ 0,20; ketiga model memenuhi keduanya.
+Target awal 0,70 hanya dicapai GPT-4o-mini (0,700).
 Terhadap 20 referensi prosedural yang saya anotasi manual, BERTScore F1 naik menjadi
 0,668 / 0,724 / 0,721, yang mendukung pandangan bahwa referensi naratif meremehkan keluaran prosedural.
 

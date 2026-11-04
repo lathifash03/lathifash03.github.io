@@ -32,12 +32,14 @@
     "readArticle": "Baca artikel",
     "viewArchive": "Semua tulisan",
     "readReport": "Baca laporan",
+    "evalCode": "Kode formulir evaluasi",
     "verify": "Verifikasi",
     "backToWork": "Kembali ke karya",
     "skipIntro": "Lewati"
   },
   "labels": {
     "teamProject": "Proyek tim",
+    "linkFor": "{action} untuk {title}",
     "teamSize": "{n} orang",
     "traceHeader": "kg-agent · contoh jalannya sistem",
     "clock": "Waktu setempat",
@@ -45,6 +47,7 @@
     "context": "Konteks",
     "role": "Peran",
     "screenshots": "Tangkapan layar dari proyek di bawah",
+    "tableScroll": "Tabel (bisa digeser ke samping)",
     "github": "Profil GitHub",
     "linkedin": "Profil LinkedIn",
     "medium": "Artikel Medium",

@@ -1,4 +1,5 @@
 import type { Profile, Ui } from "@/lib/content";
+import { newTab } from "@/lib/links";
 
 type IconName = "github" | "linkedin" | "medium" | "linktree" | "email";
 
@@ -56,6 +57,7 @@ function Social({
     <li>
       <a
         href={href}
+        {...newTab(href)}
         aria-label={label}
         className={`flex size-11 items-center justify-center rounded-full border transition-colors duration-200 ${
           onDark ? ring.dark : ring.light

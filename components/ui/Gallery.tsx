@@ -18,7 +18,7 @@ export function Gallery({ images }: { images?: Asset[] }) {
           <a
             href={image.src}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="block rounded-image transition-opacity duration-200 hover:opacity-90"
           >
             <Picture

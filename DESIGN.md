@@ -189,6 +189,23 @@ Sentence case everywhere. No ALL CAPS headlines.
   a screenshot opened at full size) ends with a small 0.9em "arrow out of a box", `aria-hidden`.
   A link that stays on the site — a case study — carries no glyph at all, so the mark means one
   thing wherever it appears.
+- **New tab, one rule:** every link to another origin opens in a new tab with
+  `rel="noopener noreferrer"` — project links, Writing articles, training certificates and the
+  icon-only social buttons alike, so the external mark always predicts the same behaviour. The
+  predicate lives in `lib/links.ts` and keys on the scheme, which leaves site-relative paths,
+  hashes and `mailto:` in the same tab (a mail client handed to a new tab leaves an empty one
+  behind). A project screenshot is same-origin but still opens in its own tab, since it replaces
+  the page with a bare image.
+- **Project links** (the row under a project's tags, and the same row at the foot of a case study):
+  plain underlined text in reading order — case study, demo, code, evaluation-form code, report,
+  article — never buttons. A link that leaves the site opens in a new tab with
+  `rel="noopener noreferrer"`, which is what the external mark above announces; the case study,
+  being on the site, opens in the same tab. Because a page carries one "View code" per project,
+  each link's accessible name is `ui.labels.linkFor` — the visible words plus the project's title
+  ("View code for Ruang Topik: mapping Indonesian news topics"), so WCAG 2.5.3 Label in Name holds
+  while 2.4.4 Link Purpose tells the cards apart. A project has at most one repository link; a case
+  study may add one more of its own (`evalCode`), labelled from `ui.actions.evalCode`, and it reads
+  as its own words, not as a second "View code".
 - **Tags:** pill, `--lane-*-tint` fill, `--lane-*-strong` text, no border, mono 12px.
 - **Lanes section** — a statement, then tabs.
   - *Statement*: one sentence at section-title size, from `profile.lanesStatement` in content as

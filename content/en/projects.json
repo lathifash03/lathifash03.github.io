@@ -39,14 +39,14 @@
       "summary": "A hybrid pipeline: rule-based NER and temporal analysis build per-article constraints, three LLMs convert the article under those constraints, and rule-based validators plus entity injection repair what the models drop.",
       "metrics": [
         { "value": "≤33% → 57–67%", "label": "articles keeping every mandatory entity, prompt-only vs full pipeline", "caveat": "480 articles per model; still below the 85% target" },
-        { "value": "0.645–0.700", "label": "BERTScore F1 across the three models", "caveat": "target ≥ 0.60 met by all three" },
+        { "value": "0.645–0.700", "label": "BERTScore F1 across the three models", "caveat": "revised target ≥ 0.60 met by all three; the initial 0.70 target was reached only by GPT-4o-mini (0.700)" },
         { "value": "1,440", "label": "evaluation data points (480 articles × 3 models, 16 news domains)", "caveat": "sampled from 26,526 valid articles" }
       ],
       "tags": ["spaCy", "Llama 3.3 70B", "GPT-4o-mini", "Claude Haiku", "ROUGE", "BERTScore"],
       "image": { "src": "/images/projects/thesis-pipeline.png", "alt": "Four-phase hybrid pipeline diagram", "draft": true },
       "links": {
         "caseStudy": "/projects/narrative-to-procedural/",
-        "code": "https://github.com/lathifash03/ta_demo.git"
+        "code": "https://github.com/lathifash03/ta_demo"
       }
     },
     {
@@ -72,7 +72,7 @@
         "caseStudy": "/projects/ruang-topik/",
         "demo": "https://textmin-deploy.streamlit.app",
         "demoNote": "Hosted on Streamlit; it may take about 30 seconds to wake up.",
-        "code": "https://github.com/lathifash03/ruang-topik-deploy.git"
+        "code": "https://github.com/lathifash03/ruang-topik-deploy"
       }
     },
     {
@@ -199,16 +199,16 @@
       "order": 2,
       "draft": false,
       "year": "2025",
-      "title": "Detecting online-loan fraud with ensemble learning",
+      "title": "Fraud detection on synthetic mobile-money transactions",
       "context": "Course final project, written in journal-article format (not published)",
       "team": true,
       "teamSize": 3,
-      "summary": "Compared single learners (logistic regression, SVM) with ensembles (random forest, XGBoost, LightGBM), using SMOTE for class imbalance, on a synthetic financial-transaction dataset.",
+      "summary": "On an 83,561-row PaySim-style synthetic mobile-money dataset, compared class-weighted Logistic Regression and a Decision Tree, with SMOTE on the training set only.",
       "metrics": [
-        { "value": "0.93 / 0.97", "label": "F1 / AUC-ROC, LightGBM + SMOTE", "caveat": "synthetic dataset" }
+        { "value": "0.769 / 0.862", "label": "F1 / PR-AUC, Decision Tree", "caveat": "synthetic data; ROC-AUC looks high even for weak models, so PR-AUC is the honest metric" }
       ],
-      "tags": ["LightGBM", "XGBoost", "SMOTE", "scikit-learn"],
-      "links": {}
+      "tags": ["scikit-learn", "SMOTE", "Decision Tree", "Logistic Regression"],
+      "links": { "code": "https://github.com/lathifash03/data-science-project/tree/main/fraud-detection" }
     },
     {
       "slug": "tableau-sales",
@@ -238,15 +238,21 @@
       "draft": false,
       "year": "2024",
       "title": "Sentiment of Mobile Legends reviews on Google Play",
-      "context": "Personal analysis · written up on Medium",
+      "context": "Machine learning course final project · written up on Medium",
       "team": false,
-      "summary": "Lexicon- and rule-based sentiment analysis of Play Store reviews with NLTK's VADER.",
+      "summary": "Labelled Play Store reviews with VADER, then trained Random Forest, SVM and Naive Bayes on those labels. VADER is an English lexicon and misreads many Indonesian reviews, so accuracy measures agreement with VADER, not true sentiment.",
+      "metrics": [
+        { "value": "0.883", "label": "Random Forest accuracy vs VADER labels", "caveat": "SMOTE before the split inflates this; other splits gave 52–71%" }
+      ],
       "image": {
         "src": "/images/projects/sentiment-wordcloud.png",
         "alt": "Word cloud of Indonesian Mobile Legends reviews"
       },
-      "tags": ["NLTK", "VADER", "Python"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736" }
+      "tags": ["NLTK", "VADER", "Random Forest", "SVM", "Naive Bayes"],
+      "links": {
+        "code": "https://github.com/lathifash03/data-science-project/tree/main/mlbb-sentiment",
+        "article": "https://medium.com/@lathifahsahda03/sentiment-analysis-for-google-play-store-reviews-a-case-study-of-mobile-legends-using-vader-and-edde60eb0736"
+      }
     },
     {
       "slug": "urban-happiness",
@@ -255,16 +261,22 @@
       "order": 5,
       "draft": false,
       "year": "2024",
-      "title": "How urban development relates to happiness (KNN and K-Means)",
-      "context": "Personal analysis · written up on Medium",
+      "title": "Resident happiness survey: KNN and K-Means",
+      "context": "Course assignment · written up on Medium",
       "team": true,
       "summary": "Classification and clustering of how urban-development factors relate to a person's happiness.",
+      "metrics": [
+        { "value": "0.70", "label": "KNN accuracy (k = 3)", "caveat": "67 test samples; K-Means silhouette 0.17–0.20 = weak cluster structure" }
+      ],
       "image": {
         "src": "/images/projects/urban-clusters.png",
         "alt": "3D scatter of K-Means clusters by street quality, house cost and police trust"
       },
       "tags": ["KNN", "K-Means", "scikit-learn"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44" }
+      "links": {
+        "code": "https://github.com/lathifash03/data-science-project/tree/main/happiness-clustering",
+        "article": "https://medium.com/@lathifahsahda03/analysis-using-kkn-and-k-means-method-how-urban-development-affects-a-persons-happiness-20c01bd08b44"
+      }
     },
     {
       "slug": "stock-ann",
@@ -273,27 +285,16 @@
       "order": 6,
       "draft": false,
       "year": "2025",
-      "title": "Stock price prediction with LSTM, GRU and Transformer",
+      "title": "Stock price forecasting with a Transformer",
       "context": "Deep Learning final project · ITS",
       "team": true,
-      "summary": "Compared LSTM, GRU and Transformer models for forecasting Microsoft (MSFT) stock prices, with dollar-bar sampling, trend-scanning labels and piecewise aggregate approximation in preprocessing. Accuracy held only for short horizons.",
+      "summary": "Tested whether a small Transformer can forecast Microsoft's closing price, and whether an up/down framing works better. It could not: regression did worse than predicting the mean, and the classifier learned to always predict 'up'.",
       "metrics": [
-        { "value": "0.39", "label": "R\u00b2 at a 1-day horizon", "caveat": "turns negative from day 4 (\u22121.26 at day 7)" }
+        { "value": "R\u00b2 \u22122.83", "label": "best regression run (S1)", "caveat": "negative = worse than the mean" },
+        { "value": "0.556", "label": "up/down accuracy", "caveat": "equals the share of 'up' days \u2014 majority-class baseline" }
       ],
-      "chart": {
-        "title": "R\u00b2 by forecast horizon",
-        "bars": [
-          { "label": "1 day", "value": 0.395, "display": "0.395" },
-          { "label": "2 days", "value": 0.272, "display": "0.272" },
-          { "label": "3 days", "value": 0.062, "display": "0.062" },
-          { "label": "4 days", "value": -0.205, "display": "\u22120.205" },
-          { "label": "5 days", "value": -0.519, "display": "\u22120.519" },
-          { "label": "6 days", "value": -0.867, "display": "\u22120.867" },
-          { "label": "7 days", "value": -1.256, "display": "\u22121.256" }
-        ]
-      },
-      "tags": ["LSTM", "GRU", "Transformer", "Time series", "Python"],
-      "links": { "article": "https://medium.com/@lathifahsahda03/stock-market-value-forecasting-for-company-investment-using-artificial-neural-network-methods-from-14c9c4bf57f0" }
+      "tags": ["Transformer", "Time series", "SMOTE", "Python"],
+      "links": { "code": "https://github.com/lathifash03/data-science-project/tree/main/stock-transformer" }
     }
   ]
 }

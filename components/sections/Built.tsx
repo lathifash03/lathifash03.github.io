@@ -49,7 +49,12 @@ function BuiltCard({
       </div>
 
       <div className="mt-6">
-        <ProjectLinks links={project.links} ui={ui} locale={locale} />
+        <ProjectLinks
+          links={project.links}
+          ui={ui}
+          locale={locale}
+          title={project.title}
+        />
       </div>
     </article>
   );

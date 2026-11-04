@@ -4,13 +4,28 @@ import { Diagram } from "@/components/diagrams/Diagram";
 import { Picture } from "@/components/ui/Picture";
 import { FIGURE_MARKER, type CaseStudy, type Figure, type Ui } from "@/lib/content";
 
-function toHtml(markdown: string): string {
+function toHtml(markdown: string, tableLabel: string): string {
   const html = marked.parse(markdown, { async: false, gfm: true });
   // Give every table its own scroll container; at 390px they are wider than
-  // the measure and must not push the page sideways (DESIGN.md §5).
+  // the measure and must not push the page sideways (DESIGN.md §5). The
+  // container is focusable and named, so scrolling it does not need a pointer
+  // (WCAG 2.1.1) and a screen reader says what the region holds.
+  const open =
+    '<div class="table-scroll" tabindex="0" role="region" aria-label="' +
+    escapeAttr(tableLabel) +
+    '"><table>';
   return html
-    .replace(/<table>/g, '<div class="table-scroll"><table>')
+    .replace(/<table>/g, open)
     .replace(/<\/table>/g, "</table></div>");
+}
+
+/** The label comes from content, so it is escaped before it meets markup. */
+function escapeAttr(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 function FigureBlock({ figure, ui }: { figure: Figure; ui: Ui }) {
@@ -84,7 +99,7 @@ export function CaseStudyBody({ study, ui }: { study: CaseStudy; ui: Ui }) {
             key={`text-${i}`}
             className="case-prose"
             // Content is first-party markdown from content/, rendered at build time.
-            dangerouslySetInnerHTML={{ __html: toHtml(trimmed) }}
+            dangerouslySetInnerHTML={{ __html: toHtml(trimmed, ui.labels.tableScroll) }}
           />
         );
       })}

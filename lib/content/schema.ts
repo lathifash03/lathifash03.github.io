@@ -182,6 +182,8 @@ export const uiSchema = z
         readArticle: z.string(),
         viewArchive: z.string(),
         readReport: z.string(),
+        /** The thesis case study links a second repository (the evaluation form). */
+        evalCode: z.string(),
         verify: z.string(),
         backToWork: z.string(),
         skipIntro: z.string(),
@@ -190,6 +192,12 @@ export const uiSchema = z
     labels: z
       .object({
         teamProject: z.string(),
+        /**
+         * Accessible name for a project link, so "View code" on one card is
+         * told apart from "View code" on the next (WCAG 2.4.4). It contains
+         * the visible text, as 2.5.3 Label in Name requires.
+         */
+        linkFor: z.string(),
         teamSize: z.string(),
         traceHeader: z.string(),
         clock: z.string(),
@@ -197,6 +205,8 @@ export const uiSchema = z
         context: z.string(),
         role: z.string(),
         screenshots: z.string(),
+        /** Names the focusable scroll box a wide case-study table sits in. */
+        tableScroll: z.string(),
         // Accessible names for the hero's icon-only social buttons.
         github: z.string(),
         linkedin: z.string(),
@@ -532,6 +542,8 @@ export const caseStudySchema = z
     demo: z.url().optional(),
     demoNote: z.string().optional(),
     code: z.url().optional(),
+    /** A second repository this case study links, labelled ui.actions.evalCode. */
+    evalCode: z.url().optional(),
     report: z.url().optional(),
     figures: z.array(figure).optional(),
     ...draftable,

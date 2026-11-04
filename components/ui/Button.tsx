@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { newTab } from "@/lib/links";
 
 /** DESIGN.md §4: pill, 48px, ink fill or 1px line border. */
 const base =
@@ -28,7 +29,12 @@ export function LinkButton({
   download?: boolean;
 }) {
   return (
-    <a href={href} download={download} className={buttonStyles[variant]}>
+    <a
+      href={href}
+      download={download}
+      {...newTab(href)}
+      className={buttonStyles[variant]}
+    >
       {children}
     </a>
   );

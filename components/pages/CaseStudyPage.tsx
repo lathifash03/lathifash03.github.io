@@ -39,6 +39,7 @@ export function CaseStudyPage({
     demo: study.demo ?? project?.links.demo,
     demoNote: study.demoNote ?? project?.links.demoNote,
     code: study.code ?? project?.links.code,
+    evalCode: study.evalCode,
     report: study.report ?? project?.links.report,
     article: project?.links.article,
   };
@@ -115,7 +116,12 @@ export function CaseStudyPage({
 
               {hasLinks ? (
                 <div className="mt-20 border-t border-line pt-8">
-                  <ProjectLinks links={links} ui={ui} locale={locale} />
+                  <ProjectLinks
+                    links={links}
+                    ui={ui}
+                    locale={locale}
+                    title={study.title}
+                  />
                 </div>
               ) : null}
             </div>

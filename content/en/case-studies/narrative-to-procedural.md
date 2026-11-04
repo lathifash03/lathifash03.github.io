@@ -4,6 +4,7 @@ title: "Turning news narratives into step-by-step text"
 context: "Undergraduate thesis · Informatics Engineering, ITS · 2026"
 role: "Individual"
 stack: [Python, spaCy en_core_web_md, Llama 3.3 70B (Groq), GPT-4o-mini, Claude Haiku, rouge-score, BERTScore]
+evalCode: "https://github.com/lathifash03/human-eval"
 figures:
   - kind: diagram
     id: pipeline
@@ -47,7 +48,8 @@ For conversion: 30 per domain × 16 = 480 articles per model, × 3 models = **1,
 | Format pass rate | 99.6% | 99.8% | 99.6% |
 | Overall pass rate | 100% | 98.5% | 99.2% |
 
-Targets were BERTScore F1 ≥ 0.60 and ROUGE-L ≥ 0.20; all three models met both.
+The revised targets were BERTScore F1 ≥ 0.60 and ROUGE-L ≥ 0.20; all three models met both.
+The initial 0.70 BERTScore target was reached only by GPT-4o-mini (0.700).
 Against 20 procedural references I annotated by hand, BERTScore F1 rose to 0.668 / 0.724 / 0.721,
 which supports the view that a narrative reference underestimates procedural output.
 

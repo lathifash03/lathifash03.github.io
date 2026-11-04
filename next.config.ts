@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  // `next dev` otherwise writes an AGENTS.md into the repo root on every run.
+  agentRules: false,
   trailingSlash: true,
   images: { unoptimized: true },
   turbopack: {
